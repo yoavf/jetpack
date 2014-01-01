@@ -4129,4 +4129,52 @@ p {
 
 		<?php
 	}
+
+	/**
+	 * A new set of sanitize functions.
+	 */
+
+	/**
+	 * Sanitize an integer. This treats the number as a string,
+	 * so it can deal with numbers greater than PHP_INT_MAX
+	 *
+	 * @uses self::sanitize()
+	 */
+	public static function sanitize_digits( $raw ) {
+		return self::sanitize( $raw, '/\D+/' );
+	}
+
+	/**
+	 * Sanitize an hexadecimal number. Case insensitive.
+	 *
+	 * @uses self::sanitize()
+	 */
+	public static function sanitize_hexadecimal( $raw ) {
+		return self::sanitize( $raw, '/[^\da-f]+/i' );
+	}
+
+	/**
+	 * Sanitize an alphanumeric string. Case insensitive.
+	 *
+	 * @uses self::sanitize()
+	 */
+	public static function sanitize_alphanumeric( $raw ) {
+		return self::sanitize( $raw, '/[^\da-z]+/i' );
+	}
+
+	/**
+	 * Sanitize a string of letters. Case insensitive.
+	 *
+	 * @uses self::sanitize()
+	 */
+	public static function sanitize_letters( $raw ) {
+		return self::sanitize( $raw, '/[^a-z]+/i' );
+	}
+
+	/**
+	 * Sanitize a string based on an arbitrary regex.
+	 */
+	public static function sanitize( $raw, $regex = '/[^a-z]+/i' ) {
+		return preg_replace( $regex, '', $raw );
+	}
 }
