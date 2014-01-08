@@ -457,6 +457,24 @@ function sharing_process_requests() {
 }
 add_action( 'template_redirect', 'sharing_process_requests', 9 );
 
+
+/**
+ * If running on WordPress.com we need to enable the infinite
+ * loop check for themes with Pintrest images in the content
+ * used as featured images by the theme
+ *
+ * @param boolean $bool
+ * @return boolean
+ */
+function sharing_wpcom_check( $bool ) {
+	if( defined( 'IS_WPCOM' ) && IS_WPCOM ) {
+		return true;
+	}
+	return false;
+}
+add_filter( 'jetpack_sharing_infinite_catch', 'sharing_wpcom_check' );
+
+
 function sharing_display( $text = '', $echo = false ) {
 	global $post, $wp_current_filter;
 
@@ -472,17 +490,24 @@ function sharing_display( $text = '', $echo = false ) {
 		return $text;
 	}
 
-	// Don't allow flair to be added to the_content more than once (prevent infinite loops)
-	$done = false;
-	foreach ( $wp_current_filter as $filter ) {
-		if ( 'the_content' == $filter ) {
-			if ( $done )
-				return $text;
-			else
-				$done = true;
+	/*
+	 * The following is for what may be an edge case in some themes.
+	 * When attempting to find an image in the content to set as the featured image
+	 * an accidental infinite loop can be triggered. This was originally see with 
+	 * Pintrest images on WordPress.com
+	 */
+	if( apply_filters( 'jetpack_sharing_infinite_catch', false ) ) {
+		// Don't allow flair to be added to the_content more than once (prevent infinite loops)
+		$done = false;
+		foreach ( $wp_current_filter as $filter ) {
+			if ( 'the_content' == $filter ) {
+				if ( $done )
+					return $text;
+				else
+					$done = true;
+			}
 		}
 	}
-
 	// check whether we are viewing the front page and whether the front page option is checked
 	$options = get_option( 'sharing-options' );
 	$display_options = $options['global']['show'];
