@@ -36,6 +36,12 @@ class Jetpack_SSO {
 		if( $this->should_hide_login_form() && apply_filters( 'jetpack_sso_display_disclaimer', true ) ) {
 			add_action( 'login_message', array( $this, 'msg_login_by_jetpack' ) );
 		}
+
+		// Add the Jetpack menu item
+		Jetpack_Menu::init()->add_submenu( array(
+			'title'		=> __( 'Single Sign On', 'jetpack' ),
+			'function'	=> array( $this, 'render_submenu' )
+		) );
 	}
 
 	/**
