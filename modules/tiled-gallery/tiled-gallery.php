@@ -4,10 +4,49 @@
 // Here the constrained array element is the dimension of a row, group or an image in the tiled gallery.
 include_once dirname( __FILE__ ) . '/math/class-constrained-array-rounding.php';
 
-class Jetpack_Tiled_Gallery {
+
+/**
+ * Contains code specific to how Tiled Gallery runs on WordPress.com
+ *
+ * @todo Merge onto wpcom
+ **/
+class WPcom_Tiled_Gallery extends Jetpack_Tiled_Gallery {
 
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'settings_api_init' ) );
+	}
+
+	/**
+	 * Add a checkbox field to the Carousel section in Settings > Media
+	 * for setting tiled galleries as the default.
+	 */
+	function settings_api_init() {
+		global $wp_settings_sections;
+
+		// Add the setting field [tiled_galleries] and place it in Settings > Media
+		if ( isset( $wp_settings_sections['media']['carousel_section'] ) )
+			$section = 'carousel_section';
+		else
+			$section = 'default';
+
+		add_settings_field( 'tiled_galleries', __( 'Tiled Galleries', 'jetpack' ), array( $this, 'setting_html' ), 'media', $section );
+		register_setting( 'media', 'tiled_galleries', 'esc_attr' );
+	}
+
+	function setting_html() {
+		echo '<label><input name="tiled_galleries" type="checkbox" value="1" ' .
+			checked( 1, '' != get_option( 'tiled_galleries' ), false ) . ' /> ' .
+			__( 'Display all your gallery pictures in a cool mosaic.', 'jetpack' ) . '</br></label>';
+	}
+} // end class WPcom_Tiled_Gallery
+
+
+class Jetpack_Tiled_Gallery {
+
+	public function __construct() {
+		if( !defined( 'IS_WPCOM' ) || !IS_WPCOM ) {
+			add_action( 'pre_option_tiled_galleries', '__return_true' ); 
+		}
 		add_filter( 'jetpack_gallery_types', array( $this, 'jetpack_gallery_types' ), 9 );
 		add_filter( 'jetpack_default_gallery_type', array( $this, 'jetpack_default_gallery_type' ) );
 	}
@@ -328,28 +367,7 @@ class Jetpack_Tiled_Gallery {
 		return ( get_option( 'tiled_galleries' ) ? 'rectangular' : 'default' );
 	}
 
-	/**
-	 * Add a checkbox field to the Carousel section in Settings > Media
-	 * for setting tiled galleries as the default.
-	 */
-	function settings_api_init() {
-		global $wp_settings_sections;
-
-		// Add the setting field [tiled_galleries] and place it in Settings > Media
-		if ( isset( $wp_settings_sections['media']['carousel_section'] ) )
-			$section = 'carousel_section';
-		else
-			$section = 'default';
-
-		add_settings_field( 'tiled_galleries', __( 'Tiled Galleries', 'jetpack' ), array( $this, 'setting_html' ), 'media', $section );
-		register_setting( 'media', 'tiled_galleries', 'esc_attr' );
-	}
-
-	function setting_html() {
-		echo '<label><input name="tiled_galleries" type="checkbox" value="1" ' .
-			checked( 1, '' != get_option( 'tiled_galleries' ), false ) . ' /> ' .
-			__( 'Display all your gallery pictures in a cool mosaic.', 'jetpack' ) . '</br></label>';
-	}
+	
 }
 
 class Jetpack_Tiled_Gallery_Shape {
