@@ -62,6 +62,7 @@
 		// copy values in right order
 		for (i=0, length = map.length; i < length; i++) {
 			result.push(modules[map[i].index]);
+			result[i].index =  i; // make sure we set the index to the right order
 		}
 
 		// Replace old object, with newly sorted object
@@ -196,7 +197,7 @@
 			$modal.html(ich.modalTemplate({}, true));
 			$modal.find('header li').first().text(name);
 			$modal.find('.content').html('');
-			$modal.find('.content').html(jetpackL10n.modules[index].long_description);
+			$modal.find('.content').html(modules[index].long_description);
 
 			closeShadeToggle();
 
