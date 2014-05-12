@@ -80,7 +80,12 @@ class Jetpack_Omnisearch {
 		if( $s ) {
 			$results = apply_filters( 'omnisearch_results', $results, $s );
 		}
+
+		Jetpack_Admin::init()->admin_styles();
+		Jetpack_Admin::init()->admin_scripts();
+		Jetpack_Admin::init()->admin_page_top();
 		?>
+		<div class="clouds-sm"></div>
 		<div class="wrap">
 			<h2 class="page-title"><?php esc_html_e('Omnisearch', 'jetpack'); ?> <small><?php esc_html_e('search everything', 'jetpack'); ?></small></h2>
 			<br class="clear" />
@@ -111,6 +116,7 @@ class Jetpack_Omnisearch {
 			<?php endif; ?>
 		</div><!-- /wrap -->
 		<?php
+		Jetpack_Admin::init()->admin_page_bottom();
 	}
 
 	function admin_bar_search( $wp_admin_bar ) {
