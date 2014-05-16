@@ -9,7 +9,9 @@
 					<li class="jetpack-page">
 						<a href="<?php echo Jetpack::admin_url(); ?>" <?php if ( 'jetpack' == $current ) { echo 'class="current"'; } ?>><?php esc_html_e( 'Home', 'jetpack' ); ?></a>
 					</li>
-					<?php if ( Jetpack::is_active() || Jetpack::is_development_mode() ) : ?>
+					<?php if ( ( Jetpack::is_active() || Jetpack::is_development_mode() )
+								&& current_user_can( 'jetpack_manage_modules' )
+							) : ?>
 					<li class="jetpack-modules">
 						<a href="<?php echo Jetpack::admin_url( 'page=jetpack_modules' ); ?>" <?php if ( 'jetpack_modules' == $current ) { echo 'class="current"'; } ?>><?php esc_html_e( 'Settings', 'jetpack' ); ?></a>
 					</li>
