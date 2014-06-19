@@ -24,7 +24,6 @@
 					<label for="sub-site-override"><?php _e( 'Allow individual site administrators to manage their own connections (connect and disconnect) to <a href="//wordpress.com">WordPress.com</a>', 'jetpack' ); ?></label>
 				</td>
 			</tr>
-<?php /* Remove the toggles for 2.9, re-evaluate how they're done and added for a 3.0 release. They don't feel quite right yet.
 			<tr>
 				<th scope="row"><label for="manage_auto_activated_modules">Manage modules</label></th>
 				<td>
@@ -32,12 +31,10 @@
 					<label for="manage_auto_activated_modules">Control which modules are auto-activated</label>
 				</td>
 			</tr>
-/**/ ?>
 		</table>
 		
-<?php /* Remove the toggles for 2.9, re-evaluate how they're done and added for a 3.0 release. They don't feel quite right yet.
 		<?php
-			$display_modules = ( 1 == $this->get_option( 'manage_auto_activated_modules' ) )? 'block': 'none';
+			$display_modules = ( 1 == $options['manage_auto_activated_modules'] )? 'block': 'none';
 		?>
 		<div id="jpms_settings_modules" style="display: <?php echo $display_modules; ?>">
 		<h3><?php _e( 'Modules', 'jetpack' ); ?></h3>
@@ -63,7 +60,6 @@
 			</tbody>
 		</table>
 		</div>
-/**/ ?>
 
 		<?php submit_button(); ?>
 
