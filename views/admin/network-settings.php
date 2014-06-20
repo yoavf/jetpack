@@ -39,26 +39,19 @@
 		<div id="jpms_settings_modules" style="display: <?php echo $display_modules; ?>">
 		<h3><?php _e( 'Modules', 'jetpack' ); ?></h3>
 		<p><?php _e( 'Modules to be automatically activated when new sites are created.', 'jetpack' ); ?></p>
-		<table>
-			<thead>
-								<!--
-				<tr>
-					<td><input type="checkbox"></td>
-					<td>Only show checked modules on subsites?</td>
-				</tr>
-				-->
-			</thead>
-			<tbody>
 
-				<?php foreach( $modules AS $module ) {  ?>
-				<tr>
-					<td><input type="checkbox" name="modules[]" value="<?php echo $module['module']; ?>" id="<?php echo $module['module']; ?>" <?php checked( in_array( $module['module'], $options['modules'] ) ); ?>/></td>
-					<td><label for="<?php echo $module['module']; ?>"><?php echo $module['name']; ?></label></td>
-				</tr>
 
-				<?php } ?>
-			</tbody>
-		</table>
+
+<?php
+
+		require_once( JETPACK__PLUGIN_DIR . 'class.jetpack-network-modules-list-table.php' );
+		$myListTable = new Jetpack_Network_Modules_List_Table();
+		echo '<div class="wrap"><h3>' . __('Modules', 'jetpack') . '</h3>';
+		$myListTable->prepare_items();
+		$myListTable->display();
+		echo '</div>';
+?>	
+
 		</div>
 
 		<?php submit_button(); ?>

@@ -37,6 +37,8 @@ class Jetpack_Network {
 		'auto-connect'		=> 0,
 		'sub-site-connection-override'	=> 1,
 		'manage_auto_activated_modules' => 0,
+		'auto_activated_modules' => array(),
+		'show_modules_list' => array(),
 	);
 
 	/**
@@ -77,7 +79,14 @@ class Jetpack_Network {
 			}
 		}
 
-		add_filter( 'jetpack_get_default_modules', array( $this, 'set_auto_activated_modules' ) );
+		if( !is_network_admin() ) {
+			// Make sure we do not filter in Network Admin so we can see the list of modules!
+			add_filter( 'jetpack_get_default_modules', array( $this, 'set_auto_activated_modules' ) );
+
+			// Show only the modules the network admin wants to show
+			add_filter( 'jetpack_get_available_modules', array( $this, 'set_available_modules' ) );
+		}
+
 	}
 
 	/**
@@ -90,13 +99,27 @@ class Jetpack_Network {
 	 **/
 	public function set_auto_activated_modules( $modules ) {
 		if( 1 == $this->get_option( 'manage_auto_activated_modules' ) ) {
-			return (array) $this->get_option( 'modules' );
+			return (array) $this->get_option( 'auto_activated_modules' );
 		} else {
 			return $modules;
 		}
 	}
 
-
+	/**
+	 * Sets which modules are visible on the individual site Jetpack > Settings
+	 * page.
+	 *
+	 * @since 3.1
+	 * @param array $modules
+	 * @return array
+	 **/
+	public function set_available_modules( $modules ) {
+		if( 1 == $this->get_option( 'manage_auto_activated_modules' ) ) {
+			return array_flip( (array) $this->get_option( 'show_modules_list' ) );
+		} else {
+			return $modules;
+		}
+	}
 	/**
 	 * Registers new sites upon creation
 	 *
@@ -620,7 +643,7 @@ class Jetpack_Network {
 	 * @since 2.9
 	 */
 	public function save_network_settings_page() {
-
+		
 		/*
 		 * Fields
 		 *
@@ -628,26 +651,37 @@ class Jetpack_Network {
 		 * sub-site-connection-override - Allow sub-site admins to (dis)reconnect with their own Jetpack account
 		 */
 		$auto_connect = 0;
-		if( isset( $_POST['auto-connect'] ) )
+		if( isset( $_POST['auto-connect'] ) ) {
 			$auto_connect = 1;
+		}
 
 
 		$sub_site_connection_override = 0;
-		if( isset( $_POST['sub-site-connection-override'] ) )
+		if( isset( $_POST['sub-site-connection-override'] ) ) {
 			$sub_site_connection_override = 1;
-		$manage_auto_activated_modules = 0;
-		if( isset( $_POST['manage_auto_activated_modules'] ) )
-			$manage_auto_activated_modules = 1;
+		}
 
-		$modules = array();
-		if( isset( $_POST['modules'] ) )
-			$modules = $_POST['modules'];
+		$manage_auto_activated_modules = 0;
+		if( isset( $_POST['manage_auto_activated_modules'] ) ) {
+			$manage_auto_activated_modules = 1;
+		}
+
+		$auto_activated_modules = array();
+		if( isset( $_POST['auto_activated'] ) ) {
+			$auto_activated_modules = $_POST['auto_activated'];
+		}
 		
+		$show_modules_list = array();
+		if( isset( $_POST['show_module'] ) ) {
+			$show_modules_list = $_POST['show_module'];
+		}
+
 		$data = array(
-			'auto-connect'			=> $auto_connect,
+			'auto-connect' => $auto_connect,
 			'sub-site-connection-override'	=> $sub_site_connection_override,
 			'manage_auto_activated_modules'	=> $manage_auto_activated_modules,
-			'modules'						=> $modules,
+			'auto_activated_modules' => $auto_activated_modules,
+			'show_modules_list' => $show_modules_list
 		);
 
 		update_site_option( $this->settings_name, $data );
