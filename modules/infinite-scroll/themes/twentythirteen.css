@@ -39,6 +39,7 @@
 #infinite-handle span {
 	background: #e05d22; /* Old browsers */
 	background: -webkit-linear-gradient(top, #e05d22 0%, #d94412 100%); /* Chrome 10+, Safari 5.1+ */
+	background:   -webkit-gradient(linear, left top, left bottom, from(#e05d22), to(#d94412));
 	background:   linear-gradient(to bottom, #e05d22 0%, #d94412 100%); /* W3C */
 	border: none;
 	border-bottom: 3px solid #b93207;
@@ -52,12 +53,14 @@
 #infinite-handle span:hover {
 	background: #ed6a31; /* Old browsers */
 	background: -webkit-linear-gradient(top, #ed6a31 0%, #e55627 100%); /* Chrome 10+, Safari 5.1+ */
+	background:   -webkit-gradient(linear, left top, left bottom, from(#ed6a31), to(#e55627));
 	background:   linear-gradient(to bottom, #ed6a31 0%, #e55627 100%); /* W3C */
 	outline: none;
 }
 #infinite-handle span:active {
 	background: #d94412; /* Old browsers */
 	background: -webkit-linear-gradient(top, #d94412 0%, #e05d22 100%); /* Chrome 10+, Safari 5.1+ */
+	background:   -webkit-gradient(linear, left top, left bottom, from(#d94412), to(#e05d22));
 	background:   linear-gradient(to bottom, #d94412 0%, #e05d22 100%); /* W3C */
 	border: none;
 	border-top: 3px solid #b93207;

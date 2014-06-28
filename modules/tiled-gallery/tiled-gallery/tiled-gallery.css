@@ -35,6 +35,7 @@
 .tiled-gallery .tiled-gallery-item img:hover { /* Needs to reset some properties for theme compatibility */
 	background: none;
 	border: none;
+	-webkit-box-shadow: none;
 	box-shadow: none;
 	max-width: 100%;
 	padding: 0;

@@ -93,6 +93,7 @@ body.settings_page_sharing ul.services-hidden {
 #available-services .service:hover, #enabled-services .service:hover {
 	background: #fff;
 	border: 1px solid #bbb;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
@@ -279,6 +280,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-digg .option-smart-on {
 	background: url(images/smart-digg.png) no-repeat top left;
+	-webkit-background-size: 76px 17px;
 	background-size: 76px 17px;
 	width:76px;
 	height:17px;
@@ -287,6 +289,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-reddit .option-smart-on {
 	background: url(images/smart-reddit.png) no-repeat top left;
+	-webkit-background-size: 104px 21px;
 	background-size: 104px 21px;
 	width:104px;
 	height:21px;
@@ -294,6 +297,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-stumbleupon .option-smart-on {
 	background: url(images/smart-stumbleupon.png) no-repeat top left;
+	-webkit-background-size: 74px 18px;
 	background-size: 74px 18px;
 	width: 74px;
 	height: 18px;
@@ -302,6 +306,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-facebook .option-smart-on {
 	background: url(images/smart-like.png) no-repeat top left;
+	-webkit-background-size: 50px 20px;
 	background-size: 50px 20px;
 	width:50px;
 	height:20px;
@@ -309,6 +314,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-twitter .option-smart-on {
 	background: url(images/smart-twitter.png?1) no-repeat top left;
+	-webkit-background-size: 92px 20px;
 	background-size: 92px 20px;
 	width:92px;
 	height:20px;
@@ -316,6 +322,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-linkedin .option-smart-on {
 	background: url(images/linkedin-smart.png) no-repeat top center;
+	-webkit-background-size: 99px 18px;
 	background-size: 99px 18px;
 	width:99px;
 	height:18px;
@@ -324,6 +331,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-google-plus-1 .option-smart-on {
 	background: url(images/smart-googleplus1.png) no-repeat top left;
+	-webkit-background-size: 96px 20px;
 	background-size: 96px 20px;
 	width: 96px;
 	height: 20px;
@@ -331,6 +339,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-tumblr .option-smart-on {
 	background: url(images/smart-tumblr.png) no-repeat top left;
+	-webkit-background-size: 62px 20px;
 	background-size: 62px 20px;
 	width: 62px;
 	height: 20px;
@@ -338,6 +347,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-pinterest .option-smart-on {
 	background: url(images/smart-pinterest.png) no-repeat top left;
+	-webkit-background-size: 39px 20px;
 	background-size: 39px 20px;
 	width: 39px;
 	height: 20px;
@@ -345,6 +355,7 @@ body.settings_page_sharing .advanced input[type=submit] {
 
 .preview-pocket .option-smart-on {
 	background: url(images/smart-pocket.png) no-repeat top left;
+	-webkit-background-size: 60px 20px;
 	background-size: 60px 20px;
 	width: 60px;
 	height: 20px;

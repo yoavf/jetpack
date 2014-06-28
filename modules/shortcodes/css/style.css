@@ -65,6 +65,7 @@ body.presentation-wrapper-fullscreen-parent {
 .presentation .step {
 	background-repeat: no-repeat;
 	background-position: center;
+	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
 
@@ -94,9 +95,6 @@ body.presentation-wrapper-fullscreen-parent {
 	opacity: 0;
 
 	-webkit-transition : opacity .25s;
-	-moz-transition    : opacity .25s;
-	-ms-transition     : opacity .25s;
-	-o-transition      : opacity .25s;
 	transition         : opacity .25s;
 }
 
@@ -104,6 +102,7 @@ body.presentation-wrapper-fullscreen-parent {
 .presentation .nav-arrow-right {
 	height: 100%;
 	background-image: url(../images/slide-nav.png);
+	-webkit-background-size: 450% 61px;
 	background-size: 450% 61px;
 }
 
@@ -125,6 +124,7 @@ body.presentation-wrapper-fullscreen-parent {
 	right: 0;
 	z-index: 3;
 	background-image: url(../images/expand.png);
+	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
 
@@ -156,9 +156,6 @@ body.presentation-wrapper-fullscreen-parent {
 	background-color: rgba(0, 0, 0, 0.75);
 
 	-webkit-transition : opacity .5s;
-	-moz-transition    : opacity .5s;
-	-ms-transition     : opacity .5s;
-	-o-transition      : opacity .5s;
 	transition         : opacity .5s;
 }
 
@@ -181,8 +178,5 @@ body.presentation-wrapper-fullscreen-parent {
 	opacity: 1;
 
 	-webkit-transition : opacity .5s;
-	-moz-transition    : opacity .5s;
-	-ms-transition     : opacity .5s;
-	-o-transition      : opacity .5s;
 	transition         : opacity .5s;
 }

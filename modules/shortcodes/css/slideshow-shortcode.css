@@ -93,6 +93,7 @@ body div div.slideshow-controls a:hover {
 	background-color: rgba(0,0,0,0.6) !important;
 	background-image: url('../img/slideshow-controls.png') !important;
 	background-repeat: no-repeat;
+	-webkit-background-size: 142px 16px !important;
 	background-size: 142px 16px !important;
 	background-position: -34px 8px !important;
 	color: #222 !important;
@@ -106,12 +107,8 @@ body div div.slideshow-controls a:hover {
 	line-height: 32px !important;
 	text-align: center !important;
 	-khtml-border-radius: 10em !important;
-	-webkit-border-radius: 10em !important;
-	-moz-border-radius: 10em !important;
 	border-radius: 10em !important;
 	-webkit-transition: 300ms border-color ease-out;
-	-moz-transition: 300ms border-color ease-out;
-	-o-transition: 300ms border-color ease-out;
 	transition: 300ms border-color ease-out;
 }
 

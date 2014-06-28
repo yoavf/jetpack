@@ -24,12 +24,12 @@ span.pub-logos {
 	float: left;
 }
 
-div#facebook { background: url( publicize-fb-2x.png ) no-repeat; background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px; }
-div#twitter { background: url( publicize-twitter-2x.png ) no-repeat; background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
-div#linkedin { background: url( publicize-linkedin-2x.png )no-repeat; background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
-div#tumblr { background: url( publicize-tumblr-2x.png ) no-repeat; background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
-div#path { background: url( publicize-path-2x.png ) no-repeat;  background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
-div#google_plus { background: url( publicize-google-2x.png ) no-repeat;  background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
+div#facebook { background: url( publicize-fb-2x.png ) no-repeat; -webkit-background-size: 32px 32px; background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px; }
+div#twitter { background: url( publicize-twitter-2x.png ) no-repeat; -webkit-background-size: 32px 32px; background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
+div#linkedin { background: url( publicize-linkedin-2x.png )no-repeat; -webkit-background-size: 32px 32px; background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
+div#tumblr { background: url( publicize-tumblr-2x.png ) no-repeat; -webkit-background-size: 32px 32px; background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
+div#path { background: url( publicize-path-2x.png ) no-repeat;  -webkit-background-size: 32px 32px;  background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
+div#google_plus { background: url( publicize-google-2x.png ) no-repeat;  -webkit-background-size: 32px 32px;  background-size: 32px 32px; padding-left: 42px;background-position: 0px 0px;padding-top:5px;  }
 
 a.publicize-profile-link, a.publicize-profile-link:visited {
 	text-decoration: none;
@@ -99,6 +99,7 @@ div.publicize-service-right li {
 	width: 16px;
 	height: 16px;
 	background-image: url( info-2x.png );
+	-webkit-background-size: 16px 16px;
 	background-size: 16px 16px;
 	text-indent: -99999px;
 	float: left;

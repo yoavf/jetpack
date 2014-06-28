@@ -88,7 +88,6 @@ body {
 #page,
 #branding {
 	background: #fff;
-	-moz-box-shadow: 0 1px 2px rgba( 0,0,0,0.075 );
 	-webkit-box-shadow: 0 1px 2px rgba( 0,0,0,0.075 );
 	box-shadow: 0 1px 2px rgba( 0,0,0,0.075 );
 }
@@ -194,7 +193,6 @@ input[type=email],
 input[type=password],
 textarea {
 	background: #fafafa;
-	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
 	box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
 	border: 1px solid #ddd;
@@ -341,7 +339,6 @@ header img {
 .menu-search {
 	background: #1e8cbe;
 	-webkit-box-shadow: inset 0 -1px rgba(0, 86, 132, 0.8), 0 1px 3px rgba(0, 86, 132, 0.4);
-	-moz-box-shadow: inset 0 -1px 0 rgba(0, 86, 132, 0.8), 0 1px 3px rgba(0, 86, 132, 0.4);
 	box-shadow: inset 0 -1px 0 rgba(0, 86, 132, 0.8), 0 1px 3px rgba(0, 86, 132, 0.4);
 	clear: both;
 	height: 46px;
@@ -378,7 +375,6 @@ header img {
 #access ul.nav-menu {
 	background: #fff;
 	-webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.1);
 	display: none;
  	position: absolute;
@@ -974,7 +970,6 @@ and remove the padding rules below.
 	color: #666;
 	font-size: 0.923em;
 	padding: .6em 0.8em;
-	-moz-box-shadow: 0 1px 2px rgba( 0,0,0,0.075 );
 	-webkit-box-shadow: 0 1px 2px rgba( 0,0,0,0.075 );
 	box-shadow: 0 1px 2px rgba( 0,0,0,0.075 );
 }
@@ -1027,7 +1022,6 @@ and remove the padding rules below.
 	background: #ddd;
 	border: 1px solid #ccc;
 	-webkit-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.09);
-	-moz-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.09);
 	box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.09);
 	color: #888;
 	line-height: 2.083em;
@@ -1038,7 +1032,6 @@ and remove the padding rules below.
 	background: #278dbc;
 	border-color: #0861a5;
 	-webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
 	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
 	color: #bfddf3;
 }
@@ -1186,7 +1179,6 @@ and remove the padding rules below.
 /* Reblogs */
 .commentlist > li.reblog {
 	border: 1px solid #eee;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
 	margin: 0 0 1.625em;
 	padding: 1.625em;
@@ -1259,7 +1251,6 @@ and remove the padding rules below.
 .commentlist .children .avatar {
 	background: none;
 	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
 	box-shadow: none;
 	left: 2.2em;
 	padding: 0;
@@ -1347,22 +1338,16 @@ a.comment-reply-link > span {
 }
 #respond input#submit {
 	background-color: #2ea2cc;
-	background-image: -moz-linear-gradient(top, #278dbc 0%, #0074a2 100%);
 	background-image: -webkit-linear-gradient(top, #278dbc 0%,#0074a2 100%);
-	background-image: -ms-linear-gradient(top, #278dbc 0%,#0074a2 100%);
-	background-image: -o-linear-gradient(top, #278dbc 0%,#0074a2 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#278dbc), to(#0074a2));
+	background-image: -webkit-linear-gradient(top, #278dbc 0%, #0074a2 100%);
 	background-image: linear-gradient(top, #278dbc 0%,#0074a2 100%);
-
-	-moz-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
 	-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
 	-o-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
 	-ms-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
 	box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
 	border: none;
-	-moz-border-radius: 2px 0 0 0;
-	-webkit-border-radius: 2px 0 0 0;
 	-o-border-radius: 2px 0 0 0;
-	-ms-border-radius: 2px 0 0 0;
 	border-radius: 2px;
 	color: rgba( 255, 255, 255, 0.9 );
 	cursor: pointer;
@@ -1375,14 +1360,10 @@ a.comment-reply-link > span {
 #respond input#submit:hover {
 	color: #fff;
 	text-shadow: 0 -1px 0 rgb(0,116,162);
-
-	background-image: -moz-linear-gradient(top, #2ea2cc 0%, #0074a2 100%);
 	background-image: -webkit-linear-gradient(top, #2ea2cc 0%,#0074a2 100%);
-	background-image: -o-linear-gradient(top, #2ea2cc 0%,#0074a2 100%);
-	background-image: -ms-linear-gradient(top, #2ea2cc 0%,#0074a2 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#2ea2cc), to(#0074a2));
+	background-image: -webkit-linear-gradient(top, #2ea2cc 0%, #0074a2 100%);
 	background-image: linear-gradient(top, #2ea2cc 0%,#0074a2 100%);
-
-	-moz-box-shadow: inset 0 1px 0 #2ea2cc, inset 0 2px 0 rgba(120,200,230,0.7);
 	-webkit-box-shadow: inset 0 1px 0 #2ea2cc, inset 0 2px 0 rgba(120,200,230,0.7);
 	-o-box-shadow: inset 0 1px 0 #2ea2cc, inset 0 2px 0 rgba(120,200,230,0.7);
 	-ms-box-shadow: inset 0 1px 0 #2ea2cc, inset 0 2px 0 rgba(120,200,230,0.7);
@@ -1390,13 +1371,10 @@ a.comment-reply-link > span {
 }
 #respond input#submit:active {
 	color:rgba(255,255,255,.9);
-	background-image: -moz-linear-gradient(top, #278dbc 0%, #0074a2 100%);
 	background-image: -webkit-linear-gradient(top, #278dbc 0%,#0074a2 100%);
-	background-image: -o-linear-gradient(top, #278dbc 0%,#0074a2 100%);
-	background-image: -ms-linear-gradient(top, #278dbc 0%,#0074a2 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#278dbc), to(#0074a2));
+	background-image: -webkit-linear-gradient(top, #278dbc 0%, #0074a2 100%);
 	background-image: linear-gradient(top, #278dbc 0%,#0074a2 100%);
-
-	-moz-box-shadow: inset 0 1px 5px #005684, inset 0 -1px 0 #278dbc;
 	-webkit-box-shadow: inset 0 1px 5px #005684, inset 0 -1px 0 #278dbc;
 	-o-box-shadow: inset 0 1px 5px #005684, inset 0 -1px 0 #278dbc;
 	-ms-box-shadow: inset 0 1px 5px #005684, inset 0 -1px 0 #278dbc;

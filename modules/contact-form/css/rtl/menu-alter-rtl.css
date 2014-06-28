@@ -27,11 +27,13 @@
 .pre-mp6 #adminmenu .menu-icon-feedback.wp-has-current-submenu div.wp-menu-image,
 .pre-mp6 #adminmenu .menu-icon-feedback.current div.wp-menu-image {
 	background: url(../../images/grunion-menu-hover.png) no-repeat 7px 7px !important;
+	-webkit-background-size: 15px 16px !important;
 	background-size: 15px 16px !important;
 }
 
 .pre-mp6 #adminmenu .menu-icon-feedback div.wp-menu-image {
 	background: url(../../images/grunion-menu.png) no-repeat 7px 7px !important;
+	-webkit-background-size: 15px 16px !important;
 	background-size: 15px 16px !important;
 }
 
@@ -45,6 +47,7 @@
 	height: 16px;
 	display: inline-block;
 	vertical-align: middle;
+	-webkit-background-size: 13px 12px !important;
 	background-size: 13px 12px !important;
 }
 

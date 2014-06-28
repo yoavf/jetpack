@@ -23,24 +23,51 @@ module.exports = function(grunt) {
 				'3rd-party/*.php'
 			]
 		},
+		// concat: {
+		// 	dist: {
+		// 		src: [
+		// 			'js/main/*.js',
+		// 		],
+		// 		dest: 'js/production.js', // needs a better name, doncha think?
+		// 	}
+		// },
+		uglify: {
+			build: {
+				expand: true,
+				src: [
+					'**/*.js',
+					'!node_modules/**/*.js',
+					'!**/*.min.js'
+				],
+				dest: '',
+				ext: '.min.js'
+			}
+		},
 		cssjanus: {
 			core: {
-				options: { 
-					swapLtrRtlInUrl: false 
+				options: {
+					swapLtrRtlInUrl: false
 				},
 				expand: true,
-				ext: '-rtl.css', 
-				src: ['_inc/*.css','!_inc/*-rtl.css','!_inc/*.min.css'  ]
+				ext: '-rtl.css',
+				src: [
+					'_inc/*.css',
+					'!_inc/*-rtl.css',
+					'!_inc/*.min.css'
+				]
 			},
 			min: {
-				options: { 
-					swapLtrRtlInUrl: false 
+				options: {
+					swapLtrRtlInUrl: false
 				},
 				expand: true,
-				ext: '-rtl.min.css', 
-				src: ['_inc/*.min.css','!_inc/*-rtl.min.css' ]
-			}             
-		}, 
+				ext: '-rtl.min.css',
+				src: [
+					'_inc/*.min.css',
+					'!_inc/*-rtl.min.css'
+				]
+			}
+		},
 		jshint: {
 			options: grunt.file.readJSON('.jshintrc'),
 			src: [
@@ -50,7 +77,7 @@ module.exports = function(grunt) {
 			]
 		},
 		sass: {
-			expanded: {
+			admin_expanded: {
 				options: {
 					style: 'expanded',
 					banner: '/*!\n'+
@@ -66,41 +93,84 @@ module.exports = function(grunt) {
 					ext: '.css'
 				}]
 			},
-			minified: {
+			admin_minified: {
 				options: {
-					style: 'compressed',
-					sourcemap: true
+					style: 'compressed'
+					// sourcemap: true
 				},
 				files: [{
 					expand: true,
-					cwd: '_inc',
-					src: ['*.scss'],
-					dest: '_inc',
+					src: [
+						'_inc/*.scss'
+					],
+					dest: '',
+					ext: '.min.css'
+				}]
+			},
+			modules_minified: {
+				options: {
+					style: 'compressed'
+				},
+				files: [{
+					expand: true,
+					src: [
+						'modules/**/*.css',
+						'!modules/**/*.min.css',
+					],
+					dest: '',
 					ext: '.min.css'
 				}]
 			}
 		},
 		autoprefixer: {
 			options: {
-				map: true
+				// map: true
 			},
-			global: {
-			options: {
-				// Target-specific options go here.
-				// browser-specific info: https://github.com/ai/autoprefixer#browsers
-				// DEFAULT: browsers: ['> 1%', 'last 2 versions', 'ff 17', 'opera 12.1']
-				browsers: ['> 1%', 'last 2 versions', 'ff 17', 'opera 12.1', 'ie 8', 'ie 9']
-			},
+			admin: {
+				options: {
+					// Target-specific options go here.
+					// browser-specific info: https://github.com/ai/autoprefixer#browsers
+					// DEFAULT: browsers: ['> 1%', 'last 2 versions', 'ff 17', 'opera 12.1']
+					browsers: ['> 1%', 'last 2 versions', 'ff 17', 'opera 12.1', 'ie 8', 'ie 9']
+				},
 				src: '_inc/*.css'
 			},
+			modules: {
+				options: {
+					// Target-specific options go here.
+					// browser-specific info: https://github.com/ai/autoprefixer#browsers
+					// DEFAULT: browsers: ['> 1%', 'last 2 versions', 'ff 17', 'opera 12.1']
+					browsers: ['> 1%', 'last 2 versions', 'ff 17', 'opera 12.1', 'ie 8', 'ie 9']
+				},
+				src: 'modules/**/*.css'
+			}
 		},
 		watch: {
+			css: {
+				files: [
+					'modules/**/*.css',
+					'!modules/**/*.min.css'
+				],
+				tasks: [
+					'sass:modules_minified',
+					'autoprefixer:modules'
+				],
+				options: {
+					spawn: false
+				}
+			},
 			sass: {
 				files: [
 					'_inc/*.scss',
-					'_inc/**/*.scss'
+					'_inc/**/*.scss',
 				],
-				tasks: ['sass', 'autoprefixer', 'cssjanus:core', 'cssjanus:min' ],
+				tasks: [
+					'sass:admin_expanded',
+					'sass:admin_minified',
+					'autoprefixer:admin',
+					'cssjanus:core',
+					'cssjanus:min'
+				],
 				options: {
 					spawn: false
 				}
@@ -170,6 +240,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-shell');
 	grunt.loadNpmTasks('grunt-phplint');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-wp-i18n');
 	grunt.loadNpmTasks('grunt-contrib-sass');

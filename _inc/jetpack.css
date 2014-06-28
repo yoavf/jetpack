@@ -1549,7 +1549,6 @@ html {
   opacity: 0.6;
   position: absolute;
   top: 23px;
-  top: -webkit-calc(50% - 22px );
   top: calc(50% - 22px );
 }
 .jetpack-message.error .squeezer:before, .jetpack-message.jetpack-err .squeezer:before {

@@ -49,6 +49,7 @@ div.jetpack-likes-widget-wrapper.slim-likes-widget {
 	border-width: 0;
 	opacity: 0.88;
 	filter: alpha(opacity=88);
+	-webkit-box-shadow: 0 0 10px black;
 	box-shadow: 0 0 10px black;
 	min-width: 130px;
 	z-index: 1000;
