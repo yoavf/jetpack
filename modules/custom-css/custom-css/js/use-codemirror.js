@@ -14,7 +14,9 @@
 				lineNumbers: true,
 				tabSize: 2,
 				indentWithTabs: true,
-				lineWrapping: true
+				lineWrapping: true,
+				autoCloseBrackets: true,
+				styleActiveLine: true
 			});
 			this.setEditorHeight();
 		},
