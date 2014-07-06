@@ -86,21 +86,25 @@ html {
 		padding: 0 em(15);
 		color: #fff;
 		line-height: 46px;
-
 		&:hover {
 			background: $green;
 		}
 	}
-	.jetpack-logo {
-		position: relative;
-		color: #fff;
-		font-weight: normal;
+	.jp-menu-jetpack {
 		height: 46px;
-		width: em(183,24);
-		margin-right: 8px;
-		background: url(images/jetpack-logo.png) center center no-repeat;
-		background: url(images/jetpack-logo.svg) center center no-repeat, none;
-		text-indent: -9999px;
+		a {
+			position: relative;
+			color: #fff;
+			font-weight: normal;
+			height: 46px;
+			width: em(183,24);
+			margin-right: 8px;
+			background: url(images/jetpack-logo.png) center center no-repeat;
+			background: url(images/jetpack-logo.svg) center center no-repeat, none;
+			text-indent: 100%;
+			overflow: hidden;
+		}
+
 	}
 }
 
@@ -110,7 +114,7 @@ html {
 	li {
 		margin: 0;
 	}
-	.jetpack-logo {
+	.jp-menu-jetpack {
 		font: normal 400 24px/50px $sans;
 		margin-left: 10px;
 		text-shadow: 0 1px 1px rgba(0,0,0,.15);

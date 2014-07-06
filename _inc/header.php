@@ -1,19 +1,24 @@
-<?php $current = $_GET['page']; ?>
 <div class="jp-content">
 	<div class="jp-frame">
 		<div class="header">
 			<nav role="navigation" class="header-nav drawer-nav nav-horizontal">
 
 				<ul class="main-nav">
-					<li class="jetpack-logo"><span><?php esc_html_e( 'Jetpack', 'jetpack' ); ?></span></li>
-					<li class="jetpack-page">
-						<a href="<?php echo Jetpack::admin_url(); ?>" <?php if ( 'jetpack' == $current ) { echo 'class="current"'; } ?>><?php esc_html_e( 'Home', 'jetpack' ); ?></a>
-					</li>
-					<?php if ( Jetpack::is_active() || Jetpack::is_development_mode() ) : ?>
-					<li class="jetpack-modules">
-						<a href="<?php echo Jetpack::admin_url( 'page=jetpack_modules' ); ?>" <?php if ( 'jetpack_modules' == $current ) { echo 'class="current"'; } ?>><?php esc_html_e( 'Settings', 'jetpack' ); ?></a>
-					</li>
-					<?php endif; ?>
+
+					<?php foreach( $GLOBALS['submenu']['jetpack'] as $submenu_page ) :
+						if ( ! current_user_can( $submenu_page[1] ) ) {
+							continue;
+						}
+						$current = ( $submenu_page[2] === $_GET['page'] ) ? 'current' : '';
+						?>
+
+						<li class="jp-menu-<?php echo esc_attr( $submenu_page[2] ); ?>">
+							<a href="<?php echo esc_url( Jetpack::admin_url( 'page=' . $submenu_page[2] ) ); ?>" class="<?php echo esc_attr( $current ); ?>">
+								<?php echo esc_html( $submenu_page[0] ); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+
 				</ul>
 
 			</nav>
