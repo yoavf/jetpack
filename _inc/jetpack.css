@@ -708,7 +708,10 @@ html {
 .header-nav a:hover {
   background: #81a844;
 }
-.header-nav .jetpack-logo {
+.header-nav .jp-menu-jetpack {
+  height: 46px;
+}
+.header-nav .jp-menu-jetpack a {
   position: relative;
   color: #fff;
   font-weight: normal;
@@ -717,7 +720,8 @@ html {
   margin-right: 8px;
   background: url(images/jetpack-logo.png) center center no-repeat;
   background: url(images/jetpack-logo.svg) center center no-repeat, none;
-  text-indent: -9999px;
+  text-indent: 100%;
+  overflow: hidden;
 }
 
 .main-nav {
@@ -726,12 +730,12 @@ html {
 .main-nav li {
   margin: 0;
 }
-.main-nav .jetpack-logo {
+.main-nav .jp-menu-jetpack {
   font: normal 400 24px/50px "Open Sans", Helvetica, sans-serif;
   margin-left: 10px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
-.main-nav .jetpack-logo span {
+.main-nav .jp-menu-jetpack span {
   float: right;
   margin-top: -3px;
 }
@@ -1545,6 +1549,7 @@ html {
   opacity: 0.6;
   position: absolute;
   top: 23px;
+  top: -webkit-calc(50% - 22px );
   top: calc(50% - 22px );
 }
 .jetpack-message.error .squeezer:before, .jetpack-message.jetpack-err .squeezer:before {
