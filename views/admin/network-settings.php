@@ -37,7 +37,7 @@ if( isset( $_GET['updated'] ) && 'true' == $_GET['updated'] ) {
 				<th scope="row"><label for="manage_auto_activated_modules">Manage modules</label></th>
 				<td>
 					<input type="checkbox" name="manage_auto_activated_modules" id="manage_auto_activated_modules" onclick="jQuery('#jpms_settings_modules').toggle();" value="1" <?php checked( $options['manage_auto_activated_modules'] ); ?>/>
-					<label for="manage_auto_activated_modules">Control which modules are auto-activated</label>
+					<label for="manage_auto_activated_modules">Control which modules are auto-activated and/or visible.</label>
 				</td>
 			</tr>
 		</table>
@@ -46,8 +46,6 @@ if( isset( $_GET['updated'] ) && 'true' == $_GET['updated'] ) {
 			$display_modules = ( 1 == $options['manage_auto_activated_modules'] )? 'block': 'none';
 		?>
 		<div id="jpms_settings_modules" style="display: <?php echo $display_modules; ?>">
-		<h3><?php _e( 'Modules', 'jetpack' ); ?></h3>
-		<p><?php _e( 'Modules to be automatically activated when new sites are created.', 'jetpack' ); ?></p>
 
 
 
@@ -56,6 +54,7 @@ if( isset( $_GET['updated'] ) && 'true' == $_GET['updated'] ) {
 		require_once( JETPACK__PLUGIN_DIR . 'class.jetpack-network-modules-list-table.php' );
 		$myListTable = new Jetpack_Network_Modules_List_Table();
 		echo '<div class="wrap"><h3>' . __('Modules', 'jetpack') . '</h3>';
+		?><p><?php _e( 'Modules to be automatically activated and/or visible when sites are connected.', 'jetpack' ); ?></p><?php
 		$myListTable->prepare_items();
 		$myListTable->display();
 		echo '</div>';
