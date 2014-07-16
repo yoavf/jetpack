@@ -7,7 +7,7 @@ include_once( 'class.contact-form-field.php' );
  * Parses shortcode to output the contact form as HTML
  * Sends email and stores the contact form response (a.k.a. "feedback")
  */
-class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
+class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 	var $shortcode_name = 'contact-form';
 
 	/**

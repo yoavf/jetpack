@@ -6,7 +6,7 @@
  *
  * Not very general - specific to Grunion.
  */
-class Crunion_Contact_Form_Shortcode {
+class Grunion_Contact_Form_Shortcode {
 	/**
 	 * @var string the name of the shortcode: [$shortcode_name /]
  	 */
