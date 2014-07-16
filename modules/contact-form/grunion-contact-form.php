@@ -14,6 +14,8 @@ define( 'GRUNION_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GRUNION_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 include_once( GRUNION_PLUGIN_DIR . '/classes/class.contact-form.php' );
+include_once( GRUNION_PLUGIN_DIR . '/classes/class.contact-form-akismet-adapter.php' );
+include_once( GRUNION_PLUGIN_DIR . '/classes/class.contact-form-csv-exporter.php' );
 
 if ( is_admin() )
 	require_once GRUNION_PLUGIN_DIR . '/admin.php';
@@ -50,6 +52,7 @@ class Grunion_Contact_Form_Plugin {
 
 	function __construct() {
 		$this->add_shortcode();
+		$this->register_custom_post_type_and_status();
 
 		// Add a filter to replace tokens in the subject field with sanitized field values
 		add_filter( 'contact_form_subject', array( $this, 'replace_tokens_with_input' ), 10, 2 );
@@ -66,21 +69,48 @@ class Grunion_Contact_Form_Plugin {
 
 		// Akismet to the rescue
 		if ( defined( 'AKISMET_VERSION' ) || function_exists( 'akismet_http_post' ) ) {
-			add_filter( 'contact_form_is_spam', array( $this, 'is_spam_akismet' ), 10 );
-			add_action( 'contact_form_akismet', array( $this, 'akismet_submit' ), 10, 2 );
+			add_filter( 'contact_form_is_spam', array( 'Grunion_Contact_Form_Akismet_Adapter', 'is_spam' ), 10 );
+			add_action( 'contact_form_akismet', array( 'Grunion_Contact_Form_Akismet_Adapter', 'submit_as' ), 10, 2 );
 		}
 
 		add_action( 'loop_start', array( 'Grunion_Contact_Form', '_style_on' ) );
 
+		// Handle ajax
 		add_action( 'wp_ajax_grunion-contact-form', array( $this, 'ajax_request' ) );
 		add_action( 'wp_ajax_nopriv_grunion-contact-form', array( $this, 'ajax_request' ) );
 
 		// Export to CSV feature
 		if ( is_admin() ) {
-			add_action( 'admin_init',            array( $this, 'download_feedback_as_csv' ) );
-			add_action( 'admin_footer-edit.php', array( $this, 'export_form' ) );
+			add_action( 'admin_init',            array( 'Grunion_Contact_Form_CSV_Exporter', 'download_feedback_as_csv' ) );
+			add_action( 'admin_footer-edit.php', array( 'Grunion_Contact_Form_CSV_Exporter', 'export_form' ) );
 		}
 
+		// POST handler
+		if ( $this->is_proper_post() ) {
+			add_action( 'template_redirect', array( $this, 'process_form_submission' ) );
+		}
+
+		/* Can be dequeued by placing the following in wp-content/themes/yourtheme/functions.php
+		 *
+		 * 	function remove_grunion_style() {
+		 *		wp_deregister_style('grunion.css');
+		 *	}
+		 *	add_action('wp_print_styles', 'remove_grunion_style');
+		 */
+		if( is_rtl() ){
+			wp_register_style( 'grunion.css', GRUNION_PLUGIN_URL . 'css/rtl/grunion-rtl.css', array(), JETPACK__VERSION );
+		} else {
+			wp_register_style( 'grunion.css', GRUNION_PLUGIN_URL . 'css/grunion.css', array(), JETPACK__VERSION );
+		}
+	}
+
+	function is_proper_post() {
+		return isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' == strtoupper( $_SERVER['REQUEST_METHOD'] )
+			&& isset( $_POST['action'] ) && 'grunion-contact-form' == $_POST['action']
+			&& isset( $_POST['contact-form-id'] );
+	}
+
+	function register_custom_post_type_and_status() {
 		// custom post type we'll use to keep copies of the feedback items
 		register_post_type( 'feedback', array(
 			'labels'            => array(
@@ -109,30 +139,6 @@ class Grunion_Contact_Form_Plugin {
 			'protected'              => TRUE,
 			'_builtin'               => FALSE
 		) );
-
-		// POST handler
-		if (
-			isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' == strtoupper( $_SERVER['REQUEST_METHOD'] )
-		&&
-			isset( $_POST['action'] ) && 'grunion-contact-form' == $_POST['action']
-		&&
-			isset( $_POST['contact-form-id'] )
-		) {
-			add_action( 'template_redirect', array( $this, 'process_form_submission' ) );
-		}
-
-		/* Can be dequeued by placing the following in wp-content/themes/yourtheme/functions.php
-		 *
-		 * 	function remove_grunion_style() {
-		 *		wp_deregister_style('grunion.css');
-		 *	}
-		 *	add_action('wp_print_styles', 'remove_grunion_style');
-		 */
-		if( is_rtl() ){
-			wp_register_style( 'grunion.css', GRUNION_PLUGIN_URL . 'css/rtl/grunion-rtl.css', array(), JETPACK__VERSION );
-		} else {
-			wp_register_style( 'grunion.css', GRUNION_PLUGIN_URL . 'css/grunion.css', array(), JETPACK__VERSION );
-		}
 	}
 
 	/**
@@ -313,239 +319,6 @@ class Grunion_Contact_Form_Plugin {
 		return $text;
 	}
 
-	/**
-	 * Populate an array with all values necessary to submit a NEW contact-form feedback to Akismet.
-	 * Note that this includes the current user_ip etc, so this should only be called when accepting a new item via $_POST
-	 *
-	 * @param array $form Contact form feedback array
-	 * @return array feedback array with additional data ready for submission to Akismet
-	 */
-	function prepare_for_akismet( $form ) {
-		$form['comment_type'] = 'contact_form';
-		$form['user_ip']      = preg_replace( '/[^0-9., ]/', '', $_SERVER['REMOTE_ADDR'] );
-		$form['user_agent']   = $_SERVER['HTTP_USER_AGENT'];
-		$form['referrer']     = $_SERVER['HTTP_REFERER'];
-		$form['blog']         = get_option( 'home' );
-
-		$ignore = array( 'HTTP_COOKIE' );
-
-		foreach ( $_SERVER as $k => $value )
-			if ( !in_array( $k, $ignore ) && is_string( $value ) )
-				$form["$k"] = $value;
-
-		return $form;
-	}
-
-	/**
-	 * Submit contact-form data to Akismet to check for spam.
-	 * If you're accepting a new item via $_POST, run it Grunion_Contact_Form_Plugin::prepare_for_akismet() first
-	 * Attached to `contact_form_is_spam`
-	 *
-	 * @param array $form
-	 * @return bool|WP_Error TRUE => spam, FALSE => not spam, WP_Error => stop processing entirely
-	 */
-	function is_spam_akismet( $form ) {
-		global $akismet_api_host, $akismet_api_port;
-
-		if ( !function_exists( 'akismet_http_post' ) && !defined( 'AKISMET_VERSION' ) )
-			return false;
-
-		$query_string = http_build_query( $form );
-
-		if ( method_exists( 'Akismet', 'http_post' ) ) {
-		    $response = Akismet::http_post( $query_string, 'comment-check' );
-		} else {
-		    $response = akismet_http_post( $query_string, $akismet_api_host, '/1.1/comment-check', $akismet_api_port );
-		}
-
-		$result = false;
-
-		if ( isset( $response[0]['x-akismet-pro-tip'] ) && 'discard' === trim( $response[0]['x-akismet-pro-tip'] ) && get_option( 'akismet_strictness' ) === '1' )
-			$result = new WP_Error( 'feedback-discarded', __('Feedback discarded.', 'jetpack' ) );
-		elseif ( isset( $response[1] ) && 'true' == trim( $response[1] ) ) // 'true' is spam
-			$result = true;
-
-		return apply_filters( 'contact_form_is_spam_akismet', $result, $form );
-	}
-
-	/**
-	 * Submit a feedback as either spam or ham
-	 *
-	 * @param string $as Either 'spam' or 'ham'.
-	 * @param array $form the contact-form data
-	 */
-	function akismet_submit( $as, $form ) {
-		global $akismet_api_host, $akismet_api_port;
-
-		if ( !in_array( $as, array( 'ham', 'spam' ) ) )
-			return false;
-
-		$query_string = '';
-		if ( is_array( $form ) )
-			$query_string = http_build_query( $form );
-		if ( method_exists( 'Akismet', 'http_post' ) ) {
-		    $response = Akismet::http_post( $query_string, "submit-{$as}" );
-		} else {
-		    $response = akismet_http_post( $query_string, $akismet_api_host, "/1.1/submit-{$as}", $akismet_api_port );
-		}
-
-		return trim( $response[1] );
-	}
-
-	/**
-	 * Prints the menu
-	 */
-	function export_form() {
-		if ( get_current_screen()->id != 'edit-feedback' )
-			return;
-
-		// if there aren't any feedbacks, bail out
-		if ( ! (int) wp_count_posts( 'feedback' )->publish )
-			return;
-		?>
-
-		<div id="feedback-export" style="display:none">
-			<h2><?php _e( 'Export feedback as CSV', 'jetpack' ) ?></h2>
-			<div class="clear"></div>
-			<form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="post" class="form">
-				<?php wp_nonce_field( 'feedback_export','feedback_export_nonce' ); ?>
-
-				<input name="action" value="feedback_export" type="hidden">
-				<label for="post"><?php _e( 'Select feedback to download', 'jetpack' ) ?></label>
-				<select name="post">
-					<option value="all"><?php esc_html_e( 'All posts', 'jetpack' ) ?></option>
-					<?php echo $this->get_feedbacks_as_options() ?>
-				</select>
-
-				<br><br>
-				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_html_e( 'Download', 'jetpack' ); ?>">
-			</form>
-		</div>
-
-		<?php
-		// There aren't any usable actions in core to output the "export feedback" form in the correct place,
-		// so this inline JS moves it from the top of the page to the bottom.
-		?>
-		<script type='text/javascript'>
-		var menu = document.getElementById( 'feedback-export' ),
-		wrapper = document.getElementsByClassName( 'wrap' )[0];
-		wrapper.appendChild(menu);
-		menu.style.display = 'block';
-		</script>
-		<?php
-	}
-
-	/**
-	 * download as a csv a contact form or all of them in a csv file
-	 */
-	function download_feedback_as_csv() {
-		if ( empty( $_POST['feedback_export_nonce'] ) )
-			return;
-
-		check_admin_referer( 'feedback_export', 'feedback_export_nonce' );
-
-		$args = array(
-			'posts_per_page'   => -1,
-			'post_type'        => 'feedback',
-			'post_status'      => 'publish',
-			'order'            => 'ASC',
-			'fields'           => 'ids',
-			'suppress_filters' => false,
-		);
-
-		$filename = date( "Y-m-d" ) . '-feedback-export.csv';
-
-		// Check if we want to download all the feedbacks or just a certain contact form
-		if ( ! empty( $_POST['post'] ) && $_POST['post'] !== 'all' ) {
-			$args['post_parent'] = (int) $_POST['post'];
-			$filename            = date( "Y-m-d" ) . '-' . str_replace( '&nbsp;', '-', get_the_title( (int) $_POST['post'] ) ) . '.csv';
-		}
-
-		$feedbacks = get_posts( $args );
-		$filename  = sanitize_file_name( $filename );
-		$fields    = $this->get_field_names( $feedbacks );
-
-		array_unshift( $fields, __( 'Contact Form', 'jetpack' ) );
-
-		if ( empty( $feedbacks ) )
-			return;
-
-		// Forces the download of the CSV instead of echoing
-		header( 'Content-Disposition: attachment; filename=' . $filename );
-		header( 'Pragma: no-cache' );
-		header( 'Expires: 0' );
-		header( 'Content-Type: text/csv; charset=utf-8' );
-
-		$output = fopen( 'php://output', 'w' );
-
-		// Prints the header
-		fputcsv( $output, $fields );
-
-		// Create the csv string from the array of post ids
-		foreach ( $feedbacks as $feedback ) {
-			fputcsv( $output, self::make_csv_row_from_feedback( $feedback, $fields ) );
-		}
-
-		fclose( $output );
-	}
-
-	/**
-	 * Returns a string of HTML <option> items from an array of posts
-	 *
-	 * @return string a string of HTML <option> items
-	 */
-	protected function get_feedbacks_as_options() {
-		$options = '';
-
-		// Get the feedbacks' parents' post IDs
-		$feedbacks = get_posts( array(
-			'fields'           => 'id=>parent',
-			'posts_per_page'   => 100000,
-			'post_type'        => 'feedback',
-			'post_status'      => 'publish',
-			'suppress_filters' => false,
-		) );
-		$parents = array_unique( array_values( $feedbacks ) );
-
-		$posts = get_posts( array(
-			'orderby'          => 'ID',
-			'posts_per_page'   => 1000,
-			'post_type'        => 'any',
-			'post__in'         => array_values( $parents ),
-			'suppress_filters' => false,
-		) );
-
-		// creates the string of <option> elements
-		foreach ( $posts as $post ) {
-			$options .= sprintf( '<option value="%s">%s</option>', esc_attr( $post->ID ), esc_html( $post->post_title ) );
-		}
-
-		return $options;
-	}
-
-	/**
-	 * Get the names of all the form's fields
-	 *
-	 * @param  array|int $posts the post we want the fields of
-	 * @return array     the array of fields
-	 */
-	protected function get_field_names( $posts ) {
-		$posts = (array) $posts;
-		$all_fields = array();
-
-		foreach ( $posts as $post ){
-			$fields = self::parse_fields_from_content( $post );
-
-			if ( isset( $fields['_feedback_all_fields'] ) ) {
-				$extra_fields = array_keys( $fields['_feedback_all_fields'] );
-				$all_fields = array_merge( $all_fields, $extra_fields );
-			}
-		}
-
-		$all_fields = array_unique( $all_fields );
-		return $all_fields;
-	}
-
 	public static function parse_fields_from_content( $post_id ) {
 		static $post_fields;
 
@@ -597,36 +370,6 @@ class Grunion_Contact_Form_Plugin {
 		$post_fields[$post_id] = $fields;
 
 		return $fields;
-	}
-
-	/**
-	 * Creates a valid csv row from a post id
-	 *
-	 * @param  int    $post_id The id of the post
-	 * @param  array  $fields  An array containing the names of all the fields of the csv
-	 * @return String The csv row
-	 */
-	protected static function make_csv_row_from_feedback( $post_id, $fields ) {
-		$content_fields = self::parse_fields_from_content( $post_id );
-		$all_fields     = array();
-
-		if ( isset( $content_fields['_feedback_all_fields'] ) )
-			$all_fields = $content_fields['_feedback_all_fields'];
-
-		// The first element in all of the exports will be the subject
-		$row_items[] = $content_fields['_feedback_subject'];
-
-		// Loop the fields array in order to fill the $row_items array correctly
-		foreach ( $fields as $field ) {
-			if ( $field === __( 'Contact Form', 'jetpack' ) ) // the first field will ever be the contact form, so we can continue
-				continue;
-			elseif ( array_key_exists( $field, $all_fields ) )
-				$row_items[] = $all_fields[$field];
-			else
-				$row_items[] = '';
-		}
-
-		return $row_items;
 	}
 
 	public static function get_ip_address() {

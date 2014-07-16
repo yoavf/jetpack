@@ -1,6 +1,7 @@
 <?php
 include_once( 'class.contact-form-shortcode.php' );
 include_once( 'class.contact-form-field.php' );
+include_once( 'class.contact-form-akismet-adapter.php' );
 
 /**
  * Class for the contact-form shortcode.
@@ -480,7 +481,7 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 		$vars[] = 'comment_content';
 
 		$spam = '';
-		$akismet_values = $plugin->prepare_for_akismet( compact( $vars ) );
+		$akismet_values = Grunion_Contact_Form_Akismet_Adapter::prepare_for_akismet( compact( $vars ) );
 
 		// Is it spam?
 		$is_spam = apply_filters( 'contact_form_is_spam', $akismet_values );
