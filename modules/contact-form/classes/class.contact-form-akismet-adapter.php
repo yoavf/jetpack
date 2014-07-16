@@ -17,9 +17,11 @@ class Grunion_Contact_Form_Akismet_Adapter {
 
 		$ignore = array( 'HTTP_COOKIE' );
 
-		foreach ( $_SERVER as $k => $value )
-			if ( !in_array( $k, $ignore ) && is_string( $value ) )
+		foreach ( $_SERVER as $k => $value ) {
+			if ( !in_array( $k, $ignore ) && is_string( $value ) ) {
 				$form["$k"] = $value;
+			}
+		}
 
 		return $form;
 	}
@@ -35,8 +37,9 @@ class Grunion_Contact_Form_Akismet_Adapter {
 	static function is_spam( $form ) {
 		global $akismet_api_host, $akismet_api_port;
 
-		if ( !function_exists( 'akismet_http_post' ) && !defined( 'AKISMET_VERSION' ) )
+		if ( !function_exists( 'akismet_http_post' ) && !defined( 'AKISMET_VERSION' ) ) {
 			return false;
+		}
 
 		$query_string = http_build_query( $form );
 
@@ -48,10 +51,11 @@ class Grunion_Contact_Form_Akismet_Adapter {
 
 		$result = false;
 
-		if ( isset( $response[0]['x-akismet-pro-tip'] ) && 'discard' === trim( $response[0]['x-akismet-pro-tip'] ) && get_option( 'akismet_strictness' ) === '1' )
+		if ( isset( $response[0]['x-akismet-pro-tip'] ) && 'discard' === trim( $response[0]['x-akismet-pro-tip'] ) && get_option( 'akismet_strictness' ) === '1' ) {
 			$result = new WP_Error( 'feedback-discarded', __('Feedback discarded.', 'jetpack' ) );
-		elseif ( isset( $response[1] ) && 'true' == trim( $response[1] ) ) // 'true' is spam
+		} elseif ( isset( $response[1] ) && 'true' == trim( $response[1] ) ) { // 'true' is spam
 			$result = true;
+		}
 
 		return apply_filters( 'contact_form_is_spam_akismet', $result, $form );
 	}
@@ -65,12 +69,15 @@ class Grunion_Contact_Form_Akismet_Adapter {
 	static function submit_as( $as, $form ) {
 		global $akismet_api_host, $akismet_api_port;
 
-		if ( !in_array( $as, array( 'ham', 'spam' ) ) )
+		if ( !in_array( $as, array( 'ham', 'spam' ) ) ) {
 			return false;
+		}
 
 		$query_string = '';
-		if ( is_array( $form ) )
+		if ( is_array( $form ) ) {
 			$query_string = http_build_query( $form );
+		}
+
 		if ( method_exists( 'Akismet', 'http_post' ) ) {
 		    $response = Akismet::http_post( $query_string, "submit-{$as}" );
 		} else {

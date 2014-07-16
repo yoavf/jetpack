@@ -476,8 +476,9 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 		$comment_author_IP = Grunion_Contact_Form_Plugin::get_ip_address();
 
 		$vars = array( 'comment_author', 'comment_author_email', 'comment_author_url', 'contact_form_subject', 'comment_author_IP' );
-		foreach ( $vars as $var )
+		foreach ( $vars as $var ) {
 			$$var = str_replace( array( "\n", "\r" ), '', $$var );
+		}
 		$vars[] = 'comment_content';
 
 		$spam = '';
@@ -485,13 +486,15 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 
 		// Is it spam?
 		$is_spam = apply_filters( 'contact_form_is_spam', $akismet_values );
-		if ( is_wp_error( $is_spam ) ) // WP_Error to abort
+		if ( is_wp_error( $is_spam ) ) { // WP_Error to abort
 			return $is_spam; // abort
-		elseif ( $is_spam === TRUE )  // TRUE to flag a spam
+		} elseif ( $is_spam === TRUE ) {  // TRUE to flag a spam
 			$spam = '***SPAM*** ';
+		}
 
-		if ( !$comment_author )
+		if ( !$comment_author ) {
 			$comment_author = $comment_author_email;
+		}
 
 		$to = (array) apply_filters( 'contact_form_to', $to );
 		foreach ( $to as $to_key => $to_value ) {

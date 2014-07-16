@@ -46,10 +46,11 @@ class Grunion_Contact_Form_Field extends Grunion_Contact_Form_Shortcode {
 		}
 
 		// allow required=1 or required=true
-		if ( '1' == $attributes['required'] || 'true' == strtolower( $attributes['required'] ) )
+		if ( '1' == $attributes['required'] || 'true' == strtolower( $attributes['required'] ) ) {
 			$attributes['required'] = true;
-		else
+		} else {
 			$attributes['required'] = false;
+		}
 
 		// parse out comma-separated options list (for selects and radios)
 		if ( !empty( $attributes['options'] ) && is_string( $attributes['options'] ) ) {

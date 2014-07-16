@@ -5,12 +5,14 @@ class Grunion_Contact_Form_CSV_Exporter {
 	 * Prints the menu
 	 */
 	static function export_form() {
-		if ( get_current_screen()->id != 'edit-feedback' )
+		if ( get_current_screen()->id != 'edit-feedback' ) {
 			return;
+		}
 
 		// if there aren't any feedbacks, bail out
-		if ( ! (int) wp_count_posts( 'feedback' )->publish )
+		if ( ! (int) wp_count_posts( 'feedback' )->publish ) {
 			return;
+		}
 		?>
 
 		<div id="feedback-export" style="display:none">
@@ -20,10 +22,10 @@ class Grunion_Contact_Form_CSV_Exporter {
 				<?php wp_nonce_field( 'feedback_export','feedback_export_nonce' ); ?>
 
 				<input name="action" value="feedback_export" type="hidden">
-				<label for="post"><?php _e( 'Select feedback to download', 'jetpack' ) ?></label>
+				<label for="post"><?php _e( 'Select feedback to download', 'jetpack' ); ?></label>
 				<select name="post">
-					<option value="all"><?php esc_html_e( 'All posts', 'jetpack' ) ?></option>
-					<?php echo self::get_feedbacks_as_options() ?>
+					<option value="all"><?php esc_html_e( 'All posts', 'jetpack' ); ?></option>
+					<?php echo self::get_feedbacks_as_options(); ?>
 				</select>
 
 				<br><br>
@@ -48,8 +50,9 @@ class Grunion_Contact_Form_CSV_Exporter {
 	 * download as a csv a contact form or all of them in a csv file
 	 */
 	static function download_feedback_as_csv() {
-		if ( empty( $_POST['feedback_export_nonce'] ) )
+		if ( empty( $_POST['feedback_export_nonce'] ) ) {
 			return;
+		}
 
 		check_admin_referer( 'feedback_export', 'feedback_export_nonce' );
 
@@ -76,8 +79,9 @@ class Grunion_Contact_Form_CSV_Exporter {
 
 		array_unshift( $fields, __( 'Contact Form', 'jetpack' ) );
 
-		if ( empty( $feedbacks ) )
+		if ( empty( $feedbacks ) ) {
 			return;
+		}
 
 		// Forces the download of the CSV instead of echoing
 		header( 'Content-Disposition: attachment; filename=' . $filename );
@@ -109,26 +113,24 @@ class Grunion_Contact_Form_CSV_Exporter {
 		$content_fields = Grunion_Contact_Form_Plugin::parse_fields_from_content( $post_id );
 		$all_fields     = array();
 
-		if ( isset( $content_fields['_feedback_all_fields'] ) )
+		if ( isset( $content_fields['_feedback_all_fields'] ) ) {
 			$all_fields = $content_fields['_feedback_all_fields'];
+		}
 
 		// The first element in all of the exports will be the subject
 		$row_items[] = $content_fields['_feedback_subject'];
 
 		// Loop the fields array in order to fill the $row_items array correctly
 		foreach ( $fields as $field ) {
-			if ( $field === __( 'Contact Form', 'jetpack' ) ) // the first field will ever be the contact form, so we can continue
+			if ( $field === __( 'Contact Form', 'jetpack' ) ) { // the first field will ever be the contact form, so we can continue
 				continue;
-			elseif ( array_key_exists( $field, $all_fields ) )
-				$row_items[] = $all_fields[$field];
-			else
-				$row_items[] = '';
+			}
+
+			$row_items[] = ( array_key_exists( $field, $all_fields ) ) ? $all_fields[$field] : '';
 		}
 
 		return $row_items;
 	}
-
-
 
 	/**
 	 * Returns a string of HTML <option> items from an array of posts
