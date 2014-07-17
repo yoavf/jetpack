@@ -40,6 +40,21 @@ class Grunion_Contact_Form_Plugin {
 	}
 
 	/**
+	 * Includes a view template and passes given data to it
+	 */
+
+	public static function template( $name, $data = array() ) {
+		ob_start();
+		self::template_e( $name, $data );
+		return ob_get_clean();
+	}
+
+	public static function template_e( $name, $data = array() ) {
+		extract( $data );
+		require( GRUNION_PLUGIN_DIR . "/templates/$name.php" );
+	}
+
+	/**
 	 * Strips HTML tags from input.  Output is NOT HTML safe.
 	 *
 	 * @param string $string

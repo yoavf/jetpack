@@ -83,7 +83,7 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 		remove_shortcode( 'contact-field' );
 	}
 
-	function initialize_standard_fields( $field_ids ) {
+	function initialize_standard_field_values( $field_ids ) {
 		// Initialize all these "standard" fields to null
 		$this->comment_author_email = $this->comment_author_email_label = // v
 		$this->comment_author       = $this->comment_author_label       = // v
@@ -116,11 +116,17 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 			$this->comment_author_url = '';
 		}
 
+		// Replace the admin specified field if exposed to the user
 		if ( isset( $field_ids['subject'] ) ) {
 			$field = $this->fields[$field_ids['subject']];
 			if ( $field->value ) {
 				$this->contact_form_subject = Grunion_Contact_Form_Plugin::strip_tags( $field->value );
 			}
+		}
+
+		// Specify user email as author of author not specified
+		if ( ! $this->comment_author ) {
+			$this->comment_author = $this->comment_author_email;
 		}
 	}
 
@@ -187,65 +193,23 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 			wp_enqueue_style( 'grunion.css' );
 		}
 
-		$r = '';
-		$r .= "<div id='contact-form-$id'>\n";
-
-		if ( is_wp_error( $form->errors ) && $form->errors->get_error_codes() ) {
-			// There are errors.  Display them
-			$r .= "<div class='form-error'>\n<h3>" . __( 'Error!', 'jetpack' ) . "</h3>\n<ul class='form-errors'>\n";
-			foreach ( $form->errors->get_error_messages() as $message )
-				$r .= "\t<li class='form-error-message'>" . esc_html( $message ) . "</li>\n";
-			$r .= "</ul>\n</div>\n\n";
-		}
-
-		if ( isset( $_GET['contact-form-id'] ) && $_GET['contact-form-id'] == self::$last->get_attribute( 'id' ) && isset( $_GET['contact-form-sent'] ) ) {
-			// The contact form was submitted.  Show the success message/results
-
-			$feedback_id = (int) $_GET['contact-form-sent'];
-
-			$back_url = remove_query_arg( array( 'contact-form-id', 'contact-form-sent', '_wpnonce' ) );
-
-			$r_success_message =
-				"<h3>" . __( 'Message Sent', 'jetpack' ) .
-				' (<a href="' . esc_url( $back_url ) . '">' . esc_html__( 'go back', 'jetpack' ) . '</a>)' .
-				"</h3>\n\n";
-
-			// Don't show the feedback details unless the nonce matches
-			if ( $feedback_id && wp_verify_nonce( stripslashes( $_GET['_wpnonce'] ), "contact-form-sent-{$feedback_id}" ) ) {
-				$r_success_message .= self::success_message( $feedback_id, $form );
-			}
-
-			$r .= apply_filters( 'grunion_contact_form_success_message', $r_success_message );
+		if ( $form->get_attribute( 'widget' ) ) {
+			// Submit form to the current URL
+			$submit_url = remove_query_arg( array( 'contact-form-id', 'contact-form-sent', 'action', '_wpnonce' ) );
 		} else {
-			// Nothing special - show the normal contact form
-
-			if ( $form->get_attribute( 'widget' ) ) {
-				// Submit form to the current URL
-				$url = remove_query_arg( array( 'contact-form-id', 'contact-form-sent', 'action', '_wpnonce' ) );
-			} else {
-				// Submit form to the post permalink
-				$url = get_permalink();
-			}
-
-			// May eventually want to send this to admin-post.php...
-			$url = apply_filters( 'grunion_contact_form_form_action', "{$url}#contact-form-{$id}", $GLOBALS['post'], $id );
-
-			$r .= "<form action='" . esc_url( $url ) . "' method='post' class='contact-form commentsblock'>\n";
-			$r .= $form->body;
-			$r .= "\t<p class='contact-submit'>\n";
-			$r .= "\t\t<input type='submit' value='" . esc_attr( $form->get_attribute( 'submit_button_text' ) ) . "' class='pushbutton-wide'/>\n";
-			if ( is_user_logged_in() ) {
-				$r .= "\t\t" . wp_nonce_field( 'contact-form_' . $id, '_wpnonce', true, false ) . "\n"; // nonce and referer
-			}
-			$r .= "\t\t<input type='hidden' name='contact-form-id' value='$id' />\n";
-			$r .= "\t\t<input type='hidden' name='action' value='grunion-contact-form' />\n";
-			$r .= "\t</p>\n";
-			$r .= "</form>\n";
+			// Submit form to the post permalink
+			$submit_url = get_permalink();
 		}
 
-		$r .= "</div>";
+		// May eventually want to send this to admin-post.php...
+		$submit_url = apply_filters( 'grunion_contact_form_form_action', "{$submit_url}#contact-form-{$id}", $GLOBALS['post'], $id );
 
-		return $r;
+
+		return Grunion_Contact_Form_Plugin::template( 'contact-form', array(
+			'id' => $id,
+			'form' => $form,
+			'submit_url' => $submit_url
+		) );
 	}
 
 	static function success_message( $feedback_id, $form ) {
@@ -485,17 +449,16 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 	function build_message( $widget, $extra_values ) {
 		global $post;
 
-		$message = "$this->comment_author_label: $this->comment_author\n";
-		if ( !empty( $this->comment_author_email ) ) {
-			$message .= "$this->comment_author_email_label: $this->comment_author_email\n";
+		$message = '';
+		foreach ( array( 'author', 'author_url', 'content' ) as $postfix ) {
+			if ( empty( $this->{'comment_' . $postfix} ) ) {
+				continue;
+			}
+
+			$message .= $this->{'comment_' . $postfix . '_label'} . ': ' . $this->{'comment_' . $postfix} . "\n";
 		}
-		if ( !empty( $this->comment_author_url ) ) {
-			$message .= "$this->comment_author_url_label: $this->comment_author_url\n";
-		}
-		if ( !empty( $this->comment_content_label ) ) {
-			$message .= "$this->comment_content_label: $this->comment_content\n";
-		}
-		if ( !empty( $extra_values ) ) {
+
+		if ( ! empty( $extra_values ) ) {
 			foreach ( $extra_values as $label => $value ) {
 				$message .= preg_replace( '#^\d+_#i', '', $label ) . ': ' . trim( $value ) . "\n";
 			}
@@ -590,10 +553,7 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 		$field_ids = $this->get_field_ids();
 
 		// May overwrite subject if it is exposed as a field
-		$this->initialize_standard_fields( $field_ids );
-		if ( ! $this->comment_author ) {
-			$this->comment_author = $this->comment_author_email;
-		}
+		$this->initialize_standard_field_values( $field_ids );
 
 		// Trim subject regardless of being user specified or admin specified
 		$this->contact_form_subject = trim( $this->contact_form_subject );
@@ -617,11 +577,12 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 		$to = (array) apply_filters( 'contact_form_to', $to );
 		array_walk( $to, array( 'Grunion_Contact_Form_Plugin', 'strip_tags' ) );
 
+		// Apply any filters to modify the subject, including token replacement
 		$subject = apply_filters( 'contact_form_subject', $this->contact_form_subject, $all_values );
 
 		$message = $this->build_message( $widget, $extra_values );
 
-		// Strip all form values before saving
+		// Strip all values before saving or displaying them
 		foreach ( array( 'akismet_values', 'all_values', 'extra_values' ) as $var ) {
 			array_walk( $$var, array( 'Grunion_Contact_Form_Plugin', 'strip_tags' ) );
 		}
@@ -635,12 +596,7 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 
 		$this->maybe_send_mail( $post_id, $is_spam, $message, $to, $subject );
 
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			return self::success_message( $post_id, $this );
-		}
-
-		$this->redirect_to_show_submission_result( $id, $post_id );
-		exit;
+		return $this->render_result( $id, $post_id );
 	}
 
 	function maybe_delete_old_spam() {
@@ -665,6 +621,15 @@ class Grunion_Contact_Form extends Grunion_Contact_Form_Shortcode {
 		$redirect = apply_filters( 'grunion_contact_form_redirect_url', $redirect, $id, $post_id );
 
 		wp_safe_redirect( $redirect );
+	}
+
+	function render_result( $id, $post_id ) {
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			return self::success_message( $post_id, $this );
+		}
+
+		$this->redirect_to_show_submission_result( $id, $post_id );
+		exit;
 	}
 
 	function addslashes_deep( $value ) {
