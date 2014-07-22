@@ -551,9 +551,9 @@ class Jetpack_Portfolio {
 
 				<?php 
 				// The content
-				if ( false != $atts['display_content'] ) { ?>
+				if ( false != $atts['display_content'] ): ?>
 					<div class="portfolio-entry-content"><?php the_excerpt(); ?></div>
-				<?php } ?>
+				<?php endif; ?>
 				</div><!-- close .portfolio-entry -->
 			<?php 
 				$i++;
@@ -567,14 +567,13 @@ class Jetpack_Portfolio {
 			<p><em><?php _e( 'Your Portfolio Archive currently has no entries. You can start creating them on your dashboard.', 'jetpack' ); ?></p></em>
 		<?php 
 		}
-		$html = ob_get_contents();
-		ob_clean();
+		$html = ob_get_clean();
 
 		// If there is a [portfolio] within a [portfolio], remove the shortcode
-		if ( has_shortcode( $html, 'portfolio' ) ) {
+		if ( has_shortcode( $html, 'portfolio' ) ){
 			remove_shortcode( 'portfolio' );
 		}
-
+		
 		// Return the HTML block
 		return $html;
 	}
