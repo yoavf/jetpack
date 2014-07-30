@@ -8,7 +8,13 @@
 	</div>
 	<# if ( data.available) { #>
 		<footer>
-			<ul><# if ( 'No' == data.hide_activation ) { #>
+			<ul>
+				<# if ( data.configurable ) { #>
+				<li>
+					 <a class="button-primary" href="{{ data.configure_url }}"><?php _e( 'Configure', 'jetpack' ); ?></a>
+				</li>
+				<# } #>
+				<# if ( 'No' == data.hide_activation ) { #>
 				<li>
 					<# if ( data.activated ) { #>
 						<span class='delete'><a class="button-secondary"href="<?php echo admin_url( 'admin.php' ); ?>?page=jetpack&#038;action=deactivate&#038;module={{{ data.module }}}&#038;_wpnonce={{{ data.deactivate_nonce }}}"><?php _e( 'Deactivate', 'jetpack' ); ?></a></span>
@@ -17,9 +23,7 @@
 					<# } #>
 				</li>
 				<# } #>
-				<li>
-					<# if ( data.configurable ) { #> <a class="button-primary" href="{{ data.configure_url }}"><?php _e( 'Configure', 'jetpack' ); ?></a> <# } #>
-				</li>
+				
 			</ul>
 		</footer>
 	<# } #>
