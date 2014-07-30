@@ -1214,6 +1214,7 @@ class Jetpack {
 			'requires_connection' => 'Requires Connection',
 			'auto_activate'       => 'Auto Activate',
 			'module_tags'         => 'Module Tags',
+			'hide_activation'	  => 'Hide Activation',
 		);
 
 		$file = Jetpack::get_module_path( Jetpack::get_module_slug( $module ) );
@@ -1243,6 +1244,12 @@ class Jetpack {
 			$mod['module_tags'] = array_map( array( __CLASS__, 'translate_module_tag' ), $mod['module_tags'] );
 		} else {
 			$mod['module_tags'] = array( self::translate_module_tag( 'Other' ) );
+		}
+
+		if ( empty( $mod['hide_activation'] ) || ! in_array( strtolower( $mod['auto_activate'] ), array( 'yes', 'no' ) ) ) {
+			$mod['hide_activation'] = 'No';
+		} else {
+			$mod['hide_activation'] = (string) $mod['auto_activate'];
 		}
 
 		return $mod;
