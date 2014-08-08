@@ -4369,6 +4369,12 @@ p {
 	 * Hooks onto `plugins_url` filter at priority 1, and accepts all 3 args.
 	 */
 	public static function maybe_min_asset( $url, $path, $plugin ) {
+		static $concat_scripts = null;
+		if ( is_null( $concat_scripts ) ) {
+			$concat_scripts_json  = file_get_contents( JETPACK__PLUGIN_DIR . 'jetpack-combined-scripts.json' );
+			$concat_scripts = json_decode( $concat_scripts_json );
+		}
+
 		// Short out on things trying to find actual paths.
 		if ( ! $path || empty( $plugin ) ) {
 			return $url;
@@ -4383,11 +4389,21 @@ p {
 		}
 
 		// File name parsing.
+		$path              = ltrim( $path, ' /' );
 		$file              = "{$base}/{$path}";
-		$full_path         = JETPACK__PLUGIN_DIR . substr( $file, 8 );
+		$jp_relative_path  = substr( $file, 8 );
+		$full_path         = JETPACK__PLUGIN_DIR . $jp_relative_path;
 		$file_name         = substr( $full_path, strrpos( $full_path, '/' ) + 1 );
 		$file_name_parts_r = array_reverse( explode( '.', $file_name ) );
 		$extension         = array_shift( $file_name_parts_r );
+
+		if ( 'js' === strtolower( $extension ) ) {
+			if ( in_array( $jp_relative_path, $concat_scripts ) ) {
+				// We've got in in our concat file!  Do the magics!
+			} else {
+				// We no can haz in concat file. :(
+			}
+		}
 
 		if ( in_array( strtolower( $extension ), array( 'css', 'js' ) ) ) {
 			// Already pointing at the minified version.
