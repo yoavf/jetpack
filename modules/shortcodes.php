@@ -40,9 +40,7 @@ function shortcode_new_to_old_params( $params, $old_format_support = false ) {
 function jetpack_load_shortcodes() {
 	global $wp_version;
 
-	$shortcode_includes = array();
-
-	foreach ( Jetpack::glob_php( dirname( __FILE__ ) . '/shortcodes' ) as $file ) {
+	foreach ( Jetpack::glob_relative_php( 'modules/shortcodes' ) as $file ) {
 		$shortcode_includes[] = $file;
 	}
 

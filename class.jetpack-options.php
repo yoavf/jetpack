@@ -10,7 +10,6 @@ class Jetpack_Options {
 				'register',
 				'activated',
 				'active_modules',
-				'available_modules',
 				'do_activate',
 				'log',
 				'publicize',
@@ -19,6 +18,7 @@ class Jetpack_Options {
 				'wpcc_options',
 				'relatedposts',
 				'file_data',
+				'glob_cache',
 			);
 		}
 
