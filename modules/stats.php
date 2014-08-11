@@ -67,7 +67,8 @@ function stats_load() {
 	// Generate the tracking code after wp() has queried for posts.
 	add_action( 'template_redirect', 'stats_template_redirect', 1 );
 
-	add_action( 'wp_head', 'stats_admin_bar_head', 100 );
+	add_action( 'wp_head',    'stats_admin_bar_head', 100 );
+	add_action( 'admin_head', 'stats_admin_bar_head', 100 );
 
 	add_action( 'wp_head', 'stats_hide_smile_css' );
 
@@ -829,9 +830,13 @@ function stats_reports_page() {
 
 </style>";
 
-	$menu = array( 'id' => 'stats', 'title' => $js . '<canvas id="canvas" width="106" height="24"></canvas><div id="stats-views" class="none-selected"><span id="stats-views-amount"></span></div>', 'href' => $url );
-
-	$wp_admin_bar->add_menu( $menu );
+	$args = array(
+		'id'    => 'stats',
+		'title' => $js . '<canvas id="canvas" width="106" height="24"></canvas><div id="stats-views" class="none-selected"><span id="stats-views-amount"></span></div>',
+		'href'  => $url,
+		'meta'  => array( 'class' => 'admin-bar-stats' )
+	);
+	$wp_admin_bar->add_node( $args );
 }
 
 function stats_update_blog() {
