@@ -681,12 +681,13 @@ function stats_reports_page() {
 (function( $ ) {
 	var translations = { view: '" . __( 'view', 'jetpack' ) . "', views: '" . __( 'views', 'jetpack' ) . "' };
 
-	function SparklineBar( x, y, width, height, views ) {
+	function SparklineBar( x, y, width, height, views, timestamp ) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		this.views = views;
+		this.timestamp = new Date( timestamp );
 	}
 
 	// Checks whether the given x coordinate lies inside the bar
@@ -694,15 +695,30 @@ function stats_reports_page() {
 		return this.x <= x && x <= this.x + this.width;
 	};
 
+	// Stringifies the timestamp
+	SparklineBar.prototype.stringifiedViewTime = function() {
+		function maybeAddZero( timeUnitValue ) {
+			if ( timeUnitValue < 10 ) {
+				return '0' + timeUnitValue;
+			}
+
+			return '' + timeUnitValue;
+		}
+
+		return maybeAddZero( this.timestamp.getHours() ) + ':' // Hours
+			+ maybeAddZero( this.timestamp.getMinutes() ) + ' ' // Minutes
+			+ this.timestamp.toString().split( ' ' ).pop(); // Timezone
+	};
+
 	// Creates bars of appropriate size to appropriate points in the canvas
-	function createBars( ctx, width, height, scaledData, rawViewData ) {
+	function createBars( ctx, width, height, timestamps, scaledData, rawViewData ) {
 		var barWidth = 1,
 			bars = [];
 
 		// Starting from 5 pixels in, start to create bars for every other pixel
 		// of the height of the scaled data
 		for ( var i = 0, j = 5; i < scaledData.length; i++, j += barWidth + 1 ) {
-			bars.push( new SparklineBar( j, height - scaledData[i] - 1, barWidth, scaledData[i] + 1, rawViewData[i] ) );
+			bars.push( new SparklineBar( j, height - scaledData[i] - 1, barWidth, scaledData[i] + 1, rawViewData[i], timestamps[i] ) );
 		}
 		return bars;
 	}
@@ -744,7 +760,7 @@ function stats_reports_page() {
 			}
 
 			// Draw all the bars initially
-			bars = createBars( ctx, width, height, scaleDatapoints( data, width, height ), data );
+			bars = createBars( ctx, width, height, Object.keys( json ), scaleDatapoints( data, width, height ), data );
 			$.each( bars, function( i, el ) {
 				drawBar( ctx, el, width, height );
 			});
@@ -769,7 +785,7 @@ function stats_reports_page() {
 						ctx.fillRect( selected.x, 0, selected.width, height );
 
 						// Draw views
-						$( '#stats-views-amount' ).text( selected.views + ' ' + ( 1 === selected.views ? translations.view : translations.views ) );
+						$( '#stats-views-amount' ).text( selected.views + ' ' + ( 1 === selected.views ? translations.view : translations.views ) + ' @ ' + selected.stringifiedViewTime() );
 						$( '#stats-views' ).removeClass( 'none-selected' );
 
 						return;
