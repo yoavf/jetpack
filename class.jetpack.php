@@ -427,6 +427,8 @@ class Jetpack {
 		add_action( 'plugins_loaded', array( $this, 'check_twitter_tags' ),     999 );
 		add_action( 'plugins_loaded', array( $this, 'check_rest_api_compat' ), 1000 );
 
+		add_filter( 'script_loader_src', array( 'Jetpack', 'maybe_use_concatted_script' ), 10, 2 );
+		add_filter( 'style_loader_tag',  array( 'Jetpack', 'maybe_use_concatted_style' ),  10, 2 );
 		add_filter( 'plugins_url', array( 'Jetpack', 'maybe_min_asset' ), 1, 3 );
 
 		add_filter( 'map_meta_cap', array( $this, 'jetpack_custom_caps' ), 1, 4 );
@@ -538,6 +540,8 @@ class Jetpack {
 	 * @return null
 	 */
 	public function register_assets() {
+		$min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
 		if ( ! wp_script_is( 'spin', 'registered' ) )
 			wp_register_script( 'spin', plugins_url( '_inc/spin.js', __FILE__ ), false, '1.3' );
 
@@ -557,6 +561,13 @@ class Jetpack {
 
 		if ( ! wp_style_is( 'jetpack-icons', 'registered' ) )
 			wp_register_style( 'jetpack-icons', plugins_url( '_inc/jetpack-icons.min.css', __FILE__ ), false, JETPACK__VERSION );
+
+		wp_register_script( 'jetpack-concat', plugins_url( "jetpack-combined-scripts{$min}.js", JETPACK__PLUGIN_FILE ), array(), JETPACK__VERSION, true );
+		add_action( 'wp_footer', array( 'Jetpack', 'enqueue_jetpack_combined_scripts' ), 10 );
+	}
+
+	public static function enqueue_jetpack_combined_scripts() {
+		wp_enqueue_script( 'jetpack-concat' );
 	}
 
 	/**
@@ -4418,6 +4429,81 @@ p {
 		}
 
 		return $url;
+	}
+
+	/**
+	 * The `wp_localize_script` extra will have printed already, so we'll ignore that.
+	 */
+	public static function maybe_use_concatted_script( $src, $handle ) {
+/*		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+			return $src;
+		}
+*/
+		static $concat_scripts = null;
+		global $wp_scripts;
+		$item   = $wp_scripts->registered[ $handle ];
+
+		if ( is_null( $concat_scripts ) ) {
+			$concat_scripts_json  = file_get_contents( JETPACK__PLUGIN_DIR . 'jetpack-combined-scripts.json' );
+			$concat_scripts = json_decode( $concat_scripts_json );
+		}
+
+		$is_concatted = false;
+		foreach ( $concat_scripts as $concatted_script ) {
+			if ( strpos( $src, $concatted_script ) ) {
+				$is_concatted = $concatted_script;
+			}
+		}
+
+		if ( ! $is_concatted ) {
+			return $src;
+		}
+
+		if ( wp_script_is( 'jetpack-concat', 'done' ) ) {
+			echo "<!-- Curses, foiled again! `jetpack-concat` has printed out too early! $handle couldn't be bundled. -->\r\n";
+			return $src;
+		}
+
+		// Move in deps from individual scripts to new one, this may not be necessary.
+		$new_deps = array_unique( array_merge( $item->deps, $wp_scripts->registered['jetpack-concat']->deps ) );
+		$wp_scripts->registered['jetpack-concat']->deps = $new_deps;
+
+		// Make an internal note of which ones we're accounting for.
+		if ( empty( $wp_scripts->registered['jetpack-concat']->extra['included_scripts'] ) ) {
+			$wp_scripts->registered['jetpack-concat']->extra['included_scripts'] = array();
+		}
+		$wp_scripts->registered['jetpack-concat']->extra['included_scripts'][] = $concatted_script;
+		$wp_scripts->registered['jetpack-concat']->extra['included_scripts'] =
+				array_unique( $wp_scripts->registered['jetpack-concat']->extra['included_scripts'] );
+
+		// Localize to pass in which files we're doing.
+		// First, wipe the localize, so nothing funky appendy goes in.
+		$wp_scripts->registered['jetpack-concat']->extra['data'] = null;
+		wp_localize_script( 'jetpack-concat', 'jpconcat', array( 'files' => $wp_scripts->registered['jetpack-concat']->extra['included_scripts'] ) );
+
+		echo "<!-- Script $handle\r\n";
+		print_r( $item );
+		echo "\r\n-->\r\n";
+
+		$src = '';
+
+		return $src;
+	}
+
+	/**
+	 *
+	 */
+	public static function maybe_use_concatted_style( $tag, $handle ) {
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+			return $tag;
+		}
+
+		global $wp_styles;
+		$item = $wp_styles->registered[ $handle ];
+
+		// Here be dragons!
+
+		return $tag;
 	}
 
 	/**
