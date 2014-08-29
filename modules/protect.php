@@ -9,3 +9,13 @@
  * Module Tags: Security
  */
 
+include( 'protect/protect.class.php' );
+$jpp = new Jetpack_Protect;
+
+if ( isset( $pagenow ) && $pagenow == 'wp-login.php' ) {
+	$jpp->check_loginability();
+} else {
+	//	This is in case the wp-login.php pagenow variable fails
+	add_action( 'login_head', array( &$jpp, 'check_loginability' ) );
+}
+
