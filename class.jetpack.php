@@ -417,6 +417,11 @@ class Jetpack {
 
 		add_action( 'jetpack_activate_module', array( $this, 'activate_module_actions' ) );
 
+		add_action( 'jetpack_activate_module', array( $this, 'check_privacy' ) );
+
+		add_action( 'jetpack_activate_module',   array( $this->sync, 'schedule_sync' ) );
+		add_action( 'jetpack_deactivate_module', array( $this->sync, 'schedule_sync' ) );
+
 		add_action( 'plugins_loaded', array( $this, 'extra_oembed_providers' ), 100 );
 
 		/**
@@ -4544,21 +4549,6 @@ p {
 
 		error_log( "Jetpack: Unable to find view file $views_dir$template" );
 		return false;
-	}
-
-	/**
-	 * Sends a ping to the Jetpack servers to toggle on/off remote portions
-	 * required by some modules.
-	 *
-	 * @param string $module_slug
-	 */
-	public function toggle_module_on_wpcom( $module_slug ) {
-		Jetpack::init()->sync->register( 'noop' );
-
-		if ( false !== strpos( current_filter(), 'jetpack_activate_module_' ) ) {
-			self::check_privacy( $module_slug );
-		}
-
 	}
 
 	/**

@@ -67,6 +67,17 @@ class Jetpack_Sync {
 
 /* Internal Methods */
 
+	function schedule_sync() {
+		// Schedule a synchronisation, hook it up to execute on shutdown if we haven't already
+		if ( ! $this->sync ) {
+			$this->sync[ 'noop' ] = true;
+			if ( function_exists( 'ignore_user_abort' ) ) {
+				ignore_user_abort( true );
+			}
+			add_action( 'shutdown', array( $this, 'sync' ), 9 ); // Right before async XML-RPC
+		}
+	}
+
 	/**
 	 * Create a sync object/request
 	 *
@@ -75,13 +86,9 @@ class Jetpack_Sync {
 	 * @param array $settings
 	 */
 	function register( $object, $id = false, array $settings = null ) {
-		// Since we've registered something for sync, hook it up to execute on shutdown if we haven't already
-		if ( !$this->sync ) {
-			if ( function_exists( 'ignore_user_abort' ) ) {
-				ignore_user_abort( true );
-			}
-			add_action( 'shutdown', array( $this, 'sync' ), 9 ); // Right before async XML-RPC
-		}
+
+		// Registered something for sync
+		$this->schedule_sync();
 
 		$defaults = array(
 			'on_behalf_of' => array(), // What modules want this data

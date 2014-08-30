@@ -8,9 +8,6 @@
  * Auto Activate: No
  */
 
-add_action( 'jetpack_activate_module_monitor', array( Jetpack::init(), 'toggle_module_on_wpcom' ) );
-add_action( 'jetpack_deactivate_module_monitor', array( Jetpack::init(), 'toggle_module_on_wpcom' )  );
-
 class Jetpack_Monitor {
 
 	public $module = 'monitor';
