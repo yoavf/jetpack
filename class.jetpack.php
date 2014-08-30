@@ -1537,6 +1537,7 @@ class Jetpack {
 		$active = Jetpack::get_active_modules();
 		$new    = array_filter( array_diff( $active, (array) $module ) );
 
+		do_action( 'jetpack_deactivate_module', $module );
 		do_action( "jetpack_deactivate_module_$module", $module );
 		return Jetpack_Options::update_option( 'active_modules', array_unique( $new ) );
 	}
