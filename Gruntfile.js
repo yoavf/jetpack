@@ -166,6 +166,19 @@ module.exports = function(grunt) {
 					'!css/jetpack-rtl.css',
 				]
 			},
+			coreMin: {
+				options: {
+					swapLtrRtlInUrl: false
+				},
+				expand: true,
+				ext: '-rtl.min.css',
+				src: [
+					'css/*.min.css',
+					'!css/*-rtl*.css',
+					'!css/jetpack.css',
+					'!css/jetpack-rtl.css',
+				]
+			},
 			frontEndModules: {
 				options: {
 					swapLtrRtlInUrl: false
@@ -242,6 +255,7 @@ module.exports = function(grunt) {
 					'sass',
 					'autoprefixer:core',
 					'cssjanus:core',
+					'cssjanus:coreMin',
 				],
 				options: {
 					spawn: false
