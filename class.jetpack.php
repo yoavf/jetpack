@@ -443,7 +443,10 @@ class Jetpack {
 		 */
 		if( !is_admin() ) {
 			add_action( 'wp_print_styles', array( $this, 'implode_frontend_css' ), -1 ); // Run first
+			add_action( 'wp_print_scripts', array( $this, 'implode_frontend_js' ), -1 ); // Run first
 			add_action( 'wp_print_footer_scripts', array( $this, 'implode_frontend_css' ), -1 ); // Run first to trigger before `print_late_styles`
+			add_action( 'wp_print_footer_scripts', array( $this, 'implode_frontend_js' ), -1 ); // Run first
+
 		}
 	}
 
@@ -4759,5 +4762,87 @@ p {
 		} else {
 			wp_enqueue_style( 'jetpack_css', plugins_url( 'css/jetpack.css', __FILE__ ) );
 		}
+	}
+
+	/**
+	 * This methods removes all of the registered js files on the frontend
+	 * from Jetpack in favor of using a single file. In effect "imploding"
+	 * all the files into one file.
+	 *
+	 * add_filter( 'jetpack_implode_frontend_js', '__return_false' );
+	 *
+	 * @since 3.2
+	 **/
+	public function implode_frontend_js() {
+		global $wp_scripts;
+
+		$do_implode = apply_filters( 'jetpack_implode_frontend_js', true );
+
+		// Do not use the imploded file when default behaviour was altered through the filter
+		if ( ! $do_implode ) {
+			return;
+		}
+
+		// We do not want to use the imploded file in dev mode
+		if ( Jetpack::is_development_mode() ) {
+			return;
+		}
+
+		// Do not use the imploded file if sharing css was dequeued via the sharing settings screen
+		if ( get_option( 'sharedaddy_disable_resources' ) ) {
+			return;
+		}
+
+		/*
+		 * Now we assume Jetpack is connected and able to serve the single
+		 * file.
+		 *
+		 * In the future there will be a check here to serve the file locally
+		 * or potentially from the Jetpack CDN
+		 *
+		 * For now:
+		 * - Dequeue ALL of the frontend js files
+		 * - Enqueue a single imploded js file
+		 */
+		$to_dequeue = array(
+			'jetpack-carousel',
+			'grunion-frontend',
+			'jetpack-comics',
+			'nova-many-items',
+			'nova-menu-checkboxes',
+			'nova-drag-drop',
+			'the-neverending-homepage',
+			'likes-post-count-jetpack',
+			'likes-post-count',
+			'jetpack_likes_queuehandler',
+			'jetpack-photon',
+			'jetpack_related-posts',
+			'audio-shortcode',
+			'jmpress',
+			'jquery-cycle',
+			'presentations',
+			'jetpack-slideshow',
+			'featured-content-suggest',
+			'jetpack-responsive-videos-script',
+			'jetpack-responsive-videos-min-script',
+			'tiled-gallery',
+			'wpgroho'
+		);
+
+		wp_enqueue_script( 'jetpack_js', plugins_url( 'jetpack.js', __FILE__ ) );
+
+		// Move localize_script data
+		foreach ( $to_dequeue as $handle ) {
+			if ( isset( $wp_scripts->registered[$handle] ) && isset( $wp_scripts->registered[$handle]->extra ) && isset( $wp_scripts->registered[$handle]->extra['data'] ) ) {
+				$data = $wp_scripts->registered[$handle]->extra['data'];
+				$wp_scripts->add_data( 'jetpack_js', 'data', $data );
+			}
+		}
+
+		foreach( $to_dequeue as $handle ) {
+			wp_dequeue_script( $handle );
+		}
+
+		// TODO: localize script with data to decide active state
 	}
 }
