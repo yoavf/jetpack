@@ -4831,18 +4831,11 @@ p {
 
 		wp_enqueue_script( 'jetpack_js', plugins_url( 'jetpack.js', __FILE__ ) );
 
-		// Move localize_script data
-		foreach ( $to_dequeue as $handle ) {
-			if ( isset( $wp_scripts->registered[$handle] ) && isset( $wp_scripts->registered[$handle]->extra ) && isset( $wp_scripts->registered[$handle]->extra['data'] ) ) {
-				$data = $wp_scripts->registered[$handle]->extra['data'];
-				$wp_scripts->add_data( 'jetpack_js', 'data', $data );
-			}
-		}
-
 		foreach( $to_dequeue as $handle ) {
 			wp_dequeue_script( $handle );
 		}
 
 		// TODO: localize script with data to decide active state
+
 	}
 }
