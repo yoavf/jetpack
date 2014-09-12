@@ -4831,11 +4831,16 @@ p {
 
 		wp_enqueue_script( 'jetpack_js', plugins_url( 'jetpack.js', __FILE__ ) );
 
+		$files = array();
 		foreach( $to_dequeue as $handle ) {
 			wp_dequeue_script( $handle );
+
+			if ( isset( $wp_scripts->registered[$handle] ) ) {
+				$name = 'modules/' . explode( '/modules/', $wp_scripts->registered[$handle]->src )[1];
+				$files[] = array( $name => true );
+			}
 		}
 
-		// TODO: localize script with data to decide active state
-
+		wp_localize_script( 'jetpack_js', 'jpconcat', array( 'files' => $files ) );
 	}
 }
