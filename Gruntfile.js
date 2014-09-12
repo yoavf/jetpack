@@ -189,7 +189,7 @@ module.exports = function(grunt) {
 			options: {
 				process: function( src, filepath ) {
 					if ( '.js' === filepath.substr( -3 ) ) {
-						if ( ~ skipJS.indexOf( filepath ) ) {
+						if ( ! ~ skipJS.indexOf( filepath ) ) {
 							return '/* START: ' + filepath + ' */\nif ( jpconcat.files[\'' + filepath + '\'] ) {\n' + src + '\n}\n/* END: ' + filepath + '*/';
 						}
 
