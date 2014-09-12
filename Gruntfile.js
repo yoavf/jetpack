@@ -71,6 +71,30 @@ var frontendcss = [
 	'modules/widgets/widgets.css', // TODO Moved to image-widget/style.css
 ];
 
+var skipJS = [
+	'modules/after-the-deadline/atd-autoproofread.js',
+	'modules/after-the-deadline/atd-nonvis-editor-plugin.js',
+	'modules/after-the-deadline/atd.core.js',
+	'modules/after-the-deadline/jquery.atd.js',
+	'modules/after-the-deadline/tinymce/editor_plugin.js',
+	'modules/after-the-deadline/tinymce/plugin.js',
+	'modules/contact-form/js/grunion.js',
+	'modules/custom-post-types/js/menu-checkboxes.js',
+	'modules/custom-css/custom-css/js/codemirror.min.js',
+	'modules/custom-css/custom-css/js/css-editor.js',
+	'modules/custom-css/custom-css/js/use-codemirror.js',
+	'modules/gplus-authorship/admin/connect.js',
+	'modules/gplus-authorship/admin/listener.js',
+	'modules/holiday-snow/snowstorm.js',
+	'modules/minileven/theme/pub/minileven/js/small-menu.js',
+	'modules/post-by-email/post-by-email.js',
+	'modules/publicize/assets/publicize.js',
+	'modules/sharedaddy/admin-sharing.js',
+	'modules/shortcodes/js/jmpress.js',
+	'modules/widget-visibility/widget-conditions/widget-conditions.js',
+	'modules/widgets/gallery/js/admin.js',
+];
+
 module.exports = function(grunt) {
 	var path = require( 'path' ),
 		cfg = {
@@ -164,15 +188,27 @@ module.exports = function(grunt) {
 		concat: {
 			options: {
 				process: function( src, filepath ) {
-					var regex = /url\((.*)\)/g;
-					return src.replace( regex, function( match, group ) {
-						return 'url(\'' + transformRelativePath( group, filepath ) + '\')';
-					});
+					if ( '.js' === filepath.substr( -3 ) ) {
+						if ( ~ skipJS.indexOf( filepath ) ) {
+							return '/* START: ' + filepath + ' */\nif ( jpconcat.files[\'' + filepath + '\'] ) {\n' + src + '\n}\n/* END: ' + filepath + '*/';
+						}
+
+						return '';
+					} else {
+						var regex = /url\((.*)\)/g;
+						return src.replace( regex, function( match, group ) {
+							return 'url(\'' + transformRelativePath( group, filepath ) + '\')';
+						});
+					}
 				}
 			},
 			frontEndModules: {
 				src: frontendcss.map( function( file ) { return file; } ),
 				dest: "css/jetpack.css"
+			},
+			frontEndJS: {
+				src: "modules/**/*.js",
+				dest: "jetpack.js"
 			}
 		},
 		cssmin: {
@@ -315,6 +351,7 @@ module.exports = function(grunt) {
 				tasks: [
 					// Front-end module css (jetpack.css)
 					'concat:frontEndModules',
+					'concat:frontEndJS',
 					'autoprefixer:frontEndModules',
 					'cssmin:frontEndModules',
 					'cssjanus:frontEndModules',
