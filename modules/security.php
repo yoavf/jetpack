@@ -76,6 +76,9 @@ class Jetpack_Security_Center {
 		
 	}
 
+	/**
+	 * The actual admin page that does the whole #!
+	 */
 	public function admin_security_page() {
 		?>
 		<div class="wrap">
