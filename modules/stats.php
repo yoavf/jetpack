@@ -411,10 +411,10 @@ function stats_reports_page() {
 	if ( isset( $_GET['chart'] ) ) {
 		if ( preg_match( '/^[a-z0-9-]+$/', $_GET['chart'] ) ) {
 			$chart = sanitize_title( $_GET['chart'] );
-			$url = 'http://' . STATS_DASHBOARD_SERVER . "/wp-includes/charts/{$chart}.php";
+			$url = 'https://' . STATS_DASHBOARD_SERVER . "/wp-includes/charts/{$chart}.php";
 		}
 	} else {
-		$url = 'http://' . STATS_DASHBOARD_SERVER . "/wp-admin/index.php";
+		$url = 'https://' . STATS_DASHBOARD_SERVER . "/wp-admin/index.php";
 	}
 
 	$url = add_query_arg( $q, $url );
@@ -452,7 +452,7 @@ function stats_convert_admin_urls( $html ) {
 }
 
 function stats_convert_image_urls( $html ) {
-	$url = set_url_scheme( 'http://' . STATS_DASHBOARD_SERVER );
+	$url = 'https://' . STATS_DASHBOARD_SERVER;
 	$html = preg_replace( '|(["\'])(/i/stats.+)\\1|', '$1' . $url . '$2$1', $html );
 	return $html;
 }
@@ -922,7 +922,7 @@ function stats_dashboard_widget_content() {
 		'j' => sprintf( '%s:%s', JETPACK__API_VERSION, JETPACK__VERSION ),
 	);
 
-	$url = 'http://' . STATS_DASHBOARD_SERVER . "/wp-admin/index.php";
+	$url = 'https://' . STATS_DASHBOARD_SERVER . "/wp-admin/index.php";
 
 	$url = add_query_arg( $q, $url );
 	$method = 'GET';
