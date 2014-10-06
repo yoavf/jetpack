@@ -7,6 +7,9 @@
  * Requires Connection: No
  * Auto Activate: No
  * Module Tags: Appearance
+ *
+ * @package Jetpack
+ * @subpackage Infinite Scroll
  */
 
 /**

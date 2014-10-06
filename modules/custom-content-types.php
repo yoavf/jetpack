@@ -8,6 +8,9 @@
  * Auto Activate: Yes
  * Module Tags: Writing
  * Sort Order: 34
+ *
+ * @package Jetpack
+ * @subpackage Custom Content Types
  */
 
 function jetpack_load_custom_post_types() {

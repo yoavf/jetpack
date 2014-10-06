@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Auto Activate: Yes
  * Module Tags: Social
+ *
+ * @package Jetpack
+ * @subpackage Publicize
  */
 
 class Jetpack_Publicize {

@@ -8,6 +8,9 @@
  * Requires Connection: No
  * Auto Activate: No
  * Module Tags: Writing
+ *
+ * @package Jetpack
+ * @subpackage Markdown
  */
 
 include dirname( __FILE__ ) . '/markdown/easy-markdown.php';

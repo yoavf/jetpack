@@ -8,6 +8,9 @@
  * Requires Connection: No
  * Auto Activate: No
  * Module Tags: Photos and Videos
+ *
+ * @package Jetpack
+ * @subpackage Carousel
  */
 
 include dirname( __FILE__ ) . '/carousel/jetpack-carousel.php';

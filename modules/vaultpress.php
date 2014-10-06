@@ -8,6 +8,9 @@
  * Free: false
  * Requires Connection: Yes
  * Auto Activate: Yes
+ *
+ * @package Jetpack
+ * @subpackage VaultPress
  */
 
 add_action( 'jetpack_modules_loaded', 'vaultpress_jetpack_stub' );

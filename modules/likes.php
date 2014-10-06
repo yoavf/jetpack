@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Auto Activate: No
  * Module Tags: Social
+ *
+ * @package Jetpack
+ * @subpackage Likes
  */
 
 class Jetpack_Likes {

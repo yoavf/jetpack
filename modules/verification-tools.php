@@ -7,6 +7,9 @@
  * Sort Order: 33
  * Requires Connection: No
  * Auto Activate: Yes
+ *
+ * @package Jetpack
+ * @subpackage Site Verification
  */
 
 function jetpack_load_verification_tools() {

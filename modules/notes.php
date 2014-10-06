@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Auto Activate: Yes
  * Module Tags: Other
+ *
+ * @package Jetpack
+ * @subpackage Notifications
  */
 
 if ( !defined( 'JETPACK_NOTES__CACHE_BUSTER' ) ) define( 'JETPACK_NOTES__CACHE_BUSTER', JETPACK__VERSION . '-' . gmdate( 'oW' ) );

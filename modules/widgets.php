@@ -7,6 +7,9 @@
  * Requires Connection: No
  * Auto Activate: Yes
  * Module Tags: Social, Appearance
+ *
+ * @package Jetpack
+ * @subpackage Extra Sidebar Widgets
  */
 
 function jetpack_load_widgets() {

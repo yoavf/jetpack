@@ -7,6 +7,9 @@
  * Requires Connection: No
  * Auto Activate: Yes
  * Module Tags: Other
+ *
+ * @package Jetpack
+ * @subpackage Contact Form
  */
 
 include dirname( __FILE__ ) . '/contact-form/grunion-contact-form.php';

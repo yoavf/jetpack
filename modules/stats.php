@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Auto Activate: Yes
  * Module Tags: WordPress.com Stats
+ *
+ * @package Jetpack
+ * @subpackage Stats
  */
 
 if ( defined( 'STATS_VERSION' ) ) {

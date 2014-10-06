@@ -8,6 +8,9 @@
  * Requires Connection: Yes
  * Auto Activate: No
  * Module Tags: Social
+ *
+ * @package Jetpack
+ * @subpackage Jetpack Comments
  */
 
 require dirname( __FILE__ ) . '/comments/comments.php';

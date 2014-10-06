@@ -9,6 +9,9 @@
  * Requires Connection: No
  * Auto Activate: Yes
  * Module Tags: Photos and Videos, Social, Writing, Appearance
+ *
+ * @package Jetpack
+ * @subpackage Shortcode Embeds
  */
 
 /**

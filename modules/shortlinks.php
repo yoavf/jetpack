@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Auto Activate: Yes
  * Module Tags: Social
+ *
+ * @package Jetpack
+ * @subpackage Shortlinks
  */
 
 add_filter( 'get_shortlink', 'wpme_get_shortlink_handler', 1, 4 );

@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Auto Activate: Public
  * Module Tags: Writing
+ *
+ * @package Jetpack
+ * @subpackage Enhanced Distribution
  */
 
 Jetpack_Sync::sync_posts( __FILE__ );

@@ -1,6 +1,12 @@
 <?php
 /*
- *   Display the configuration options for AtD
+ * Display the configuration options for AtD
+ *
+ * @since 1.1
+ *
+ * @package Jetpack
+ * @subpackage Spelling and Grammar
+ *
  */
 
 /*

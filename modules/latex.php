@@ -7,6 +7,9 @@
  * Requires Connection: No
  * Auto Activate: Yes
  * Module Tags: Writing
+ *
+ * @package Jetpack
+ * @subpackage Beautiful Math
  */
 
 /**

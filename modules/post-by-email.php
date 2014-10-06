@@ -8,6 +8,9 @@
  * Requires Connection: Yes
  * Auto Activate: Yes
  * Module Tags: Writing
+ *
+ * @package Jetpack
+ * @subpackage Post by Email
  */
 
 add_action( 'jetpack_modules_loaded', array( 'Jetpack_Post_By_Email', 'init' ) );

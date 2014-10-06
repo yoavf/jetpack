@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Auto Activate: Yes
  * Module Tags: Writing
+ *
+ * @package Jetpack
+ * @subpackage Spelling and Grammar
  */
 
 if ( defined( 'IS_WPCOM' ) && IS_WPCOM ) {

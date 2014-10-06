@@ -1,5 +1,12 @@
 <?php
 /*
+ * @since 1.1
+ *
+ * @package Jetpack
+ * @subpackage Spelling and Grammar
+ */
+
+/*
  *  Called by the TinyMCE plugin when Ignore Always is clicked (setup as an action through admin-ajax.php)
  */
 function AtD_ignore_call() {

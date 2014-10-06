@@ -8,6 +8,9 @@
  * Requires Connection: Yes
  * Auto Activate: No
  * Module Tags: Developers
+ *
+ * @package Jetpack
+ * @subpackage Single Sign On
  */
 
 class Jetpack_SSO {

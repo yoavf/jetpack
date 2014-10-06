@@ -7,6 +7,9 @@
  * First Introduced: 2.0.3 ??
  * Requires Connection: No
  * Auto Activate: Yes
+ *
+ * @package Jetpack
+ * @subpackage Holiday Snow
  */
 
 class Jetpack_Holiday_Snow_Settings {

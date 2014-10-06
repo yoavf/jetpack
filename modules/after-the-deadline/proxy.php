@@ -1,6 +1,11 @@
 <?php
 /*
- *  This script redirects AtD AJAX requests to the AtD service
+ * This script redirects AtD AJAX requests to the AtD service
+ *
+ * @since 1.1
+ *
+ * @package Jetpack
+ * @subpackage Spelling and Grammar
  */
 
 /**

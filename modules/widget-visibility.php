@@ -8,6 +8,9 @@
  * Auto Activate: Yes
  * Sort Order: 17
  * Module Tags: Appearance
+ *
+ * @package Jetpack
+ * @subpackage Widget Visibility
  */
 
 include dirname( __FILE__ ) . "/widget-visibility/widget-conditions.php";

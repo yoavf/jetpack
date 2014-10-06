@@ -6,6 +6,9 @@
  * First Introduced: 2.6
  * Requires Connection: Yes
  * Auto Activate: No
+ *
+ * @package Jetpack
+ * @subpackage Monitor
  */
 
 add_action( 'jetpack_activate_module_monitor', array( Jetpack::init(), 'toggle_module_on_wpcom' ) );

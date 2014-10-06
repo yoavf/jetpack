@@ -1,5 +1,4 @@
 <?php
-
 /*
 Plugin Name: Jetpack Carousel
 Plugin URL: http://wordpress.com/

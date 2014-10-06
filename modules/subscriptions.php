@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Auto Activate: Yes
  * Module Tags: Social
+ *
+ * @package Jetpack
+ * @subpackage Subscriptions
  */
 
 add_action( 'jetpack_modules_loaded', 'jetpack_subscriptions_load' );

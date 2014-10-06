@@ -8,6 +8,9 @@
  * Requires Connection: No
  * Auto Activate: No
  * Module Tags: Other
+ *
+ * @package Jetpack
+ * @subpackage Site Icon
  */
 
 include dirname( __FILE__ ) . '/site-icon/jetpack-site-icon.php';

@@ -8,6 +8,9 @@
  * Requires Connection: No
  * Auto Activate: Yes
  * Module Tags: Appearance
+ *
+ * @package Jetpack
+ * @subpackage Custom CSS
  */
 
 function jetpack_load_custom_css() {

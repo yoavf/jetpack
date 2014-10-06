@@ -8,6 +8,9 @@
  * Requires Connection: No
  * Auto Activate: Yes
  * Module Tags: Developers
+ *
+ * @package Jetpack
+ * @subpackage Omnisearch
  */
 
 // Only do Jetpack Omnisearch if there isn't already a Core WP_Omnisearch Class.

@@ -8,6 +8,9 @@
  * Requires Connection: No
  * Auto Activate: No
  * Module Tags: Appearance, Mobile
+ *
+ * @package Jetpack
+ * @subpackage Mobile Theme
  */
 
 function jetpack_load_minileven() {

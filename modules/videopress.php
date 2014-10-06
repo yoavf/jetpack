@@ -7,6 +7,9 @@
  * Requires Connection: Yes
  * Sort Order: 27
  * Module Tags: Photos and Videos
+ *
+ * @package jetpack
+ * @subpackage VideoPress
  */
 
 function jetpack_load_videopress() {

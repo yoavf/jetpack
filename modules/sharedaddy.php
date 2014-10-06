@@ -8,6 +8,9 @@
  * Requires Connection: No
  * Auto Activate: Yes
  * Module Tags: Social
+ *
+ * @package Jetpack
+ * @package Sharing
  */
 
 if ( !function_exists( 'sharing_init' ) )

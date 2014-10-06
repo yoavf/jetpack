@@ -6,6 +6,9 @@
 * First Introduced: 2.5
 * Requires Connection: Yes
 * Auto Activate: Yes
+ *
+ * @package Jetpack
+ * @subpackage Google+ Profile
 */
 function jetpack_init_gplus_authorship() {
 	new GPlus_Authorship;
