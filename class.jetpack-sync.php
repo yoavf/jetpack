@@ -38,6 +38,21 @@ class Jetpack_Sync {
 		return call_user_func_array( array( $jetpack->sync, 'posts' ), $args );
 	}
 
+    /**
+     * @param string $file __FILE__
+     * @param array settings:
+     * 	post_types => array( post_type slugs   ): The post types to sync.  Default: post, page
+     *	post_stati => array( post_status slugs ): The post stati to sync.  Default: publish
+     *
+     * @todo set up sync feedback to do its own thing
+     */
+    static function sync_feedback( $file, array $settings = null ) {
+        if( is_network_admin() ) return;
+        $jetpack = Jetpack::init();
+        $args = func_get_args();
+        return call_user_func_array( array( $jetpack->sync, 'posts' ), $args );
+    }
+
 	/**
 	 * @param string $file __FILE__
 	 * @param array settings:
@@ -153,6 +168,26 @@ class Jetpack_Sync {
 
 		foreach ( $this->sync as $sync_operation_type => $sync_operations ) {
 			switch ( $sync_operation_type ) {
+                //@todo enqueue feedback here
+            case 'feedback':
+                if ( $wp_importing ) {
+                    break;
+                }
+
+                $global_post = isset( $GLOBALS['feedback'] ) ? $GLOBALS['feedback'] : null;
+                $GLOBALS['feedback'] = null;
+                foreach ( $sync_operations as $post_id => $settings ) {
+                    $sync_data['feedback'][$post_id] = $this->get_post( $post_id );
+                    if ( isset( $this->post_transitions[$post_id] ) ) {
+                        $sync_data['feedback'][$post_id]['transitions'] = $this->post_transitions[$post_id];
+                    } else {
+                        $sync_data['feedback'][$post_id]['transitions'] = array( false, false );
+                    }
+                    $sync_data['feedback'][$post_id]['on_behalf_of'] = $settings['on_behalf_of'];
+                }
+                $GLOBALS['feedback'] = $global_post;
+                unset( $global_post );
+                break;
 			case 'post':
 				if ( $wp_importing ) {
 					break;
@@ -228,6 +263,13 @@ class Jetpack_Sync {
 			}
 		}
 
+        //@todo return the enqueued feedback data
+        if ( isset( $content_ids['feedback'] ) ) {
+            foreach ( $content_ids['feedback'] as $id ) {
+                $sync_data['feedback'][$id] = $this->get_post( $id );
+            }
+        }
+
 		if ( isset( $content_ids['comments'] ) ) {
 			foreach ( $content_ids['comments'] as $id ) {
 				$sync_data['comment'][$id] = $this->get_post( $id );
@@ -295,6 +337,25 @@ class Jetpack_Sync {
 
 		return $this->register( 'comment', $id, $settings );
 	}
+
+    /*
+     * Feedback Sync
+     * @todo: make this work too
+    */
+
+    function feedback( $file, array $settings = null ) {
+        $module_slug = Jetpack::get_module_slug( $file );
+
+        $defaults = array(
+            'post_types' => array( 'feedback' ),
+            'post_stati' => array( 'publish' ),
+        );
+
+        $this->sync_conditions['feedback'][$module_slug] = wp_parse_args( $settings, $defaults );
+
+        add_action( 'transition_post_status', array( $this, 'transition_post_status_action' ), 10, 3 );
+        add_action( 'delete_post', array( $this, 'delete_post_action' ) );
+    }
 
 /* Posts Sync */
 
@@ -503,7 +564,7 @@ class Jetpack_Sync {
 		$module_slug = Jetpack::get_module_slug( $file );
 
 		$defaults = array(
-			'post_types' => array( 'post', 'page' ),                            // For what post types will we sync comments?
+			'post_types' => array( 'post', 'page', 'feedback' ),                // For what post types will we sync comments?
 			'post_stati' => array( 'publish' ),                                 // For what post stati will we sync comments?
 			'comment_types' => array( '', 'comment', 'trackback', 'pingback' ), // What comment types will we sync?
 			'comment_stati' => array( 'approved' ),                             // What comment stati will we sync?

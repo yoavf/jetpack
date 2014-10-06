@@ -107,6 +107,11 @@ class Jetpack_Notifications {
 			'post_stati' => array( 'publish' ),
 			'comment_stati' => array( 'approve', 'approved', '1', 'hold', 'unapproved', 'unapprove', '0', 'spam', 'trash' ),
 		) );
+        Jetpack_Sync::sync_feedback( __FILE__, array(
+            'post_types' => 'feedback',
+            'post_stati' => array( 'publish' ),
+            'comment_stati' => array( 'approve', 'approved', '1', 'hold', 'unapproved', 'unapprove', '0', 'spam', 'trash' ),
+        ) );
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX )
 			return;
