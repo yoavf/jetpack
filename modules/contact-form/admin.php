@@ -624,7 +624,7 @@ function grunion_ajax_spam() {
 		$post->post_status = 'spam';
 		$status = wp_insert_post( $post );
 		wp_transition_post_status( 'spam', 'publish', $post );
-		
+
 		/**
 		 * @duplicate yes
 		 * @since ?
@@ -636,7 +636,7 @@ function grunion_ajax_spam() {
 		$post->post_status = 'publish';
 		$status = wp_insert_post( $post );
 		wp_transition_post_status( 'publish', 'spam', $post );
-		
+
 		/**
 		 * @duplicate yes
 		 * @since ?
@@ -758,3 +758,54 @@ function grunion_omnisearch_add_providers() {
 		new Jetpack_Omnisearch_Grunion;
 	}
 }
+
+
+
+
+/*
+ * Add a dashboard widget that shows new feedback
+ *
+ * @since 3.2
+ */
+
+    function feedback_form_add_dashboard_widget() {
+        if ( ! current_user_can( 'edit_posts' ) )
+            return;
+
+        wp_add_dashboard_widget( 'feedback_dashboard_widget', __( 'New Feedback Submissions', 'jetpack' ), 'feedback_dashboard_widget_display' );
+
+        add_action( 'admin_head', 'feedback_dashboard_head' ); //for feedback widget CSS
+    }
+    add_action( 'wp_dashboard_setup', 'feedback_form_add_dashboard_widget' );
+
+/**
+ * Display list of unseen contact form submissions
+ *
+ * @since 3.2
+ */
+    function feedback_dashboard_widget_display() {
+        // This is not how I plan on doing this.
+        $feedback = new WP_Query( array( 'post_type' => 'feedback', 'posts_per_page' => 3 ) ); ?>
+
+        <?php while ( $feedback->have_posts() ) : $feedback->the_post();
+
+            the_title(); ?>
+
+            <div class="entry-content">
+                <?php the_content(); ?>
+            </div>
+        <?php endwhile;
+    }
+
+/*
+ * Feedback widget styling
+ *
+ * called by feedback_form_add_dashboard_widget();
+ *
+ * @since 3.2
+ */
+    function feedback_dashboard_head() { ?>
+        <style type="text/css">
+
+        </style>
+    <?php } ?>
