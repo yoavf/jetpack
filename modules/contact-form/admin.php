@@ -78,7 +78,7 @@ color: #D98500;
 
 #icon-edit.icon32-posts-feedback, #icon-post.icon32-posts-feedback { background: url("<?php echo GRUNION_PLUGIN_URL; ?>images/grunion-menu-big.png") no-repeat !important; }
 @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-    #icon-edit.icon32-posts-feedback, #icon-post.icon32-posts-feedback { background: url("<?php echo GRUNION_PLUGIN_URL; ?>images/grunion-menu-big-2x.png") no-repeat !important; background-size: 30px 31px !important; }
+	#icon-edit.icon32-posts-feedback, #icon-post.icon32-posts-feedback { background: url("<?php echo GRUNION_PLUGIN_URL; ?>images/grunion-menu-big-2x.png") no-repeat !important; background-size: 30px 31px !important; }
 }
 
 #icon-edit.icon32-posts-feedback { background-position: 2px 2px !important; }
@@ -759,53 +759,138 @@ function grunion_omnisearch_add_providers() {
 	}
 }
 
-
-
-
 /*
  * Add a dashboard widget that shows new feedback
  *
- * @since 3.2
+ * @since 3.3
  */
 
-    function feedback_form_add_dashboard_widget() {
-        if ( ! current_user_can( 'edit_posts' ) )
-            return;
+	function feedback_form_add_dashboard_widget() {
+		if ( ! current_user_can( 'edit_posts' ) )
+			return;
 
-        wp_add_dashboard_widget( 'feedback_dashboard_widget', __( 'New Feedback Submissions', 'jetpack' ), 'feedback_dashboard_widget_display' );
-
-        add_action( 'admin_head', 'feedback_dashboard_head' ); //for feedback widget CSS
-    }
-    add_action( 'wp_dashboard_setup', 'feedback_form_add_dashboard_widget' );
+		add_meta_box( 'feedback-dashboard-widget', __( 'Recent Feedback Submissions', 'jetpack' ), 'feedback_dashboard_widget_display', 'dashboard', 'side', 'low');
+	}
+	add_action( 'wp_dashboard_setup', 'feedback_form_add_dashboard_widget' );
 
 /**
- * Display list of unseen contact form submissions
+ * Display list of recent contact form submissions
  *
- * @since 3.2
+ * @since 3.3
+ *
+ * @todo get the avatar (if email set), spam/trash on hover
  */
-    function feedback_dashboard_widget_display() {
-        // This is not how I plan on doing this.
-        $feedback = new WP_Query( array( 'post_type' => 'feedback', 'posts_per_page' => 3 ) ); ?>
 
-        <?php while ( $feedback->have_posts() ) : $feedback->the_post();
+	function custom_excerpt_length( $length ) {
+		return 20;
+	}
+	add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
-            the_title(); ?>
+	function feedback_dashboard_widget_display() {
+		$query_args = array(
+			'post_type'      => 'feedback',
+			'orderby'        => 'date',
+			'posts_per_page' => 5,
+			'no_found_rows'  => true,
+			'cache_results'  => false,
+		);
+		$posts = new WP_Query( $query_args );
 
-            <div class="entry-content">
-                <?php the_content(); ?>
-            </div>
-        <?php endwhile;
-    }
+		if ( $posts->have_posts() ) {
+
+
+			echo '<div class="feedback-activity-block">';
+
+			echo '<ul>';
+
+			$today    = date( 'Y-m-d', current_time( 'timestamp' ) );
+			$tomorrow = date( 'Y-m-d', strtotime( '+1 day', current_time( 'timestamp' ) ) );
+
+			while ( $posts->have_posts() ) {
+				$posts->the_post();
+
+				$feedback_avatar = get_avatar( '', 50 );
+
+				$time = get_the_time( 'U' );
+				if ( date( 'Y-m-d', $time ) == $today ) {
+					$relative = __( 'Today' );
+				} elseif ( date( 'Y-m-d', $time ) == $tomorrow ) {
+					$relative = __( 'Tomorrow' );
+				} else {
+					/* translators: date and time format for recent posts on the dashboard, see http://php.net/date */
+					$relative = date_i18n( __( 'M jS' ), $time );
+				}
+
+				/* translators: 1: Avatar, 2: The message before the more tag, 3. Date, 4. Time */
+				$format = __( '<div class="feedback-avatar">%1$s</div><div class="dashboard-feedback-wrap"><blockquote>%2$s</blockquote><span class="feedback-widget-date-time">%3$s, %4$s </span></div>' );
+				printf( "<li class='feedback-dashboard-list'>$format</li>", $feedback_avatar, get_the_excerpt(''), $relative, get_the_time() );
+
+			}
+			echo '</ul>';
+			echo '<ul class="subsubsub"><li><a href="wp-admin/edit.php?post_type=feedback">View all</a></li></ul>';
+			echo '</div>';
+
+		} else {
+			return false;
+		}
+
+	}
 
 /*
  * Feedback widget styling
  *
  * called by feedback_form_add_dashboard_widget();
  *
- * @since 3.2
+ * @since 3.3
  */
-    function feedback_dashboard_head() { ?>
-        <style type="text/css">
+	add_action( 'admin_head', 'feedback_dashboard_head' ); //for feedback widget CSS
+	function feedback_dashboard_head() { ?>
+		<style type="text/css">
+			#feedback-dashboard-widget .inside {
+				margin: 0 !important;
+				padding: 0 !important;
+			}
 
-        </style>
-    <?php } ?>
+			#feedback-dashboard-widget .hndle {
+				border-bottom: 0px;
+			}
+
+			.feedback-avatar {
+				float: left;
+			}
+
+			.feedback-widget-date-time {
+				margin: 1em 0 0;
+			}
+
+			.feedback-activity-block ul {
+				margin: 0;
+			}
+
+			.dashboard-feedback-wrap {
+				overflow: hidden;
+				word-wrap: break-word;
+				padding-left: 1em;
+			}
+
+			.dashboard-feedback-wrap blockquote {
+				margin-top: 0;
+				margin-left: 0;
+			}
+			.feedback-dashboard-list {
+				padding: 1em;
+				min-height: 50px;
+				webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.06);
+				box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.06);
+				background: #FAFAFA;
+				margin: 0;
+			}
+
+			.subsubsub{
+				float: none;
+				border-top: 1px solid #EEE;
+				margin-top: 0;
+				padding: 8px 12px;
+			}
+		</style>
+	<?php } ?>
