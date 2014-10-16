@@ -1,12 +1,12 @@
-# Translation of 3.2 in Lithuanian
+# Translation of 3.2 in Georgian
 # This file is distributed under the same license as the 3.2 package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2014-10-16 12:14:25+0000\n"
+"PO-Revision-Date: +0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: GlotPress/0.1\n"
 "Project-Id-Version: 3.2\n"
 
@@ -270,7 +270,7 @@ msgstr ""
 #: modules/sharedaddy/sharing-sources.php:745
 msgctxt "share to"
 msgid "Print"
-msgstr "Spausdinti"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:806
 msgctxt "share to"
@@ -528,7 +528,7 @@ msgid "Share your public posts and comments to search engines and other services
 msgstr ""
 
 msgid "http://jetpack.me"
-msgstr "http://jetpack.me"
+msgstr ""
 
 #: _inc/lib/admin-pages/class.jetpack-landing-page.php:12
 msgctxt "The menu item label"
@@ -585,16 +585,12 @@ msgctxt "%l = list of Jetpack module/feature names"
 msgid "<strong>%l Deactivated!</strong> You can activate it again at any time using the activate link next to each module."
 msgid_plural "<strong>%l Deactivated!</strong> You can activate them again at any time using the activate links next to each module."
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: class.jetpack.php:2763
 msgctxt "%l = list of Jetpack module/feature names"
 msgid "Like your site's RSS feeds, %l allows access to your posts and other content to third parties."
 msgid_plural "Like your site's RSS feeds, %l allow access to your posts and other content to third parties."
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: class.jetpack.php:2797
 msgctxt "%l = list of Jetpack module/feature names"
@@ -606,8 +602,6 @@ msgctxt "%1$s = deactivation URL, %2$s = \"Deactivate {list of Jetpack module/fe
 msgid "If your site is not publicly accessible, consider <a href=\"%1$s\" title=\"%2$s\">deactivating this feature</a>."
 msgid_plural "If your site is not publicly accessible, consider <a href=\"%1$s\" title=\"%2$s\">deactivating these features</a>."
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: class.jetpack.php:3125
 msgctxt "%s = Unsubscribe link"
@@ -664,7 +658,7 @@ msgstr ""
 #: modules/contact-form/grunion-form-view.php:11
 msgctxt "noun"
 msgid "Comment"
-msgstr "Komentaras"
+msgstr ""
 
 #: modules/contact-form/grunion-form-view.php:12
 msgctxt "Default label for new HTML form field in contact form builder"
@@ -770,7 +764,7 @@ msgstr ""
 
 #: modules/widgets/upcoming-events.php:50
 msgid "Items to show:"
-msgstr "Rodomi elementai:"
+msgstr ""
 
 #: modules/widgets/wordpress-post-widget.php:25
 msgid "Display WordPress Posts"
@@ -791,11 +785,11 @@ msgstr ""
 
 #: modules/widgets/wordpress-post-widget.php:139
 msgid "Recent Posts"
-msgstr "Naujausi įrašai"
+msgstr ""
 
 #: modules/widgets/wordpress-post-widget.php:173
 msgid "Blog URL:"
-msgstr "Tinklaraščio URL:"
+msgstr ""
 
 #: modules/widgets/wordpress-post-widget.php:176
 msgid "Enter a WordPress.com or Jetpack WordPress site URL."
@@ -871,7 +865,7 @@ msgstr ""
 
 #: views/admin/landing-page-templates.php:24
 msgid "Learn more"
-msgstr "Sužinokite daugiau"
+msgstr ""
 
 #: views/admin/module-modal-template.php:2
 msgid "Modal window. Press escape to close."
@@ -924,7 +918,7 @@ msgid "Bring the power of the WordPress.com cloud to your self-hosted WordPress.
 msgstr ""
 
 msgid "Automattic"
-msgstr "Automattic"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:81
 msgid "Text Link"
@@ -952,11 +946,11 @@ msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:100
 msgid "Medium"
-msgstr "Vidutinis"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:101
 msgid "Large"
-msgstr "Didelis"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:103
 msgid "Image Size:"
@@ -964,31 +958,31 @@ msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:113
 msgid "Red"
-msgstr "Raudona"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:114
 msgid "Orange"
-msgstr "Oranžinė"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:115
 msgid "Green"
-msgstr "Žalia"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:116
 msgid "Blue"
-msgstr "Mėlyna"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:117
 msgid "Purple"
-msgstr "Violetinė"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:118
 msgid "Pink"
-msgstr "Rožinė"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:119
 msgid "Silver"
-msgstr "Sidabrinė"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:121
 msgid "Image Color:"
@@ -1120,7 +1114,7 @@ msgstr ""
 
 #: modules/widgets/gravatar-profile.php:193
 msgid "Custom"
-msgstr "Nuoroda"
+msgstr ""
 
 #: modules/widgets/gravatar-profile.php:203
 msgid "Custom Email Address"
@@ -1156,7 +1150,7 @@ msgstr ""
 
 #: modules/widgets/image-widget.php:24
 msgid "Image"
-msgstr "Paveikslėlis"
+msgstr ""
 
 #: modules/widgets/image-widget.php:27
 msgid "Display an image in your sidebar"
@@ -1180,15 +1174,15 @@ msgstr ""
 
 #: modules/widgets/image-widget.php:201
 msgid "Left"
-msgstr "Kairėje"
+msgstr ""
 
 #: modules/widgets/image-widget.php:202
 msgid "Center"
-msgstr "Per vidurį"
+msgstr ""
 
 #: modules/widgets/image-widget.php:203
 msgid "Right"
-msgstr "Dešinėje"
+msgstr ""
 
 #: modules/widgets/image-widget.php:205
 msgid "Image Alignment:"
@@ -1212,7 +1206,7 @@ msgstr ""
 
 #: modules/widgets/image-widget.php:227
 msgid "Open link in a new window/tab"
-msgstr "Atverti nuorodą naujame lange / kortelėje"
+msgstr ""
 
 #: modules/widgets/readmill.php:11
 msgid "Retired: Send To Readmill"
@@ -1265,7 +1259,7 @@ msgstr ""
 #: modules/widgets/rsslinks-widget.php:67
 #: modules/widgets/rsslinks-widget.php:133
 msgid "Posts"
-msgstr "Įrašai"
+msgstr ""
 
 #: modules/widgets/rsslinks-widget.php:69
 msgid "Posts & Comments"
@@ -1322,11 +1316,11 @@ msgstr ""
 #: modules/widget-visibility/widget-conditions.php:208
 #: views/admin/admin-page.php:79
 msgid "Category"
-msgstr "Kategorija"
+msgstr ""
 
 #: modules/widget-visibility/widget-conditions.php:235
 msgid "Delete"
-msgstr "Trinti"
+msgstr ""
 
 #: modules/widgets/facebook-likebox.php:31
 msgid "Facebook Like Box"
@@ -1350,11 +1344,11 @@ msgstr ""
 
 #: modules/widgets/facebook-likebox.php:143
 msgid "Width"
-msgstr "Plotis"
+msgstr ""
 
 #: modules/widgets/facebook-likebox.php:150
 msgid "Height"
-msgstr "Aukštis"
+msgstr ""
 
 #: modules/widgets/facebook-likebox.php:168
 msgid "Show Faces"
@@ -1394,7 +1388,7 @@ msgstr ""
 #: modules/widgets/upcoming-events.php:40
 #: modules/widgets/wordpress-post-widget.php:168
 msgid "Title:"
-msgstr "Pavadinimas:"
+msgstr ""
 
 #: modules/widgets/gallery/templates/form.php:10
 msgid "Images:"
@@ -1430,7 +1424,7 @@ msgstr ""
 
 #: modules/widgets/gallery.php:322
 msgid "Attachment Page"
-msgstr "Failų puslapis"
+msgstr ""
 
 #: modules/widgets/gallery.php:323
 msgid "Media File"
@@ -1514,11 +1508,11 @@ msgstr ""
 
 #: modules/videopress/videopress.php:303
 msgid "Free formats"
-msgstr "Laisvi formatai"
+msgstr ""
 
 #: modules/videopress/videopress.php:307
 msgid "Only display videos in free software formats"
-msgstr "Rodo tik video kuris yra nemokamo formato"
+msgstr ""
 
 #: modules/videopress/videopress.php:308
 msgid "Ogg file container with Theora video and Vorbis audio. Note that some browsers are unable to play free software video formats, including Internet Explorer and Safari."
@@ -1543,7 +1537,7 @@ msgstr ""
 
 #: modules/videopress/videopress.php:330
 msgid "VideoPress"
-msgstr "VideoPress"
+msgstr ""
 
 #: modules/videopress/videopress.php:340
 msgid "Use the button below to browse your VideoPress Library. Note that you can also browse your VideoPress Library while editing a post or page by using the <strong>Add Media</strong> button in the post editor."
@@ -1579,7 +1573,7 @@ msgstr ""
 
 #: modules/videopress/videopress.php:595
 msgid "Insert Video"
-msgstr "Įterpti video"
+msgstr ""
 
 #: modules/videopress/videopress.php:628
 msgid "Ogg File URL"
@@ -1595,7 +1589,7 @@ msgstr ""
 
 #: modules/videopress/videopress.php:644
 msgid "Rating"
-msgstr "Vertinimas"
+msgstr ""
 
 #: modules/videopress/videopress.php:657
 msgid "Shortcode"
@@ -1673,8 +1667,6 @@ msgstr ""
 msgid "Show total number of subscribers? (%s subscriber)"
 msgid_plural "Show total number of subscribers? (%s subscribers)"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: modules/theme-tools/featured-content.php:413
 #: modules/theme-tools/featured-content.php:426
@@ -1687,7 +1679,7 @@ msgstr ""
 
 #: modules/theme-tools/featured-content.php:454
 msgid "Tag name"
-msgstr "Žymos vardas"
+msgstr ""
 
 #: modules/theme-tools/featured-content.php:460
 msgid "Hide tag from displaying in post meta and tag clouds."
@@ -1743,7 +1735,7 @@ msgstr ""
 
 #: modules/theme-tools/social-links.php:195
 msgid "&mdash; Select &mdash;"
-msgstr "&mdash; Pasirinkite &mdash;"
+msgstr ""
 
 #: modules/tiled-gallery/tiled-gallery.php:165
 msgid "Tiled Mosaic"
@@ -1763,7 +1755,7 @@ msgstr ""
 
 #: modules/verification-tools/blog-verification-tools.php:90
 msgid "Example:"
-msgstr "Pavyzdys:"
+msgstr ""
 
 #: modules/verification-tools/blog-verification-tools.php:116
 msgid "Website Verification Services"
@@ -1775,7 +1767,7 @@ msgstr ""
 
 #: modules/verification-tools/blog-verification-tools.php:117
 msgid "and"
-msgstr "ir"
+msgstr ""
 
 #: modules/videopress/class.videopress-player.php:195
 msgid "%s Error"
@@ -1791,7 +1783,7 @@ msgstr ""
 
 #: modules/videopress/class.videopress-player.php:280
 msgid "Submit"
-msgstr "Pateikti"
+msgstr ""
 
 #: modules/videopress/class.videopress-player.php:326
 msgid "You do not have sufficient <a rel=\"nofollow\" href=\"%s\">freedom levels</a> to view this video. Support free software and upgrade."
@@ -1820,7 +1812,7 @@ msgstr ""
 
 #: modules/stats.php:637
 msgid "Stats"
-msgstr "Statistika"
+msgstr ""
 
 #: modules/stats.php:639
 msgid "Views over 48 hours. Click for more Site Stats."
@@ -1828,35 +1820,35 @@ msgstr ""
 
 #: modules/stats.php:724
 msgid "day"
-msgstr "diena"
+msgstr ""
 
 #: modules/stats.php:725
 msgid "week"
-msgstr "savaitė"
+msgstr ""
 
 #: modules/stats.php:726
 msgid "month"
-msgstr "mėnuo"
+msgstr ""
 
 #: modules/stats.php:729
 msgid "the past day"
-msgstr "vakar"
+msgstr ""
 
 #: modules/stats.php:730
 msgid "the past week"
-msgstr "praėjusią savaitę"
+msgstr ""
 
 #: modules/stats.php:731
 msgid "the past month"
-msgstr "praėjusį mėnesį"
+msgstr ""
 
 #: modules/stats.php:732
 msgid "the past quarter"
-msgstr "praėjusį ketvirtį"
+msgstr ""
 
 #: modules/stats.php:733
 msgid "the past year"
-msgstr "praeitus metus"
+msgstr ""
 
 #: modules/stats.php:755
 msgid "Chart stats by"
@@ -1876,11 +1868,11 @@ msgstr ""
 
 #: modules/stats.php:968
 msgid "View All"
-msgstr "Visa"
+msgstr ""
 
 #: modules/stats.php:972
 msgid "Top Posts"
-msgstr "Populiariausi įrašai"
+msgstr ""
 
 #: modules/stats.php:976 modules/stats.php:1000
 msgid "Sorry, nothing to report."
@@ -1888,7 +1880,7 @@ msgstr ""
 
 #: modules/stats.php:996
 msgid "Top Searches"
-msgstr "Populiariausios paieškos"
+msgstr ""
 
 #: modules/stats.php:1024
 msgid "We were unable to get your stats just now. Please reload this page to try again."
@@ -1904,11 +1896,11 @@ msgstr ""
 
 #: modules/subscriptions.php:132
 msgid "Follow Blog"
-msgstr "Sekti tinklaraštį"
+msgstr ""
 
 #: modules/subscriptions.php:147
 msgid "Follow Comments"
-msgstr "Sekti komentarus"
+msgstr ""
 
 #: modules/subscriptions.php:168
 msgid "Follower Settings"
@@ -1928,7 +1920,7 @@ msgstr ""
 
 #: modules/subscriptions.php:212
 msgid "Show a <em>'follow blog'</em> option in the comment form"
-msgstr "Rodyti <em>„sekti tinklaraštį“</em> pasirinkty komentavimo formoj"
+msgstr ""
 
 #: modules/subscriptions.php:227
 msgid "Show a <em>'follow comments'</em> option in the comment form"
@@ -1936,7 +1928,7 @@ msgstr ""
 
 #: modules/subscriptions.php:253
 msgid "These settings change emails sent from your blog to followers."
-msgstr "Šie nustatymai keičia el. laiškus siunčiamus iš jūsų tinklaraščio, sekėjams."
+msgstr ""
 
 #: modules/subscriptions.php:260
 msgid "Introduction text sent when someone follows your blog. (Site and confirmation details will be automatically added for you.)"
@@ -1966,11 +1958,11 @@ msgstr ""
 
 #: modules/subscriptions.php:474
 msgid "Notify me of follow-up comments by email."
-msgstr "Pranešti apie naujus komentarus elektroniniu paštu."
+msgstr ""
 
 #: modules/subscriptions.php:481
 msgid "Notify me of new posts by email."
-msgstr "Pranešti apie naujus įrašus elektroniniu paštu."
+msgstr ""
 
 #: modules/subscriptions.php:559
 msgid "Add an email signup form to allow people to subscribe to your blog."
@@ -2000,8 +1992,6 @@ msgstr ""
 msgid "Join %s other subscriber"
 msgid_plural "Join %s other subscribers"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: modules/site-icon/jetpack-site-icon.php:336
 msgid "Preview Home Icon"
@@ -2121,7 +2111,7 @@ msgstr ""
 
 #: modules/stats.php:266 modules/stats.php:351 modules/stats.php:703
 msgid "Site Stats"
-msgstr "Puslapio statistika"
+msgstr ""
 
 #: modules/stats.php:354
 msgid "Loading&hellip;"
@@ -2181,19 +2171,19 @@ msgstr ""
 
 #: modules/sharedaddy/sharing.php:328
 msgid "Sharing label"
-msgstr "Dalinimosi etiketė"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:334
 msgid "Open links in"
-msgstr "Atverti nuorodas"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:337
 msgid "New window"
-msgstr "Naujas langas"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:338
 msgid "Same window"
-msgstr "Tame pačiame lange"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:376
 msgid "Service name"
@@ -2283,7 +2273,7 @@ msgstr ""
 #: modules/shortcodes/upcoming-events.php:23
 #: modules/widgets/upcoming-events.php:79
 msgid "No upcoming events"
-msgstr "Nėra būsimų įvykių"
+msgstr ""
 
 #: modules/site-icon/jetpack-site-icon.php:120
 msgid "Site Icon Upload"
@@ -2328,7 +2318,7 @@ msgstr ""
 
 #: modules/site-icon/jetpack-site-icon.php:282
 msgid "Upload Image"
-msgstr "Įkelti paveikslėlį"
+msgstr ""
 
 #: modules/site-icon/jetpack-site-icon.php:282
 #: modules/site-icon/jetpack-site-icon.php:320
@@ -2341,7 +2331,7 @@ msgstr ""
 
 #: modules/site-icon/jetpack-site-icon.php:320
 msgid "Crop Image"
-msgstr "Iškirpti paveikslėlį"
+msgstr ""
 
 #: modules/site-icon/jetpack-site-icon.php:325
 msgid "As your favicon"
@@ -2361,11 +2351,11 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:745
 msgid "Click to print"
-msgstr "Paspauskite norėdami atspausdinti"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:761
 msgid "Press This"
-msgstr "Press This"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:806
 msgid "Click to Press This!"
@@ -2377,7 +2367,7 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:837
 msgid "Click to share on Google+"
-msgstr "Paspauskite dalintis ant Google+"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:938
 msgid "Click to share"
@@ -2385,7 +2375,7 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:993
 msgid "URL"
-msgstr "URL"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:998
 msgid "Icon"
@@ -2393,7 +2383,7 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:1005
 msgid "Save"
-msgstr "Išsaugoti"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:1006
 msgid "Remove Service"
@@ -2442,15 +2432,15 @@ msgstr ""
 
 #: modules/sharedaddy/sharing.php:190
 msgid "Available Services"
-msgstr "Prieinamos paslaugos"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:191
 msgid "Drag and drop the services you'd like to enable into the box below."
-msgstr "Atitempkite ir numeskite į langelį žemiau, paslaugas kurias norite įjungti."
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:192
 msgid "Add a new service"
-msgstr "Pridėti naują paslaugą"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:205
 msgid "Please note that your services have been restricted because your site is private."
@@ -2458,11 +2448,11 @@ msgstr ""
 
 #: modules/sharedaddy/sharing.php:216
 msgid "Enabled Services"
-msgstr "Įjungtos paslaugos"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:219
 msgid "Services dragged here will appear individually."
-msgstr "Paslaugos atitemptos čia bus rodomos atskirai."
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:222
 msgid "Drag and drop available services here."
@@ -2470,11 +2460,11 @@ msgstr ""
 
 #: modules/sharedaddy/sharing.php:233
 msgid "Services dragged here will be hidden behind a share button."
-msgstr "Paslaugos atitemptos čia bus paslėptos už dalinimosi mygtuko."
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:248
 msgid "Live Preview"
-msgstr "Peržiūra"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:251
 msgid "Sharing is off. Add services above to enable."
@@ -2482,23 +2472,23 @@ msgstr ""
 
 #: modules/sharedaddy/sharing.php:317
 msgid "Button style"
-msgstr "Mygtukų stilius"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:320
 msgid "Icon + text"
-msgstr "Piktograma + tekstas"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:321
 msgid "Icon only"
-msgstr "Tik piktograma"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:322
 msgid "Text only"
-msgstr "Tik tekstas"
+msgstr ""
 
 #: modules/sharedaddy/sharing.php:323
 msgid "Official buttons"
-msgstr "Oficialūs mygtukai"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:482
 msgid "StumbleUpon"
@@ -2526,7 +2516,7 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:632
 msgid "Facebook"
-msgstr "Facebook"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:710
 msgid "Share on Facebook"
@@ -2534,11 +2524,11 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:741 modules/shortcodes/recipe.php:121
 msgid "Print"
-msgstr "Spausdinti"
+msgstr ""
 
 #: modules/publicize/ui.php:204 modules/theme-tools/social-links.php:119
 msgid "Connect"
-msgstr "Junkitės"
+msgstr ""
 
 #: modules/publicize/ui.php:222
 msgid "Are you sure you want to stop Publicizing posts to this connection?"
@@ -2550,7 +2540,7 @@ msgstr ""
 
 #: modules/publicize/ui.php:252
 msgid "There was a problem connecting to %s. Please disconnect and try again."
-msgstr "Jungiantis prie %s įvyko klaida. Atsijunkite ir bandykite dar kartą."
+msgstr ""
 
 #: modules/publicize/ui.php:432
 msgid "Before you hit Publish, please refresh the following connection(s) to make sure we can Publicize your post:"
@@ -2558,7 +2548,7 @@ msgstr ""
 
 #: modules/publicize/ui.php:520
 msgid "Publicize:"
-msgstr "Viešinti:"
+msgstr ""
 
 #: modules/publicize/ui.php:639
 msgid "Custom Message:"
@@ -2567,7 +2557,7 @@ msgstr ""
 #: modules/publicize/ui.php:644 modules/publicize/ui.php:673
 #: modules/publicize/ui.php:675
 msgid "Hide"
-msgstr "Paslėpti"
+msgstr ""
 
 #: modules/publicize/ui.php:653
 msgid "Not Connected"
@@ -2587,7 +2577,7 @@ msgstr ""
 
 #: modules/publicize/ui.php:688
 msgid "Show"
-msgstr "Rodyti"
+msgstr ""
 
 #: modules/related-posts/jetpack-related-posts.php:93
 msgid "Related posts"
@@ -2626,8 +2616,6 @@ msgstr ""
 msgid "With 1 comment"
 msgid_plural "With %s comments"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: modules/related-posts/jetpack-related-posts.php:970
 msgid "Similar post"
@@ -2651,12 +2639,12 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-service.php:12 modules/sharedaddy/sharing.php:170
 msgid "Share this:"
-msgstr "Dalintis:"
+msgstr ""
 
 #: modules/sharedaddy/sharing-service.php:572
 #: modules/sharedaddy/sharing.php:263 modules/sharedaddy/sharing.php:296
 msgid "More"
-msgstr "Daugiau"
+msgstr ""
 
 #: modules/sharedaddy/sharing-service.php:574
 #: modules/videopress/videopress.php:635
@@ -2678,7 +2666,7 @@ msgstr ""
 #: modules/sharedaddy/sharing-sources.php:256
 #: modules/videopress/videopress.php:676
 msgid "Close"
-msgstr "Uždaryti"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:278
 msgid "Click to email this to a friend"
@@ -2694,7 +2682,7 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:302
 msgid "Your Email Address"
-msgstr "Jūsų el. pašto adresas"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:310
 msgid "Send Email"
@@ -2714,7 +2702,7 @@ msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:345
 msgid "Twitter"
-msgstr "Twitteris"
+msgstr ""
 
 #: modules/sharedaddy/sharing-sources.php:407
 msgid "Click to share on Twitter"
@@ -2723,7 +2711,7 @@ msgstr ""
 #: modules/omnisearch/omnisearch-plugins.php:21
 #: modules/omnisearch/omnisearch-plugins.php:26
 msgid "Plugins"
-msgstr "Įskiepiai"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-plugins.php:23
 msgid "Loading &hellip;"
@@ -2733,7 +2721,7 @@ msgstr ""
 #: modules/widgets/facebook-likebox.php:127
 #: modules/widgets/gravatar-profile.php:183
 msgid "Title"
-msgstr "Pavadinimas"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:51
 msgid "Snippet"
@@ -2741,39 +2729,39 @@ msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:81
 msgid "Unpublished"
-msgstr "Nepaskelbtas"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:84
 msgid "Y/m/d g:i:s A"
-msgstr "Y-m-d G:i"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:91
 msgid "%s ago"
-msgstr "prieš %s"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:93
 msgid "Y/m/d"
-msgstr "Y-m-d"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:99
 msgid "Published"
-msgstr "Paskelbtas"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:102
 msgid "Missed schedule"
-msgstr "Pradelstas suplanavimas"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:104
 msgid "Scheduled"
-msgstr "Suplanuotas"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-posts.php:106
 msgid "Last Modified"
-msgstr "Redaguotas"
+msgstr ""
 
 #: modules/post-by-email.php:97 modules/subscriptions.php:724
 msgid "Email Address"
-msgstr "El. pašto adresas"
+msgstr ""
 
 #: modules/post-by-email.php:112
 msgid "Enable Post By Email"
@@ -2888,7 +2876,7 @@ msgstr ""
 
 #: modules/publicize/ui.php:102
 msgid "Connect your blog to popular social networking sites and automatically share new posts with your friends."
-msgstr "Prijunkite savo tinklaraštį prie populiarių tinklo puslapių ir automatiškai dalinkitės naujais įrašais su savo draugais."
+msgstr ""
 
 #: modules/publicize/ui.php:103
 msgid "You can make a connection for just yourself or for all users on your blog. Shared connections are marked with the (Shared) text."
@@ -2900,7 +2888,7 @@ msgstr ""
 
 #: modules/publicize/ui.php:178
 msgid "Shared"
-msgstr "Pasidalinta"
+msgstr ""
 
 #: modules/module-info.php:695
 msgid "Note: Images in tiled galleries require extra-special processing, so they will be served from WordPress.com's CDN even if the Photon module is disabled."
@@ -3040,14 +3028,14 @@ msgstr ""
 
 #: modules/omnisearch/omnisearch-comments.php:17
 msgid "Search Comments"
-msgstr "Ieškoti komentarų"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-comments.php:18
 #: modules/omnisearch/omnisearch-comments.php:27
 #: modules/widgets/rsslinks-widget.php:68
 #: modules/widgets/rsslinks-widget.php:136
 msgid "Comments"
-msgstr "Komentarai"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-core.php:62
 #: modules/omnisearch/omnisearch-core.php:67
@@ -3077,12 +3065,12 @@ msgstr ""
 
 #: modules/omnisearch/omnisearch-media.php:16
 msgid "Search Media"
-msgstr "Ieškoti failų"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-media.php:17
 #: modules/omnisearch/omnisearch-media.php:28
 msgid "Media"
-msgstr "Failai"
+msgstr ""
 
 #: modules/omnisearch/omnisearch-plugins.php:20
 msgid "Search Plugins"
@@ -3190,7 +3178,7 @@ msgstr ""
 
 #: modules/module-info.php:571
 msgid "Mobile Theme"
-msgstr "Mobiili tema"
+msgstr ""
 
 #: modules/module-info.php:574
 msgid "There's a good chance that visitors to your site will be using a smartphone, and it's important to provide them with a great reading experience while on the small screen."
@@ -3230,7 +3218,7 @@ msgstr ""
 
 #: modules/module-info.php:639 modules/post-by-email.php:94
 msgid "Post by Email"
-msgstr "Skelbti el. paštu"
+msgstr ""
 
 #: modules/module-info.php:642
 msgid "Post by Email is a way of publishing posts on your blog by email. Any email client can be used to send the email, allowing you to publish quickly and easily from devices such as cell phones."
@@ -3291,7 +3279,7 @@ msgstr ""
 
 #: modules/module-info.php:217 modules/publicize/ui.php:94
 msgid "Publicize"
-msgstr "Viešinimas"
+msgstr ""
 
 #: modules/module-info.php:221
 msgid "Publicize allows you to connect your blog to popular social networking sites and automatically share new posts with your friends.\t You can make a connection for just yourself or for all users on your blog."
@@ -3312,7 +3300,7 @@ msgstr ""
 #: modules/module-info.php:246 modules/module-info.php:258
 #: modules/monitor.php:64 modules/notes.php:159
 msgid "Notifications"
-msgstr "Pranešimai"
+msgstr ""
 
 #: modules/module-info.php:250 modules/module-info.php:262
 msgid "Keep up with the latest happenings on all your WordPress sites and interact with other WordPress.com users."
@@ -3436,11 +3424,11 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:43
 msgid "Search Results for: %s"
-msgstr "Paieškos rezultatai skirti: %s"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:57
 msgid "Nothing Found"
-msgstr "Nieko nerasta"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:61
 msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
@@ -3480,11 +3468,11 @@ msgstr ""
 
 #: modules/minileven.php:98
 msgid "Mobile Apps"
-msgstr "Mobilios programos"
+msgstr ""
 
 #: modules/minileven.php:99
 msgid "Take WordPress with you."
-msgstr "Pasiimkite WordPress su savimi."
+msgstr ""
 
 #: modules/minileven.php:101
 msgid "We have apps for <a href=\"%s\">iOS (iPhone, iPad, iPod Touch)</a>, <a href=\"%s\">Android</a>, <a href=\"%s\">BlackBerry</a>, and <a href=\"%s\">more</a>!"
@@ -3568,11 +3556,11 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/inc/template-tags.php:68
 msgid "Your comment is awaiting moderation."
-msgstr "Komentaras laukia administratoriaus patvirtinimo."
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/inc/template-tags.php:76
 msgid "Reply"
-msgstr "Atsakyti"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/inc/template-tags.php:90
 msgid "<span class=\"entry-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time datetime=\"%3$s\" pubdate>%4$s</time></a></span>"
@@ -3580,23 +3568,23 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/inc/tweaks.php:94
 msgid "Page %s"
-msgstr "Puslapis %s"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:23
 msgid "Daily Archives: %s"
-msgstr "Dienos archyvai: %s"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:25
 msgid "Monthly Archives: %s"
-msgstr "Mėnesio archyvas: %s"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:27
 msgid "Yearly Archives: %s"
-msgstr "Metų archyvai: %s"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:29
 msgid "Posted in %s"
-msgstr "Įrašyta kategorijoj %s"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:31
 msgid "Tagged with %s"
@@ -3608,19 +3596,19 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/index.php:35
 msgid "Blog Archives"
-msgstr "Tinklaraščio archyvas"
+msgstr ""
 
 #: modules/likes.php:341 modules/sharedaddy/sharing.php:343
 msgid "Show buttons on"
-msgstr "Rodyti mygtukus"
+msgstr ""
 
 #: modules/likes.php:350 modules/sharedaddy/sharing.php:349
 msgid "Front Page, Archive Pages, and Search Results"
-msgstr "Pirmas puslapis, archyvas ir paieškos rezultatai"
+msgstr ""
 
 #: modules/likes.php:510 modules/sharedaddy/sharing.php:167
 msgid "Settings have been saved"
-msgstr "Nustatymai išsaugoti"
+msgstr ""
 
 #: modules/likes.php:517 modules/sharedaddy/sharing.php:183
 msgid "Sharing Buttons"
@@ -3629,11 +3617,11 @@ msgstr ""
 #: modules/likes.php:526 modules/sharedaddy/sharing.php:365
 #: modules/verification-tools/blog-verification-tools.php:97
 msgid "Save Changes"
-msgstr "Išsaugoti pakeitimus"
+msgstr ""
 
 #: modules/likes.php:698
 msgid "Like this:"
-msgstr "Patinka:"
+msgstr ""
 
 #: modules/likes.php:699
 msgid "Like"
@@ -3641,7 +3629,7 @@ msgstr ""
 
 #: modules/likes.php:699 modules/widget-visibility/widget-conditions.php:227
 msgid "Loading..."
-msgstr "Įkeliama..."
+msgstr ""
 
 #: modules/likes.php:797
 msgid "<span>%d</span> bloggers like this:"
@@ -3680,7 +3668,7 @@ msgstr ""
 #: modules/minileven/minileven.php:221
 #: modules/widget-visibility/widget-conditions.php:54
 msgid "No"
-msgstr "Ne"
+msgstr ""
 
 #: modules/minileven/minileven.php:227 modules/minileven/minileven.php:278
 msgid "Include this CSS in the Mobile Theme"
@@ -3688,11 +3676,11 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/comments.php:15
 msgid "This post is password protected. Enter the password to view any comments."
-msgstr "Šis įrašas apsaugotas slaptažodžiu. Norėdami peržiūrėti komentarus įveskite slaptažodį."
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/comments.php:45
 msgid "Comment navigation"
-msgstr "Komentaro naršymas"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/comments.php:46
 msgid "&larr; Older Comments"
@@ -3705,32 +3693,30 @@ msgstr ""
 #: modules/minileven/theme/pub/minileven/content-gallery.php:15
 #: modules/widgets/gallery.php:26
 msgid "Gallery"
-msgstr "Galerija"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content-gallery.php:21
 #: modules/minileven/theme/pub/minileven/content.php:39
 #: modules/minileven/theme/pub/minileven/inc/tweaks.php:30
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Skaityti toliau <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content-gallery.php:57
 msgid "This gallery contains <a %1$s>%2$s photo</a>."
 msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
-msgstr[0] "Galerijoje yra <a %1$s>%2$s fotografija</a>."
-msgstr[1] "Galerijoje yra <a %1$s>%2$s fotografijos</a>."
-msgstr[2] "Galerijoje yra <a %1$s>%2$s fotografijų</a>."
+msgstr[0] ""
 
 #: modules/minileven/theme/pub/minileven/content-gallery.php:58
 #: modules/minileven/theme/pub/minileven/content.php:13
 msgid "Permalink to %s"
-msgstr "Nuolatinė nuoroda į %s"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content-gallery.php:65
 #: modules/minileven/theme/pub/minileven/content.php:41
 #: modules/minileven/theme/pub/minileven/image.php:64
 #: modules/minileven/theme/pub/minileven/page.php:27
 msgid "Pages:"
-msgstr "Puslapiai:"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content-gallery.php:71
 #: modules/minileven/theme/pub/minileven/content.php:49
@@ -3746,30 +3732,30 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content.php:19
 msgid "Featured"
-msgstr "Siūloma"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content.php:28
 msgid "Posted by "
-msgstr "Publikavo "
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content.php:49
 #: modules/minileven/theme/pub/minileven/image.php:80
 msgid "Leave a reply"
-msgstr "Parašykite komentarą"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content.php:57
 #: modules/minileven/theme/pub/minileven/inc/template-tags.php:19
 msgid "Post navigation"
-msgstr "Įrašo naršymas"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content.php:58
 #: modules/minileven/theme/pub/minileven/image.php:88
 msgid "&laquo; Previous"
-msgstr "&laquo; Ankstesnis"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/content.php:59
 msgid "Next &raquo;"
-msgstr "Kitas &raquo;"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/footer.php:24
 msgid "View Full Site"
@@ -3789,7 +3775,7 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/functions.php:61
 msgid "Primary Menu"
-msgstr "Pagrindinis meniu"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/functions.php:125
 msgid "Main Sidebar"
@@ -3797,7 +3783,7 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/header.php:27
 msgid "Menu"
-msgstr "Meniu"
+msgstr ""
 
 #: modules/minileven/theme/pub/minileven/header.php:30
 msgid "Skip to primary content"
@@ -3809,7 +3795,7 @@ msgstr ""
 
 #: modules/minileven/theme/pub/minileven/image.php:89
 msgid "Next &raquo; "
-msgstr "Kitas &raquo;"
+msgstr ""
 
 #: modules/gplus-authorship/admin/ui.php:141
 msgid "Connect your WordPress account to Google+ to add this blog to your Google+ profile and improve the visibility of your blog posts on Google."
@@ -3854,11 +3840,11 @@ msgstr ""
 
 #: modules/gravatar-hovercards.php:59
 msgid "View people's profiles when you mouse over their Gravatars"
-msgstr "Peržiūrėti naudotojo profilį, užvedus pelę ant Gravatar"
+msgstr ""
 
 #: modules/gravatar-hovercards.php:86
 msgid "Put your mouse over your Gravatar to check out your profile."
-msgstr "Užveskite pelę ant Gravatar, norėdami peržiūrėti savo profilį."
+msgstr ""
 
 #: modules/holiday-snow.php:19
 msgid "Snow"
@@ -3926,7 +3912,7 @@ msgstr ""
 
 #: modules/likes.php:124
 msgid "Likes and Shares"
-msgstr "Patinka ir dalinamasi"
+msgstr ""
 
 #: modules/likes.php:135 modules/likes.php:663 modules/module-info.php:711
 msgid "Likes"
@@ -3934,11 +3920,11 @@ msgstr ""
 
 #: modules/likes.php:195
 msgid "Show likes."
-msgstr "Rodyti patikimus."
+msgstr ""
 
 #: modules/likes.php:211 modules/sharedaddy/sharedaddy.php:40
 msgid "Show sharing buttons."
-msgstr "Rodyti dalinimosi mygtukus."
+msgstr ""
 
 #: modules/likes.php:223
 msgid "Likes Notifications"
@@ -4022,7 +4008,7 @@ msgstr ""
 
 #: modules/custom-post-types/portfolios.php:693
 msgid "Tags"
-msgstr "Žymos"
+msgstr ""
 
 #: modules/custom-post-types/testimonial.php:73
 msgid "Customer Testimonials"
@@ -4117,7 +4103,7 @@ msgstr ""
 
 #: modules/custom-post-types/testimonial.php:188
 msgid "Customize"
-msgstr "Derinti"
+msgstr ""
 
 #: modules/custom-post-types/testimonial.php:213
 msgid "Testimonial Page Title"
@@ -4143,7 +4129,7 @@ msgstr ""
 #: modules/module-info.php:312 modules/publicize/ui.php:35
 #: modules/sharedaddy/sharedaddy.php:26 modules/sharedaddy/sharing.php:66
 msgid "Sharing"
-msgstr "Dalinimasis"
+msgstr ""
 
 #: modules/gplus-authorship/admin/ui.php:91
 msgid "Your Google+ account has been connected."
@@ -4324,15 +4310,15 @@ msgstr ""
 
 #: modules/custom-post-types/portfolios.php:347
 msgid "Separate tags with commas"
-msgstr "Atskirkite žymas kableliais"
+msgstr ""
 
 #: modules/custom-post-types/portfolios.php:348
 msgid "Add or remove tags"
-msgstr "Pridėti ar panaikinti žymas"
+msgstr ""
 
 #: modules/custom-post-types/portfolios.php:349
 msgid "Choose from the most used tags"
-msgstr "Pasirinkite iš dažniausiai naudojamų žymų"
+msgstr ""
 
 #: modules/custom-post-types/portfolios.php:350
 msgid "No tags found."
@@ -4361,7 +4347,7 @@ msgstr ""
 
 #: modules/custom-post-types/nova.php:175
 msgid "Menu Item"
-msgstr "Meniu elementas"
+msgstr ""
 
 #: modules/custom-post-types/nova.php:176
 msgid "Food Menus"
@@ -4377,7 +4363,7 @@ msgstr ""
 
 #: modules/custom-post-types/nova.php:180
 msgid "Edit Menu Item"
-msgstr "Redaguoti meniu elementą"
+msgstr ""
 
 #: modules/custom-post-types/nova.php:181
 msgid "New Menu Item"
@@ -4440,8 +4426,6 @@ msgstr ""
 msgid "Food Menu Item"
 msgid_plural "Food Menu Items"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: modules/custom-post-types/nova.php:367
 #: modules/custom-post-types/nova.php:368
@@ -4455,7 +4439,7 @@ msgstr ""
 
 #: modules/custom-post-types/nova.php:436
 msgid "Thumbnail"
-msgstr "Miniatiūra"
+msgstr ""
 
 #: modules/custom-post-types/nova.php:437
 msgid "Labels"
@@ -4470,7 +4454,7 @@ msgstr ""
 
 #: modules/custom-post-types/nova.php:439
 msgid "Order"
-msgstr "Išdėstymo tvarka"
+msgstr ""
 
 #: modules/custom-post-types/nova.php:502
 #: modules/custom-post-types/nova.php:553
@@ -4479,11 +4463,11 @@ msgstr ""
 
 #: modules/custom-post-types/nova.php:747
 msgid "edit"
-msgstr "Redaguoti"
+msgstr ""
 
 #: modules/custom-post-types/nova.php:750
 msgid "Uncategorized"
-msgstr "Be kategorijos"
+msgstr ""
 
 #: modules/custom-post-types/nova.php:756
 msgid "Move menu section up"
@@ -4515,7 +4499,7 @@ msgstr ""
 
 #: modules/custom-post-types/nova.php:858
 msgid "Description"
-msgstr "Aprašymas"
+msgstr ""
 
 #: modules/custom-post-types/nova.php:879
 msgid "New Row"
@@ -4664,14 +4648,14 @@ msgstr ""
 #: modules/custom-post-types/portfolios.php:370
 #: modules/custom-post-types/testimonial.php:140
 msgid "Custom field updated."
-msgstr "Naudotojo laukas atnaujintas."
+msgstr ""
 
 #: modules/custom-post-types/comics.php:287
 #: modules/custom-post-types/nova.php:222
 #: modules/custom-post-types/portfolios.php:371
 #: modules/custom-post-types/testimonial.php:141
 msgid "Custom field deleted."
-msgstr "Naudotojo laukas ištrintas."
+msgstr ""
 
 #: modules/custom-post-types/comics.php:288
 msgid "Comic updated."
@@ -4702,7 +4686,7 @@ msgstr ""
 #: modules/custom-post-types/portfolios.php:380
 #: modules/custom-post-types/testimonial.php:150
 msgid "M j, Y @ G:i"
-msgstr "Y-m-d G:i"
+msgstr ""
 
 #: modules/custom-post-types/comics.php:297
 msgid "Comic draft updated. <a target=\"_blank\" href=\"%s\">Preview comic</a>"
@@ -4754,7 +4738,7 @@ msgstr ""
 
 #: modules/custom-css/custom-css.php:681
 msgid "Edit CSS"
-msgstr "Taisyti CSS"
+msgstr ""
 
 #: modules/custom-css/custom-css.php:694
 msgid "CSS"
@@ -4770,7 +4754,7 @@ msgstr ""
 
 #: modules/custom-css/custom-css.php:739
 msgid "Publish"
-msgstr "Paskelbti"
+msgstr ""
 
 #: modules/custom-css/custom-css.php:745
 msgid "CSS Revisions"
@@ -4792,7 +4776,7 @@ msgstr ""
 
 #: modules/custom-css/custom-css.php:805
 msgid "Default"
-msgstr "Numatytoji"
+msgstr ""
 
 #: modules/custom-css/custom-css.php:805
 msgid "%s px"
@@ -4811,13 +4795,13 @@ msgstr ""
 #: modules/publicize/publicize-jetpack.php:493
 #: modules/publicize/publicize-jetpack.php:605 modules/publicize/ui.php:273
 msgid "OK"
-msgstr "Gerai"
+msgstr ""
 
 #: modules/custom-css/custom-css.php:835 modules/custom-css/custom-css.php:917
 #: modules/custom-css/custom-css.php:946 modules/minileven/minileven.php:231
 #: modules/sharedaddy/sharing-sources.php:311
 msgid "Cancel"
-msgstr "Atšaukti"
+msgstr ""
 
 #: modules/custom-css/custom-css.php:899
 msgid "Preprocessor:"
@@ -4826,7 +4810,7 @@ msgstr ""
 #: modules/custom-css/custom-css.php:900 modules/custom-css/custom-css.php:905
 #: modules/videopress/videopress.php:273 modules/widgets/image-widget.php:200
 msgid "None"
-msgstr "Nieko"
+msgstr ""
 
 #: modules/custom-css/custom-css.php:929
 msgid "Mode:"
@@ -4853,7 +4837,7 @@ msgstr ""
 #: modules/site-icon/jetpack-site-icon.php:323
 #: modules/videopress/videopress.php:662
 msgid "Preview"
-msgstr "Peržiūrėti"
+msgstr ""
 
 #: modules/custom-css/custom-css.php:966
 msgid "Save &amp; Buy Upgrade"
@@ -4883,8 +4867,6 @@ msgstr ""
 msgid "Post converted."
 msgid_plural "%s posts converted"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: modules/custom-post-types/comics.php:181
 msgid "Drop images to upload"
@@ -4892,7 +4874,7 @@ msgstr ""
 
 #: modules/custom-post-types/comics.php:182
 msgid "Uploading..."
-msgstr "Uploading..."
+msgstr ""
 
 #: modules/custom-post-types/comics.php:183
 msgid "Processing..."
@@ -4930,7 +4912,7 @@ msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:1379
 msgid "IP Address:"
-msgstr "IP adresas:"
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:1380
 msgid "Contact Form URL:"
@@ -4950,7 +4932,7 @@ msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:1636
 msgid "%s is required"
-msgstr "%s turi būti nurodytas"
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:1690
 #: modules/contact-form/grunion-contact-form.php:1696
@@ -4960,13 +4942,13 @@ msgstr "%s turi būti nurodytas"
 #: modules/contact-form/grunion-contact-form.php:1732
 #: modules/contact-form/grunion-contact-form.php:1742
 msgid "(required)"
-msgstr "(būtina)"
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:1714
 #: modules/minileven/minileven.php:221
 #: modules/widget-visibility/widget-conditions.php:53
 msgid "Yes"
-msgstr "Taip"
+msgstr ""
 
 #: modules/contact-form/grunion-form-view.php:17
 msgid ""
@@ -5037,7 +5019,7 @@ msgstr ""
 #: modules/contact-form/grunion-form-view.php:150
 #: modules/sharedaddy/sharing-sources.php:988
 msgid "Label"
-msgstr "Pavad."
+msgstr ""
 
 #: modules/contact-form/grunion-form-view.php:151
 msgid "New field"
@@ -5061,7 +5043,7 @@ msgstr ""
 
 #: modules/contact-form/grunion-form-view.php:160
 msgid "Text"
-msgstr "Tekstas arba HTML kodas"
+msgstr ""
 
 #: modules/contact-form/grunion-form-view.php:161
 msgid "Textarea"
@@ -5069,7 +5051,7 @@ msgstr ""
 
 #: modules/contact-form/grunion-form-view.php:168
 msgid "Options"
-msgstr "Nustatymai"
+msgstr ""
 
 #: modules/contact-form/grunion-form-view.php:169
 msgid "First option"
@@ -5113,7 +5095,7 @@ msgstr ""
 
 #: modules/comments/base.php:232
 msgid "Error: please enter a valid email address."
-msgstr "Klaida: prašome įvesti teisingą elektroninio pašto adresą."
+msgstr ""
 
 #: modules/comments/comments.php:195
 msgid "You must <a href=\"%s\">log in</a> to post a comment."
@@ -5121,11 +5103,11 @@ msgstr ""
 
 #: modules/comments/comments.php:220
 msgid "Leave a Reply to %s"
-msgstr "Palikti atsakymą: %s"
+msgstr ""
 
 #: modules/comments/comments.php:259
 msgid "Cancel reply"
-msgstr "Atšaukti atsakymą"
+msgstr ""
 
 #: modules/comments/comments.php:395
 msgid "Invalid security token."
@@ -5133,7 +5115,7 @@ msgstr ""
 
 #: modules/comments/comments.php:456 modules/comments/comments.php:507
 msgid "Submitting Comment%s"
-msgstr "Įdedami %s komentarai "
+msgstr ""
 
 #: modules/contact-form/admin.php:20
 msgid "Add a custom form"
@@ -5153,7 +5135,7 @@ msgstr ""
 
 #: modules/contact-form/admin.php:149
 msgid "Empty Spam"
-msgstr "Ištrinti šlamštą"
+msgstr ""
 
 #: modules/contact-form/admin.php:190 modules/contact-form/admin.php:605
 msgid "You are not allowed to manage this item."
@@ -5165,40 +5147,40 @@ msgstr ""
 
 #: modules/contact-form/admin.php:247 modules/contact-form/admin.php:721
 msgid "Messages"
-msgstr "Pranešimai"
+msgstr ""
 
 #: modules/contact-form/admin.php:256
 #: modules/contact-form/grunion-omnisearch.php:36
 msgid "From"
-msgstr "Nuo"
+msgstr ""
 
 #: modules/contact-form/admin.php:257
 #: modules/contact-form/grunion-contact-form.php:895
 #: modules/contact-form/grunion-omnisearch.php:37
 msgid "Message"
-msgstr "Žinutė"
+msgstr ""
 
 #: modules/contact-form/admin.php:258
 #: modules/contact-form/grunion-omnisearch.php:38
 #: modules/omnisearch/omnisearch-posts.php:52
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #: modules/contact-form/admin.php:339
 msgid "Restore this item from the Trash"
-msgstr "Grąžinti šį elementą iš šiukšlinės"
+msgstr ""
 
 #: modules/contact-form/admin.php:341
 msgid "Restore"
-msgstr "Atkurti"
+msgstr ""
 
 #: modules/contact-form/admin.php:344 modules/contact-form/admin.php:443
 msgid "Delete this item permanently"
-msgstr "Negrįžtamai ištrinti šį elementą"
+msgstr ""
 
 #: modules/contact-form/admin.php:346 modules/contact-form/admin.php:445
 msgid "Delete Permanently"
-msgstr "Ištrinti negrįžtamai"
+msgstr ""
 
 #: modules/contact-form/admin.php:377
 msgid "Mark this message as spam"
@@ -5208,7 +5190,7 @@ msgstr ""
 #: modules/contact-form/admin.php:731
 #: modules/omnisearch/omnisearch-posts.php:71
 msgid "Trash"
-msgstr "Į&#160;šiukšlinę"
+msgstr ""
 
 #: modules/contact-form/admin.php:437
 msgid "Mark this message as NOT spam"
@@ -5216,23 +5198,23 @@ msgstr ""
 
 #: modules/contact-form/admin.php:687
 msgid "You are not allowed to move this item out of the Trash."
-msgstr "Jūs neturite teisės sugrąžinti šį įrašą iš šiukšlinės."
+msgstr ""
 
 #: modules/contact-form/admin.php:690
 msgid "Error in restoring from Trash."
-msgstr "Grąžinant iš šiukšlinės, įvyko klaida."
+msgstr ""
 
 #: modules/contact-form/admin.php:694
 msgid "You are not allowed to move this item to the Trash."
-msgstr "Jūs neturite teisės perkelti šį elementą į šiukšlinę."
+msgstr ""
 
 #: modules/contact-form/admin.php:697
 msgid "Error in moving to Trash."
-msgstr "Perkeliant į šiukšlinę, įvyko klaida."
+msgstr ""
 
 #: modules/contact-form/admin.php:744
 msgid "Spam"
-msgstr "Šlamštas"
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:87
 msgid "Search Feedback"
@@ -5241,14 +5223,12 @@ msgstr ""
 #: modules/contact-form/grunion-contact-form.php:88
 #: modules/contact-form/grunion-contact-form.php:89
 msgid "No feedback found"
-msgstr "Nieko nerasta"
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:106
 msgid "Spam <span class=\"count\">(%s)</span>"
 msgid_plural "Spam <span class=\"count\">(%s)</span>"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: modules/contact-form/grunion-contact-form.php:201
 msgid "An error occurred. Please try again later."
@@ -5257,7 +5237,7 @@ msgstr ""
 #: modules/contact-form/grunion-contact-form.php:209
 #: modules/contact-form/grunion-contact-form.php:986
 msgid "Message Sent"
-msgstr "Žinutė išsiųsta."
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:368
 msgid "Feedback discarded."
@@ -5273,7 +5253,7 @@ msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:420
 msgid "All posts"
-msgstr "Visi įrašai"
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:425
 msgid "Download"
@@ -5291,11 +5271,11 @@ msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:891
 msgid "Subject"
-msgstr "Ypatybė"
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:972
 msgid "Error!"
-msgstr "Klaida!"
+msgstr ""
 
 #: modules/contact-form/grunion-contact-form.php:987
 msgid "go back"
@@ -5353,13 +5333,13 @@ msgstr ""
 #: modules/contact-form/grunion-contact-form.php:886
 #: modules/contact-form/grunion-form-view.php:157
 msgid "Email"
-msgstr "El. pašto adresas"
+msgstr ""
 
 #: modules/carousel/jetpack-carousel.php:150
 #: modules/contact-form/grunion-contact-form.php:887
 #: modules/contact-form/grunion-form-view.php:162
 msgid "Website"
-msgstr "Interneto puslapis"
+msgstr ""
 
 #: modules/carousel/jetpack-carousel.php:301
 msgid "Missing attachment ID."
@@ -5412,7 +5392,7 @@ msgstr ""
 #: modules/carousel/jetpack-carousel.php:440
 #: modules/shortcodes/slideshow.php:72
 msgid "Background color"
-msgstr "Fono spalva"
+msgstr ""
 
 #: modules/carousel/jetpack-carousel.php:443
 msgid "Metadata"
@@ -5429,12 +5409,12 @@ msgstr ""
 #: modules/carousel/jetpack-carousel.php:516
 #: modules/shortcodes/slideshow.php:79
 msgid "Black"
-msgstr "Juoda"
+msgstr ""
 
 #: modules/carousel/jetpack-carousel.php:516
 #: modules/shortcodes/slideshow.php:80
 msgid "White"
-msgstr "Balta"
+msgstr ""
 
 #: modules/carousel/jetpack-carousel.php:524
 msgid "Display images in full-size carousel slideshow."
@@ -5443,17 +5423,17 @@ msgstr ""
 #: modules/comments/admin.php:50 modules/comments/comments.php:219
 #: modules/minileven/theme/pub/minileven/content-gallery.php:71
 msgid "Leave a Reply"
-msgstr "Parašykite komentarą"
+msgstr ""
 
 #: modules/comments/admin.php:54 modules/widgets/facebook-likebox.php:159
 #: modules/widgets/twitter-timeline.php:238
 msgid "Light"
-msgstr "Šviesi"
+msgstr ""
 
 #: modules/comments/admin.php:55 modules/widgets/facebook-likebox.php:160
 #: modules/widgets/twitter-timeline.php:239
 msgid "Dark"
-msgstr "Tamsi"
+msgstr ""
 
 #: modules/comments/admin.php:56
 msgid "Transparent"
@@ -5470,7 +5450,7 @@ msgstr ""
 #: modules/comments/admin.php:97 modules/comments/admin.php:168
 #: modules/widgets/facebook-likebox.php:157
 msgid "Color Scheme"
-msgstr "Spalvų schema"
+msgstr ""
 
 #: modules/comments/admin.php:118
 msgid "Adjust your Jetpack Comments form with a clever greeting and color-scheme."
@@ -5486,67 +5466,67 @@ msgstr ""
 
 #: modules/comments/base.php:230
 msgid "Error: please fill the required fields (name, email)."
-msgstr "Klaida: prašome užpildyti reikalingus laukus (vardą, el.pašto adresą)."
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:55
 msgid "a post or page is updated"
-msgstr "įrašas ar puslapis atnaujinamas"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:58
 msgid "English Options"
-msgstr "Anglų kalbos parinktys"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:60
 msgid "Enable proofreading for the following grammar and style rules when writing posts and pages:"
-msgstr "Rašant įrašus ir puslapius, įjungti klaidų tikrinimą šiems stiliams:"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:63
 msgid "Bias Language"
-msgstr "Šališka kalba"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:65
 msgid "Clich&eacute;s"
-msgstr "Klišės"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:67
 msgid "Complex Phrases"
-msgstr "Sudėtingoms frazėms"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:69
 msgid "Diacritical Marks"
-msgstr "Diakritikai"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:71
 msgid "Double Negatives"
-msgstr "Dvigubi neiginiai"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:73
 msgid "Hidden Verbs"
-msgstr "Paslėpti veiksmažodžiai"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:75
 msgid "Jargon"
-msgstr "Žargonas"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:77
 msgid "Passive Voice"
-msgstr "Pasyvus balsas"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:79
 msgid "Phrases to Avoid"
-msgstr "Vengtinos frazės"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:81
 msgid "Redundant Phrases"
-msgstr "Nereikalingos frazės"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:83
 msgid "<a href=\"%s\">Learn more</a> about these options."
-msgstr "<a href=\"%s\">Sužinokite daugiau</a> apie šias parinktis."
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:86
 msgid "Language"
-msgstr "Kalba"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:89
 msgid "The proofreader supports English, French, German, Portuguese, and Spanish. Your user interface language (see above) is the default proofreading language."
@@ -5554,20 +5534,20 @@ msgstr ""
 
 #: modules/after-the-deadline/config-options.php:93
 msgid "Use automatically detected language to proofread posts and pages"
-msgstr "Klaidų įrašuose ir puslapiuose tikrinimui naudoti automatiškai aptiktą kalbą."
+msgstr ""
 
 #: modules/after-the-deadline/config-unignore.php:131
 msgid "Ignored Phrases"
-msgstr "Nepaisomos frazės"
+msgstr ""
 
 #: modules/after-the-deadline/config-unignore.php:133
 msgid "Identify words and phrases to ignore while proofreading your posts and pages:"
-msgstr "Nurodykite žodžius ir frazes kurios nebus tikrinamos:"
+msgstr ""
 
 #: modules/after-the-deadline/config-unignore.php:135
 #: modules/widget-visibility/widget-conditions.php:235
 msgid "Add"
-msgstr "Pridėti"
+msgstr ""
 
 #: modules/after-the-deadline/config-unignore.php:140
 msgid "Be sure to click \"Update Profile\" at the bottom of the screen to save your changes."
@@ -5583,7 +5563,7 @@ msgstr ""
 
 #: modules/after-the-deadline.php:207
 msgid "No suggestions"
-msgstr "Pasiūlymų nėra"
+msgstr ""
 
 #: modules/after-the-deadline.php:209
 msgid "Explain..."
@@ -5599,7 +5579,7 @@ msgstr ""
 
 #: modules/after-the-deadline.php:212
 msgid "Ignore all"
-msgstr "Ignoruoti visus"
+msgstr ""
 
 #: modules/after-the-deadline.php:214
 msgid "Edit Selection..."
@@ -5649,11 +5629,11 @@ msgstr ""
 
 #: modules/carousel/jetpack-carousel.php:115
 msgid "Comment"
-msgstr "Komentaras"
+msgstr ""
 
 #: modules/carousel/jetpack-carousel.php:116
 msgid "Post Comment"
-msgstr "Įrašyti komentarą"
+msgstr ""
 
 #: modules/carousel/jetpack-carousel.php:117
 msgid "Write a Comment..."
@@ -5721,15 +5701,15 @@ msgstr ""
 
 #: modules/after-the-deadline/config-options.php:48
 msgid "Proofreading"
-msgstr "Klaidų tikrinimas"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:50
 msgid "Automatically proofread content when:"
-msgstr "Automatiškai tikrinti rašybos klaidas:"
+msgstr ""
 
 #: modules/after-the-deadline/config-options.php:53
 msgid "a post or page is first published"
-msgstr "įrašas ar puslapis skelbiamas pirmą kartą"
+msgstr ""
 
 #: class.jetpack.php:3596
 msgid "Error Details: Jetpack ID is not a scalar. Do not publicly post this error message! %s"
@@ -5789,15 +5769,15 @@ msgstr ""
 
 #: functions.gallery.php:45
 msgid "Type"
-msgstr "Tipas"
+msgstr ""
 
 #: functions.opengraph.php:101
 msgid "(no title)"
-msgstr "(be pavadinimo)"
+msgstr ""
 
 #: json-endpoints/class.wpcom-json-api-post-endpoint.php:87
 msgid "This post is password protected."
-msgstr "Šis įrašas apsaugotas slaptažodžiu."
+msgstr ""
 
 #: json-endpoints/class.wpcom-json-api-update-comment-endpoint.php:124
 msgid "Comment cache problem?"
@@ -5905,15 +5885,11 @@ msgstr ""
 msgid "Jetpack contains the most recent version of the old %l plugin."
 msgid_plural "Jetpack contains the most recent versions of the old %l plugins."
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: class.jetpack.php:2692
 msgid "The old version has been deactivated and can be removed from your site."
 msgid_plural "The old versions have been deactivated and can be removed from your site."
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: class.jetpack.php:2758
 msgid "Is this site private?"
@@ -5974,7 +5950,7 @@ msgstr ""
 
 #: class.jetpack.php:3131 modules/subscriptions.php:725
 msgid "Subscribe"
-msgstr "Prenumeruoti"
+msgstr ""
 
 #: class.jetpack.php:3138
 msgid "You have been subscribed to receive email updates."
@@ -5994,7 +5970,7 @@ msgstr ""
 
 #: class.jetpack.php:3156 views/admin/network-admin-footer.php:19
 msgid "Terms of Service"
-msgstr "Paslaugos teikimo sąlygos"
+msgstr ""
 
 #: class.jetpack.php:3189
 msgid "Configure %s"
@@ -6002,11 +5978,11 @@ msgstr ""
 
 #: class.jetpack.php:3281
 msgid "Free"
-msgstr "Nemokamas"
+msgstr ""
 
 #: class.jetpack.php:3281
 msgid "Purchase"
-msgstr "Pirkti"
+msgstr ""
 
 #: class.jetpack.php:3289
 msgid "New"
@@ -6105,7 +6081,7 @@ msgstr ""
 
 #: class.jetpack.php:2111
 msgid "For more information:"
-msgstr "Daugiau informacijos:"
+msgstr ""
 
 #: class.jetpack.php:2112
 msgid "Jetpack FAQ"
@@ -6154,7 +6130,7 @@ msgstr ""
 
 #: class.jetpack.php:2433
 msgid "Cheatin&#8217; uh?"
-msgstr "Sukčiaujate? :)"
+msgstr ""
 
 #: class.jetpack.php:2436
 msgid "You need to authorize the Jetpack connection between your site and WordPress.com to enable the awesome features."
@@ -6294,7 +6270,7 @@ msgstr ""
 #: modules/contact-form/grunion-form-view.php:158
 #: modules/custom-post-types/nova.php:855
 msgid "Name"
-msgstr "Vardas"
+msgstr ""
 
 #: class.jetpack-debugger.php:178
 msgid "Let us know your name."
@@ -6302,7 +6278,7 @@ msgstr ""
 
 #: class.jetpack-debugger.php:183
 msgid "E-mail"
-msgstr "El. paštas"
+msgstr ""
 
 #: class.jetpack-debugger.php:184
 msgid "Use a valid email address."
@@ -6325,14 +6301,14 @@ msgstr ""
 #: class.jetpack-modules-list-table.php:252 class.jetpack.php:3248
 #: views/admin/module-modal-template.php:15
 msgid "Deactivate"
-msgstr "Išjungti"
+msgstr ""
 
 #: class.jetpack-modules-list-table.php:77
 #: class.jetpack-modules-list-table.php:178
 #: class.jetpack-modules-list-table.php:242 class.jetpack.php:3261
 #: views/admin/module-modal-template.php:17
 msgid "Activate"
-msgstr "Įjungti"
+msgstr ""
 
 #: class.jetpack-modules-list-table.php:87
 msgid "No Modules Found"
@@ -6348,12 +6324,12 @@ msgstr ""
 
 #: class.jetpack-network-sites-list-table.php:15
 msgid "Path"
-msgstr "Kelias"
+msgstr ""
 
 #: class.jetpack-network-sites-list-table.php:16
 #: modules/gplus-authorship/admin/ui.php:198 modules/sso.php:872
 msgid "Connected"
-msgstr "Prisijungta"
+msgstr ""
 
 #: class.jetpack-network-sites-list-table.php:55
 #: modules/custom-css/custom-css.php:806 modules/custom-css/custom-css.php:901
@@ -6363,7 +6339,7 @@ msgstr "Prisijungta"
 #: modules/minileven/theme/pub/minileven/image.php:82
 #: modules/minileven/theme/pub/minileven/page.php:31
 msgid "Edit"
-msgstr "Redaguoti"
+msgstr ""
 
 #: class.jetpack-network.php:259
 msgid "Jetpack Sites"
@@ -6371,7 +6347,7 @@ msgstr ""
 
 #: class.jetpack-network.php:259 class.jetpack-network.php:536
 msgid "Sites"
-msgstr "Tinklaraščiai"
+msgstr ""
 
 #: class.jetpack-sync.php:773 class.jetpack-sync.php:777
 #: class.jetpack-sync.php:785 class.jetpack-sync.php:789
@@ -6438,7 +6414,7 @@ msgstr ""
 #: modules/minileven/theme/pub/minileven/searchform.php:11
 #: modules/omnisearch/omnisearch-core.php:159 views/admin/admin-page.php:74
 msgid "Search"
-msgstr "Paieška"
+msgstr ""
 
 #: _inc/lib/admin-pages/class.jetpack-settings-page.php:50
 msgid "View:"
@@ -6448,7 +6424,7 @@ msgstr ""
 #: class.jetpack-modules-list-table.php:104
 #: modules/widgets/upcoming-events.php:56
 msgid "All"
-msgstr "Visi"
+msgstr ""
 
 #: _inc/lib/admin-pages/class.jetpack-settings-page.php:53
 #: class.jetpack-cli.php:155 modules/vaultpress.php:24
@@ -6458,11 +6434,11 @@ msgstr ""
 #: _inc/lib/admin-pages/class.jetpack-settings-page.php:54
 #: class.jetpack-cli.php:155
 msgid "Inactive"
-msgstr "Neaktyvus"
+msgstr ""
 
 #: _inc/lib/admin-pages/class.jetpack-settings-page.php:56
 msgid "Sort by:"
-msgstr "Rikiuoti pagal:"
+msgstr ""
 
 #: _inc/lib/admin-pages/class.jetpack-settings-page.php:58
 #: views/admin/admin-page.php:80
@@ -6472,30 +6448,30 @@ msgstr ""
 #: _inc/lib/admin-pages/class.jetpack-settings-page.php:59
 #: views/admin/admin-page.php:78
 msgid "Newest"
-msgstr "Naujausios"
+msgstr ""
 
 #: _inc/lib/admin-pages/class.jetpack-settings-page.php:60
 msgid "Popular"
-msgstr "Populiarios"
+msgstr ""
 
 #: _inc/lib/admin-pages/class.jetpack-settings-page.php:62
 msgid "Show:"
-msgstr "Rodyti:"
+msgstr ""
 
 #: _inc/lib/icalendar-reader.php:699
 #: modules/minileven/theme/pub/minileven/inc/template-tags.php:61
 msgid "%1$s at %2$s"
-msgstr "%1$s %2$s"
+msgstr ""
 
 #: _inc/lib/icalendar-reader.php:701
 msgid "%1$s &ndash; %2$s"
-msgstr "%1$s &ndash; %2$s"
+msgstr ""
 
 #: class.jetpack-admin.php:93 class.jetpack.php:3320 modules/stats.php:351
 #: views/admin/landing-page-templates.php:24
 #: views/admin/module-modal-template.php:21
 msgid "Configure"
-msgstr "Konfigūruoti"
+msgstr ""
 
 #: class.jetpack-admin.php:165 class.jetpack-debugger.php:98
 #: class.jetpack.php:1928 class.jetpack.php:2114
@@ -6585,7 +6561,7 @@ msgstr ""
 
 #: class.jetpack-debugger.php:24
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Jūs neturite teisės pasiekti šį puslapį."
+msgstr ""
 
 #: class.jetpack-debugger.php:68
 msgid "Your site isn’t reaching the Jetpack servers."
@@ -6617,7 +6593,7 @@ msgstr ""
 
 #: _inc/footer.php:29
 msgid "Privacy"
-msgstr "Privatumas"
+msgstr ""
 
 #: _inc/footer.php:30
 msgid "Test your site&#8217;s compatibility with Jetpack."
@@ -6635,7 +6611,7 @@ msgstr ""
 #: _inc/footer.php:31 class.jetpack.php:3160
 #: modules/sharedaddy/sharedaddy.php:87 views/admin/network-admin-footer.php:23
 msgid "Support"
-msgstr "Palaikymas"
+msgstr ""
 
 #: _inc/footer.php:32
 msgid "Take a survey.  Tell us how we&#8217;re doing."
@@ -6674,7 +6650,7 @@ msgstr ""
 #: modules/module-info.php:908 modules/module-info.php:922
 #: modules/module-info.php:941 modules/module-info.php:961
 msgid "Learn More"
-msgstr "Sužinokite daugiau"
+msgstr ""
 
 #: _inc/footer.php:51
 msgid "Config"
@@ -6682,7 +6658,7 @@ msgstr ""
 
 #: _inc/header.php:8 class.jetpack.php:2083
 msgid "Home"
-msgstr "Į pradžią"
+msgstr ""
 
 #: _inc/header.php:8 class.jetpack-network.php:198
 #: class.jetpack-network.php:258 class.jetpack.php:1923 class.jetpack.php:2170
@@ -6694,7 +6670,7 @@ msgstr ""
 #: modules/publicize/ui.php:686 modules/sharedaddy/sharedaddy.php:79
 #: modules/sharedaddy/sharedaddy.php:86
 msgid "Settings"
-msgstr "Nuostatos"
+msgstr ""
 
 #: _inc/header.php:14 modules/contact-form/grunion-contact-form.php:85
 #: modules/contact-form/grunion-contact-form.php:86
@@ -6707,8 +6683,6 @@ msgstr ""
 msgid "One New Jetpack Module"
 msgid_plural "%s New Jetpack Modules"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #: _inc/lib/admin-pages/class.jetpack-landing-page.php:109
 msgid "Error, bad module."
