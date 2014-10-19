@@ -71,11 +71,19 @@ endif;
  * [audio http://wpcom.files.wordpress.com/2007/01/mattmullenweg-interview.mp3|width=180|titles=1|artists=2]
  * or have inserted multiple audio URL's separated by comma.
  *
+ * If is old multiple [audio], such as
+ * [audio http://src1.mp3, http://src2.mp3, http://src3.mp3|titles=Title1, Title2, Title3|artists=Artist1, Artist2, Artist3 ]
+ * we fall back to jetpack's old [audio] way of doing things.
+ *
  * @since 3.3
+ *
+ * @todo CLEAN
  *
  */
 
 function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
+	global $post;
+
 	if ( ! function_exists( 'wp_audio_shortcode' ) ) {
 		return;
 	}
@@ -93,7 +101,7 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 
 	// Single audio file.
 	if ( count( $src ) === 1 ) {
-
+		echo count( $src ) . ' Only one<br>';
 		$src = reset( $src );
 		$src = strip_tags( $src ); // Previously users were able to use [audio <a href="URL">URL</a>] and other nonsense tags
 		$src = esc_url_raw( $src );
@@ -126,7 +134,9 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 
 
 		// Multiple audio files; let's build a playlist.
-	} else {
+		// We are handling this the old jetpack [audio] way.
+	} elseif ( count( $src ) > 1 ) {
+		echo count( $src ) . ' More than one<br>';
 
 		$artists  = array();
 		$playlist = array();
@@ -140,7 +150,7 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		}
 
 		// Song URL/artist pairs.
-		for ( $i = 0, $i_count = count( $songs ); $i < $i_count; $i ++ ) {
+		for ( $i = 0, $i_count = count( $songs ); $i < $i_count; $i++ ) {
 			$filename = explode( '/', untrailingslashit( $songs[ $i ] ) );
 			$filename = array_pop( $filename );
 
@@ -183,32 +193,257 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		}
 		$playlist_data['tracks'] = $tracks;
 
+		//Enqueue the old script for multiple [audio] tracks in the same shortcode
+//		wp_enqueue_script( 'audio-shortcode', plugins_url( 'modules/shortcodes/js/audio-shortcode.js', __FILE__ ), array( 'jquery' ), '1.1', true );
 
-//		ob_start();
+		if ( ! isset( $ap_playerID ) ) {
+			$ap_playerID = 1;
+		} else {
+			$ap_playerID++;
+		}
 
-		// Enqueue core JS/CSS for the playlist player.
+		if ( ! isset( $load_audio_script ) ) {
+			$load_audio_script = true;
+		}
 
-		//@todo the playlist script breaks the media player when a multiple audio shortcode is embedded.
-//		do_action( 'wp_playlist_scripts', 'audio', 'light' );
-		/* ?>
+		// prep the audio files
+//		$src = trim( $src, ' "' );
+		$options = array();
+//		$data = preg_split( "/\|/", $src );
+		$sound_file = $data[0];
+		$sound_files = explode( ',', $sound_file );
 
-		<div class="wp-playlist wp-audio-playlist wp-playlist-light">
-			<div class="wp-playlist-current-item"></div>
-			<audio controls="controls" preload="metadata"></audio>
-			<div class="wp-playlist-next"></div>
-			<div class="wp-playlist-prev"></div>
-			<noscript>
-				<ol><?php
-					foreach ( $playlist as $song_url => $artist ) {
-						printf( '<li><a href="%s">%s</a></li>', esc_url( $song_url ), esc_html( $artist[0] ) );
+		if ( is_ssl() ) {
+			for ( $i = 0; $i < count( $sound_files ); $i++ ) {
+				$sound_files[ $i ] = preg_replace( '#^http://([^.]+).files.wordpress.com/#', 'https://$1.files.wordpress.com/', $sound_files[ $i ] );
+			}
+		}
+
+		$sound_files = array_map( 'trim', $sound_files );
+//		$sound_files = array_map( array( $this, 'rawurlencode_spaces' ), $sound_files );
+		$sound_files = array_map( 'esc_url_raw', $sound_files ); // Ensure each is a valid URL
+		$num_files = count( $sound_files );
+		$sound_types = array(
+			'mp3'  => 'mpeg',
+			'wav'  => 'wav',
+			'ogg'  => 'ogg',
+			'oga'  => 'ogg',
+			'm4a'  => 'mp4',
+			'aac'  => 'mp4',
+			'webm' => 'webm'
+		);
+
+		for ( $i = 1; $i < count( $data ); $i++ ) {
+			$pair = explode( "=", $data[$i] );
+			if ( strtolower( $pair[0] ) != 'autostart' ) {
+				$options[$pair[0]] = $pair[1];
+			}
+		}
+
+		$options['soundFile'] = join( ',', $sound_files ); // Rebuild the option with our now sanitized data
+		$flash_vars = array();
+		foreach ( $options as $key => $value ) {
+			$flash_vars[] = rawurlencode( $key ) . '=' . rawurlencode( $value );
+		}
+		$flash_vars = implode( '&amp;', $flash_vars );
+		$flash_vars = esc_attr( $flash_vars );
+
+		// extract some of the options to insert into the markup
+		if ( isset( $options['bgcolor'] ) && preg_match( '/^(0x)?[a-f0-9]{6}$/i', $options['bgcolor'] ) ) {
+			$bgcolor = preg_replace( '/^(0x)?/', '#', $options['bgcolor'] );
+			$bgcolor = esc_attr( $bgcolor );
+		} else {
+			$bgcolor = '#FFFFFF';
+		}
+
+		if ( isset( $options['width'] ) ) {
+			$width = intval( $options['width'] );
+		} else {
+			$width = 290;
+		}
+
+		$loop = '';
+		$script_loop = 'false';
+		if ( isset( $options['loop'] ) && 'yes' == $options['loop'] ) {
+			$script_loop = 'true';
+			if ( 1 == $num_files ) {
+				$loop = 'loop';
+			}
+		}
+
+		$volume = 0.6;
+		if ( isset( $options['initialvolume'] ) &&
+		     0.0 < floatval( $options['initialvolume'] ) &&
+		     100.0 >= floatval( $options['initialvolume'] ) ) {
+
+			$volume = floatval( $options['initialvolume'] )/100.0;
+		}
+
+		$file_artists = array_pad( array(), $num_files, '' );
+		if ( isset( $options['artists'] ) ) {
+			$artists = preg_split( '/,/', $options['artists'] );
+			foreach ( $artists as $i => $artist ) {
+				$file_artists[$i] = esc_html( $artist ) . ' - ';
+			}
+		}
+
+		// generate default titles
+		$file_titles = array();
+		for ( $i = 0; $i < $num_files; $i++ ) {
+			$file_titles[] = 'Track #' . ($i+1);
+		}
+
+		// replace with real titles if they exist
+		if ( isset( $options['titles'] ) ) {
+			$titles = preg_split( '/,/', $options['titles'] );
+			foreach ( $titles as $i => $title ) {
+				$file_titles[$i] = esc_html( $title );
+			}
+		}
+
+		// fallback for the fallback, just a download link
+		$not_supported = '';
+		foreach ( $sound_files as $sfile ) {
+			$not_supported .= sprintf(
+				__( 'Download: <a href="%s">%s</a><br />', 'jetpack' ),
+				esc_url( $sfile ),
+				esc_html( basename( $sfile ) ) );
+		}
+
+		// HTML5 audio tag
+		$html5_audio = '';
+		$all_mp3 = true;
+//		$add_audio = true;
+		$num_good = 0;
+		$to_remove = array();
+		foreach ( $sound_files as $i => $sfile ) {
+			$file_extension = pathinfo( $sfile, PATHINFO_EXTENSION );
+			if ( ! preg_match( '/^(mp3|wav|ogg|oga|m4a|aac|webm)$/i', $file_extension ) ) {
+				$html5_audio .= '<!-- Audio shortcode unsupported audio format -->';
+				if ( 1 == $num_files ) {
+					$html5_audio .= $not_supported;
+				}
+
+				$to_remove[] = $i; // make a note of the bad files
+				$all_mp3 = false;
+				continue;
+			} elseif ( ! preg_match( '/^mp3$/i', $file_extension ) ) {
+				$all_mp3 = false;
+			}
+
+			if ( 0 == $i ) { // only need one player
+				$html5_audio .= <<<AUDIO
+				<span id="wp-as-{$post->ID}_{$ap_playerID}-container">
+					<audio id='wp-as-{$post->ID}_{$ap_playerID}' controls preload='none' $loop style='background-color:$bgcolor;width:{$width}px;'>
+						<span id="wp-as-{$post->ID}_{$ap_playerID}-nope">$not_supported</span>
+					</audio>
+				</span>
+				<br />
+AUDIO;
+			}
+			$num_good++;
+		}
+
+		// player controls, if needed
+		if ( 1 < $num_files ) {
+			$html5_audio .= <<<CONTROLS
+				<span id='wp-as-{$post->ID}_{$ap_playerID}-controls' style='display:none;'>
+					<a id='wp-as-{$post->ID}_{$ap_playerID}-prev'
+						href='javascript:audioshortcode.prev_track( "{$post->ID}_{$ap_playerID}" );'
+						style='font-size:1.5em;'>&laquo;</a>
+					|
+					<a id='wp-as-{$post->ID}_{$ap_playerID}-next'
+						href='javascript:audioshortcode.next_track( "{$post->ID}_{$ap_playerID}", true, $script_loop );'
+						style='font-size:1.5em;'>&raquo;</a>
+				</span>
+CONTROLS;
+		}
+		$html5_audio .= "<span id='wp-as-{$post->ID}_{$ap_playerID}-playing'></span>";
+
+		if ( is_ssl() )
+			$protocol = 'https';
+		else
+			$protocol = 'http';
+
+		$swfurl = apply_filters(
+			'jetpack_static_url',
+			"$protocol://en.wordpress.com/wp-content/plugins/audio-player/player.swf" );
+
+		// all the fancy javascript is causing Google Reader to break, just include flash in GReader
+		// override html5 audio code w/ just not supported code
+		if ( is_feed() ) {
+			$html5_audio = $not_supported;
+		}
+
+		if ( $all_mp3 ) {
+			// process regular flash player, inserting HTML5 tags into object as fallback
+			$audio_tags = <<<FLASH
+				<object id='wp-as-{$post->ID}_{$ap_playerID}-flash' type='application/x-shockwave-flash' data='$swfurl' width='$width' height='24'>
+					<param name='movie' value='$swfurl' />
+					<param name='FlashVars' value='{$flash_vars}' />
+					<param name='quality' value='high' />
+					<param name='menu' value='false' />
+					<param name='bgcolor' value='$bgcolor' />
+					<param name='wmode' value='opaque' />
+					$html5_audio
+				</object>
+FLASH;
+		} else { // just HTML5 for non-mp3 versions
+			$audio_tags = $html5_audio;
+		}
+
+		// strip out all the bad files before it reaches .js
+		foreach ( $to_remove as $i ) {
+			array_splice( $sound_files, $i, 1 );
+			array_splice( $file_artists, $i, 1 );
+			array_splice( $file_titles, $i, 1 );
+		}
+
+		// mashup the artist/titles for the script
+		$script_titles = array();
+		for ( $i = 0; $i < $num_files; $i++ ) {
+			$script_titles[] = $file_artists[$i] . $file_titles[$i];
+
+		}
+
+		// javacript to control audio
+		$script_files   = json_encode( $sound_files );
+		$script_titles  = json_encode( $script_titles );
+		$script = <<<SCRIPT
+			<script type='text/javascript'>
+			//<![CDATA[
+			(function() {
+				var prep = function() {
+					if ( 'undefined' === typeof window.audioshortcode ) { return; }
+					audioshortcode.prep(
+						'{$post->ID}_{$ap_playerID}',
+						$script_files,
+						$script_titles,
+						$volume,
+						$script_loop
+					);
+				};
+				if ( 'undefined' === typeof jQuery ) {
+					if ( document.addEventListener ) {
+						window.addEventListener( 'load', prep, false );
+					} else if ( document.attachEvent ) {
+						window.attachEvent( 'onload', prep );
 					}
-					?></ol>
-			</noscript>
-			<script type="application/json"><?php echo json_encode( $playlist_data ); ?></script>
-		</div>
+				} else {
+					jQuery(document).on( 'ready as-script-load', prep );
+				}
+			})();
+			//]]>
+			</script>
+SCRIPT;
 
-		<?php
-		return ob_get_clean();*/
+		// add the special javascript, if needed
+		if ( 0 < $num_good && ! is_feed() ) {
+			$audio_tags .= $script;
+		}
+
+		return "<span style='text-align:left;display:block;'><p>$audio_tags</p></span>";
 	}
 }
+
 add_shortcode( 'audio', 'jetpack_compat_audio_shortcode' );
