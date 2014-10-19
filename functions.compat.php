@@ -215,7 +215,6 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		}
 
 		$sound_files = array_map( 'trim', $sound_files );
-		$sound_files = array_map( array( $this, 'rawurlencode_spaces' ), $sound_files );
 		$sound_files = array_map( 'esc_url_raw', $sound_files ); // Ensure each is a valid URL
 		$num_files = count( $sound_files );
 		$sound_types = array(
@@ -308,6 +307,7 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		// HTML5 audio tag
 		$html5_audio = '';
 		$all_mp3 = true;
+		$add_audio = true;
 		$num_good = 0;
 		$to_remove = array();
 		foreach ( $sound_files as $i => $sfile ) {
