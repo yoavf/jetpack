@@ -101,7 +101,6 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 
 	// Single audio file.
 	if ( count( $src ) === 1 ) {
-		echo count( $src ) . ' Only one<br>';
 		$src = reset( $src );
 		$src = strip_tags( $src ); // Previously users were able to use [audio <a href="URL">URL</a>] and other nonsense tags
 		$src = esc_url_raw( $src );
@@ -136,7 +135,6 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		// Multiple audio files; let's build a playlist.
 		// We are handling this the old jetpack [audio] way.
 	} elseif ( count( $src ) > 1 ) {
-		echo count( $src ) . ' More than one<br>';
 
 		$artists  = array();
 		$playlist = array();
@@ -194,7 +192,6 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		$playlist_data['tracks'] = $tracks;
 
 		//Enqueue the old script for multiple [audio] tracks in the same shortcode
-//		wp_enqueue_script( 'audio-shortcode', plugins_url( 'modules/shortcodes/js/audio-shortcode.js', __FILE__ ), array( 'jquery' ), '1.1', true );
 
 		if ( ! isset( $ap_playerID ) ) {
 			$ap_playerID = 1;
@@ -207,9 +204,7 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		}
 
 		// prep the audio files
-//		$src = trim( $src, ' "' );
 		$options = array();
-//		$data = preg_split( "/\|/", $src );
 		$sound_file = $data[0];
 		$sound_files = explode( ',', $sound_file );
 
@@ -220,7 +215,7 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		}
 
 		$sound_files = array_map( 'trim', $sound_files );
-//		$sound_files = array_map( array( $this, 'rawurlencode_spaces' ), $sound_files );
+		$sound_files = array_map( array( $this, 'rawurlencode_spaces' ), $sound_files );
 		$sound_files = array_map( 'esc_url_raw', $sound_files ); // Ensure each is a valid URL
 		$num_files = count( $sound_files );
 		$sound_types = array(
@@ -313,7 +308,6 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		// HTML5 audio tag
 		$html5_audio = '';
 		$all_mp3 = true;
-//		$add_audio = true;
 		$num_good = 0;
 		$to_remove = array();
 		foreach ( $sound_files as $i => $sfile ) {
