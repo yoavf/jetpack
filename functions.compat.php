@@ -77,8 +77,6 @@ endif;
  *
  * @since 3.3
  *
- * @todo CLEAN
- *
  */
 
 function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
@@ -217,15 +215,6 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		$sound_files = array_map( 'trim', $sound_files );
 		$sound_files = array_map( 'esc_url_raw', $sound_files ); // Ensure each is a valid URL
 		$num_files = count( $sound_files );
-		$sound_types = array(
-			'mp3'  => 'mpeg',
-			'wav'  => 'wav',
-			'ogg'  => 'ogg',
-			'oga'  => 'ogg',
-			'm4a'  => 'mp4',
-			'aac'  => 'mp4',
-			'webm' => 'webm'
-		);
 
 		for ( $i = 1; $i < count( $data ); $i++ ) {
 			$pair = explode( "=", $data[$i] );
@@ -307,7 +296,6 @@ function jetpack_compat_audio_shortcode( $attr, $content = '' ) {
 		// HTML5 audio tag
 		$html5_audio = '';
 		$all_mp3 = true;
-		$add_audio = true;
 		$num_good = 0;
 		$to_remove = array();
 		foreach ( $sound_files as $i => $sfile ) {
