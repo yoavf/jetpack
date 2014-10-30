@@ -18,7 +18,7 @@ class Jetpack_Gravatar_Profile_Widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'grofile',
-			apply_filters( 'jetpack_widget_name', __( 'Gravatar Profile', 'jetpack' ) ),
+			__( 'Gravatar Profile', 'jetpack' ),
 			array(
 				'classname'   => 'widget-grofile grofile',
 				'description' => __( 'Display a mini version of your Gravatar Profile', 'jetpack' )

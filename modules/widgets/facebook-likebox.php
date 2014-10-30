@@ -28,7 +28,7 @@ class WPCOM_Widget_Facebook_LikeBox extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'facebook-likebox',
-			apply_filters( 'jetpack_widget_name', __( 'Facebook Like Box', 'jetpack' ) ),
+			__( 'Facebook Like Box', 'jetpack' ),
 			array(
 				'classname' => 'widget_facebook_likebox',
 				'description' => __( 'Display a Facebook Like Box to connect visitors to your Facebook Page', 'jetpack' )

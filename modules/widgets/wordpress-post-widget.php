@@ -22,7 +22,7 @@ class Jetpack_Display_Posts_Widget extends WP_Widget {
 			// internal id
 			'jetpack_display_posts_widget',
 			// wp-admin title
-			apply_filters( 'jetpack_widget_name', __( 'Display WordPress Posts', 'jetpack' ) ),
+			__( 'Display WordPress Posts', 'jetpack' ),
 			array(
 				'description' => __( 'Displays a list of recent posts from another WordPress.com or Jetpack-enabled blog.', 'jetpack' ),
 			)

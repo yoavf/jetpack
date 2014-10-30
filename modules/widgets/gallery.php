@@ -23,7 +23,7 @@ class Jetpack_Gallery_Widget extends WP_Widget {
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 
-		$this->WP_Widget( 'gallery', apply_filters( 'jetpack_widget_name', __( 'Gallery', 'jetpack' ) ), $widget_ops, $control_ops );
+		$this->WP_Widget( 'gallery', __( 'Gallery', 'jetpack' ), $widget_ops, $control_ops );
 	}
 
 	/**

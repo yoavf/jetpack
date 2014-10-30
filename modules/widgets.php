@@ -35,14 +35,10 @@ function jetpack_widgets_configuration_load() {
 	exit;
 }
 
-/**
- * Add the "(Jetpack)" suffix to the widget names
- */
-function jetpack_widgets_add_suffix( $widget_name ) {
-	return sprintf( __( '%s (Jetpack)', 'jetpack' ), $widget_name );
+function jetpack_widgets_admin_add_style() {
+	wp_enqueue_style( 'jetpack-widgets-admin', plugins_url( 'widgets/admin.css', __FILE__ ), array( 'jetpack-icons' ) );
 }
-add_filter( 'jetpack_widget_name', 'jetpack_widgets_add_suffix' );
-
+add_action( 'load-widgets.php', 'jetpack_widgets_admin_add_style' );
 
 
 jetpack_load_widgets();

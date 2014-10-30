@@ -1,0 +1,16 @@
+
+.widget[id*=_jetpack_display_posts_widget-] .widget-title h4:before,
+.widget[id*=_facebook-likebox-] .widget-title h4:before,
+.widget[id*=_gallery-] .widget-title h4:before,
+.widget[id*=_grofile-] .widget-title h4:before,
+.widget[id*=_image-] .widget-title h4:before,
+.widget[id*=_rss_links-] .widget-title h4:before,
+.widget[id*=_twitter_timeline-] .widget-title h4:before,
+.widget[id*=_upcoming_events_widget-] .widget-title h4:before {
+	display: inline;
+	font-family: 'jetpack' !important;
+	content: '\f102';
+	font-size: 150%;
+	margin-right: 0.2em;
+	vertical-align: text-top;
+}
